@@ -1,0 +1,364 @@
+.light-mode {
+    //Text Color
+    color: rgb(46, 44, 46);
+    --text-color: rgb(46, 44, 46);
+
+    //Theme color variables
+
+    // --theme-bg: rgb(162, 130, 180);    
+    --theme-bg: #9B86BD;    
+    --primary: hsl(216, 74%, 53%);
+    --primary-disabled: hsl(216, 47%, 37%);
+
+    --primary-card: rgb(200, 221, 226);
+
+    // linear gradients
+    // --primary-gradient: linear-gradient(120deg, #30435233, #d7d2cc);
+
+    --primary-gradient: linear-gradient(120deg, #eee2e2, #dadee9);
+
+    // --primary-gradient: linear-gradient(120deg, #eee3e2, #dcdae9);
+
+    --secondary: hsl(0, 0%, 50%);
+    --secondary-disabled: hsl(217, 4%, 62%);
+
+    --success: hsl(134, 33%, 40%);
+    --success-disabled: hsl(140, 48%, 22%);
+
+    --danger: hsl(0, 65%, 45%);
+    --danger-disabled: hsl(0, 29%, 49%);
+
+    --warning: hsl(49, 79%, 55%);
+    --warning-disabled: hsl(49, 36%, 58%);
+
+    --muted-color-1: hsl(0, 0%, 30%);
+    --muted-color-2: hsl(0, 0%, 40%);
+    --muted-color-3: hsl(0, 0%, 50%);
+
+    //Header Background Color
+    --header-background-color: hsl(173, 13%, 86%);
+
+    //Body Background Color
+    // --body-background-color: hsl(168, 36%, 81%);
+    --body-background-color: hsl(163, 12%, 89%);
+
+    //Sidebar Background Color
+    --sidebar-background-color: hsl(173, 13%, 86%);
+    --sidebar-border-color: #cbcccf;
+
+    //Footer Background Color
+    --footer-background-color: hsl(173, 13%, 86%);
+
+    --theme-content-color: hsl(0, 0%, 100%);
+
+    //Active Colors
+    --active-text-color: hsl(212, 97%, 26%);
+    --active-background-color: hsl(25, 47%, 94%);
+
+    //Accent Color
+    --accent-light-backround-color: hsl(25, 48%, 89%);
+    --accent-dark-backround-color: hsl(25, 60%, 50%);
+    --accent-text-color: hsl(25, 45%, 54%);
+
+    //Menu Cards
+    --menu-card-background1: hsl(261, 47%, 94%);
+    --menu-card-background2: hsl(261, 47%, 94%);
+    --menu-card-text-color: hsl(0, 0%, 27%);
+
+    //Project Cards
+    --project-card-footer-bg: rgba(172, 172, 172, 0.507);
+
+    //Grid Colors
+    --grid-background-color: rgb(248, 248, 248);
+    --grid-head-background-color: hsl(0, 0%, 100%);
+    --grid-row-border-color: hsla(0, 0%, 85%, 0.6);
+
+    //Form Control Colors
+    --from-control-background-color: hsl(0, 0%, 93%);
+    --from-control-disabled-background-color: hsl(0, 0%, 85%);
+    --from-control-border-color: hsl(0, 0%, 85%);
+
+    --slider-track-color: hsla(0, 0%, 50%, 0.3);
+    --slider-progress-color: hsl(25, 70%, 50%);
+
+    //Skeleton loader
+    --skeleton-base: #e0e0e0;
+    --skeleton-highlight: #f3f3f3;
+
+    //Dialog Backdrop
+    --dialog-backdrop: hsla(0, 0%, 39%, 0.301);
+    --dialog-background-color: rgb(235, 235, 235);
+
+    --generic-border-color: hsla(0, 0%, 85%, 0.6);
+    --select-item-box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.1);
+
+    // Dashboard
+    --dash-bg: hsl(0, 0%, 100%);
+    --dash-card-bg: hsl(213, 9%, 61%);
+    --dash-container: hsl(0, 0%, 100%);
+
+    --group-card-bg: hsl(0, 0%, 100%);
+    --icon-primary-color: hsl(0, 0%, 10%);
+
+    --header-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --footer-box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    --main-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    --bar-bg-color: #25292c46;
+
+    //Multi Select
+    --multi-select-hover-bg: hsla(216, 7%, 27%, 0.158);
+
+    // invert
+    --invert-on-dark: invert(0);
+    --invert-on-light: invert(1);
+
+    // opacity
+    --main-graphic-opacity: 0.1;
+    --secondary-graphic-opacity: 0.5;
+    --lighter-graphic-opacity: 0.1;
+    --light-graphic-opacity: 0.1;
+    --starting-bg-opacity: 0.2;
+
+    // width
+    --first-education-graphic-width: 500%;
+    --second-education-graphic-width: 700%;
+
+    // scrollbar
+    --scrollbar-bg: hsl(0, 0%, 30%);
+    --scrollbar-track-bg: hsl(0, 0%, 20%);
+
+}
+
+.dark-mode {
+    //Text Color
+    color: white;
+    --text-color: white;
+
+    //Theme color variables
+    --theme-bg: rgb(126, 32, 126);
+    --primary: hsl(216, 74%, 53%);
+    --primary-disabled: hsl(216, 47%, 37%);
+
+    --primary-card: hsl(217, 19%, 27%);
+    // --primary-card: rgb(57, 67, 70);
+
+    // linear gradients
+    // --primary-gradient: linear-gradient(120deg, #eee3e2, #dcdae9);
+    --primary-gradient: linear-gradient(120deg, #06141f9c, #42413f96);
+
+    --secondary: hsl(0, 0%, 50%);
+    --secondary-disabled: hsl(217, 4%, 62%);
+
+    --success: hsl(134, 33%, 40%);
+    --success-disabled: hsl(140, 48%, 22%);
+
+    --danger: hsl(0, 65%, 45%);
+    --danger-disabled: hsl(0, 29%, 49%);
+
+    --warning: hsl(49, 79%, 55%);
+    --warning-disabled: hsl(49, 36%, 58%);
+
+    --muted-color-1: hsl(0, 0%, 70%);
+    --muted-color-2: hsl(0, 0%, 60%);
+    --muted-color-3: hsl(0, 0%, 50%);
+
+    //Header Background Color
+    --header-background-color: hsl(228, 6%, 15%);
+
+    //Body Background Color
+    --body-background-color: hsl(228, 6%, 15%);
+
+    //Sidebar Background Color
+    --sidebar-background-color: hsl(228, 6%, 15%);
+    --sidebar-border-color: hsl(220, 5%, 25%);
+
+    //Footer Background Color
+    --footer-background-color: hsl(228, 6%, 15%);
+
+    --theme-content-color: hsl(233, 7%, 22%);
+
+    //Active Colors
+    --active-text-color: hsl(201, 100%, 87%);
+    --active-background-color: hsla(25, 50%, 50%, 0.3);
+
+    //Accent Color
+    --accent-light-backround-color: hsla(25, 55%, 50%, 0.4);
+    --accent-dark-backround-color: hsl(25, 60%, 50%);
+    --accent-text-color: hsla(25, 100%, 75%, 0.9);
+
+    //Menu Cards
+    --menu-card-background1: hsl(232, 7%, 22%);
+    --menu-card-background2: hsl(270, 7%, 22%);
+    --menu-card-text-color: white;
+
+    //Project Cards
+    --project-card-footer-bg: rgba(255, 255, 255, 0.712);
+
+    //Grid Colors
+    --grid-background-color: rgb(54, 54, 54);
+    --grid-head-background-color: rgb(42, 42, 42);
+    --grid-row-border-color: hsla(0, 0%, 30%, 0.6);
+
+    --from-control-background-color: hsl(0, 0%, 18%);
+    --from-control-disabled-background-color: hsl(0, 0%, 23%);
+    --from-control-border-color: hsl(0, 0%, 30%);
+
+    --slider-track-color: hsla(0, 0%, 50%, 0.3);
+    --slider-progress-color: hsl(25, 60%, 50%);
+
+    //Skeleton loader
+    --skeleton-base: #444;
+    --skeleton-highlight: #555;
+
+    //Dialog Backdrop
+    --dialog-backdrop: hsla(0, 0%, 39%, 0.301);
+    --dialog-background-color: rgb(19, 19, 19);
+
+    --generic-border-color: hsla(0, 0%, 30%, 0.6);
+    --select-item-box-shadow: 0px 3px 9px rgba(105, 105, 105, 0.1);
+
+    // Dashboard
+    --dash-bg: hsl(228, 4%, 26%);
+    --dash-card-bg: hsl(228, 11%, 9%);
+    --dash-container: hsl(227, 7%, 26%);
+
+    --group-card-bg: hsl(0, 1%, 32%);
+    --icon-primary-color: hsl(213, 14%, 88%);
+
+    --header-box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -2px rgba(255, 255, 255, 0.1);
+    --footer-box-shadow: 0 -4px 6px -1px rgba(255, 255, 255, 0.1), 0 -2px 4px -2px rgba(255, 255, 255, 0.1);
+    --main-box-shadow:   inset 0 2px 4px rgba(255, 255, 255, 0.1), /* Inset shadow for inner depth */
+    0 10px 20px -10px rgba(0, 0, 0, 0.7), /* Outer deeper shadow */
+    0 4px 5px -2px rgba(255, 255, 255, 0.1); /* Subtle outer highlight */
+
+    //Multi Select
+    --multi-select-hover-bg: hsla(204, 31%, 62%, 0.226);
+
+    // invert
+    --invert-on-dark: invert(1);
+    --invert-on-light: invert(0);
+
+    // opacity
+    --main-graphic-opacity: 0.4;
+    --secondary-graphic-opacity: 0.4;
+    --lighter-graphic-opacity: 0.3;
+    --light-graphic-opacity: 0.15;
+    --starting-bg-opacity: 0.8;
+
+    // width
+    --first-education-graphic-width: 100%;
+    --second-education-graphic-width: 150%;
+
+    // scrollbar
+    --scrollbar-bg: hsl(0, 0%, 30%);
+    --scrollbar-track-bg: hsl(0, 0%, 20%);
+
+}
+
+*::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border-radius: 13px;
+    background-clip: padding-box;
+    border: 10px solid transparent;
+    color: var(--scrollbar-bg);
+}
+
+*::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 0 10px;
+    // color: var(--scrollbar-bg);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: gray;
+    border-radius: 13px;
+    background-clip: padding-box;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0);
+}
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('assets/fonts/ubuntuSansMono/UbuntuSansMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CustomFontBold';
+    src: url('assets/fonts/ubuntuSansMono/UbuntuSansMono-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CustomFontItalic';
+    src: url('assets/fonts/ubuntuSansMono/UbuntuSansMono-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CustomFontBoldItalic';
+    src: url('assets/fonts/ubuntuSansMono/UbuntuSansMono-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CustomFontLight';
+    src: url('assets/fonts/ubuntuSansMono/UbuntuSansMono-Medium.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CustomFontSemiBold';
+    src: url('assets/fonts/ubuntuSansMono/UbuntuSansMono-SemiBold.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+.bold {
+    font-family: 'CustomFontBold', sans-serif;
+}
+
+.italic {
+    font-family: 'CustomFontItalic', sans-serif;
+}
+
+.bold-italic {
+    font-family: 'CustomFontBoldItalic', sans-serif;
+}
+
+.light {
+    font-family: 'CustomFontLight', sans-serif;
+}
+
+.semi-bold {
+    font-family: 'CustomFontSemiBold', sans-serif;
+}
+
+body {
+    font-family: 'CustomFont', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-background-color);
+    color: var(--text-color);
+    transition: all 0.5s ease;
+}
+
+html {
+    height: 100%;
+}

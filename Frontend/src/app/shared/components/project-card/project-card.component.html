@@ -1,0 +1,10 @@
+<div class="service-entry" [ngClass]="{'expanded': isExpanded}">
+    <h3>{{heading}}</h3>
+    <p class="service-description">{{description}}</p>
+    <ul class="service-bulletPoints">
+        <li *ngFor="let item of bulletPoints">
+            {{item}}
+        </li>
+    </ul>
+    <button class="toggle-expand-btn" (click)="toggleExpand()">{{isExpanded ? 'Show Less' : 'Show More'}}</button>
+</div>

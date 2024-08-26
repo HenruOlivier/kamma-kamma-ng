@@ -1,0 +1,35 @@
+<div class="sidebar-body" (click)="$event.stopPropagation()">
+    <div class="sidebar-brand" routerLink="home">
+        <div class="image-container">
+            <img src="assets/icons/henrudev.svg">
+        </div>
+    </div>
+
+    <div class="sidebar-profile">
+        <img src="assets/images/face-icon.webp" alt="">
+    </div>
+
+    <div class="sidebar-menu ">
+        <a href="#introduction">
+            Introduction
+        </a>
+        <a href="#action-map">
+            Action Map
+        </a>
+        <a href="#services">
+            Services
+        </a>
+        <a href="#why-us">
+            Why Choose Us
+        </a>
+    </div>
+
+    <div class="theme-toggler" (click)="onToggleTheme()">
+        <label><i class="bi bi-moon-fill"></i> Toggle Theme</label>
+    </div>
+
+    <div class="brand-footer">
+        <!-- <img [src]="getBrandSMURL()" class="h-100"> -->
+        <p class="">Henru Developer<i class="bi bi-dot"></i>/></p>
+    </div>
+</div>

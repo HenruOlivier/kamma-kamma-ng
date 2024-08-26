@@ -1,0 +1,16 @@
+<div class="app-container" [ngClass]="(uiToolsService.darkTheme$ | async) ? 'dark-mode' : 'light-mode'">
+    <div class="header" (click)="$event.stopPropagation()">
+        <app-header></app-header>
+    </div>
+
+    <div class="content" [ngClass]="{'open': (uiToolsService.sidebarOpen$ | async)}">
+        <div class="sidebar disable-select">
+            <app-sidebar></app-sidebar>
+        </div>
+
+        <div class="body" (click)="$event.stopPropagation()">
+            <router-outlet #outlet="outlet"></router-outlet>
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
