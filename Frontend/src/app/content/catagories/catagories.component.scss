@@ -54,11 +54,11 @@
 .catagory-card {
     height: 200px;
     width: 150px;
-    background-color: red;
+    background-color: rgb(246, 242, 248);
     border-radius: 10px;
     padding: 20px;
     margin: 20px;
-    box-sizing: var(--primary-box-shadow);
+    box-shadow: var(--main-box-shadow);
 }
 
 .card-header {
