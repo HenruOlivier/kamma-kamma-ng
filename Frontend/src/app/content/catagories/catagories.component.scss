@@ -51,14 +51,23 @@
     opacity: var(--secondary-graphic-opacity);
 }
 
-.experience-list {
-    padding-inline-start: 30px;
+.catagory-card {
+    height: 200px;
+    width: 150px;
+    background-color: red;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
 }
 
-.experience-list li {
-    padding: 5px 0px;
+.card-header {
+    height: 20%;
 }
 
-.bullet-heading {
-    font-weight: 600;
+.card-img {
+    height: 80%;
+    & img {
+        height: 100%;
+        object-fit: contain;
+    }
 }
