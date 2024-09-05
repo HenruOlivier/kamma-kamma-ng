@@ -1,0 +1,26 @@
+.search-page-body {
+    padding: 10px;
+}
+
+.sp-info-section {
+    display: flex;
+}
+
+.sort-filter-section {
+    display: flex;
+}
+
+.option-btn {
+    height: 40px;
+    width: 90px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgba(184, 184, 184, 0.288);
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    // font-weight: 400;
+    font-size: larger;
+}
