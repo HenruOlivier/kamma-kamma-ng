@@ -9,7 +9,9 @@
         </div>
 
         <div class="body" (click)="$event.stopPropagation()">
-            <router-outlet #outlet="outlet"></router-outlet>
+            <div class="outlet-content">
+                <router-outlet #outlet="outlet"></router-outlet>
+            </div>
             <app-footer></app-footer>
         </div>
     </div>

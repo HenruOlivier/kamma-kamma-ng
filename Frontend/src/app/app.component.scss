@@ -44,6 +44,10 @@
     overflow-x: hidden;
 }
 
+.outlet-content {
+    min-height: 100%;
+}
+
 .sidebar {
     position: fixed;
     width: 250px;
