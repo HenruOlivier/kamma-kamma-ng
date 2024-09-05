@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ToggleInViewDirective } from '../../shared/directives/toggleInViewClass';
-import { TypingEffectDirective } from '../../shared/directives/typingEffect';
+import { ToggleInViewDirective } from '../../../shared/directives/toggleInViewClass';
+import { TypingEffectDirective } from '../../../shared/directives/typingEffect';
 
 @Component({
   selector: 'app-introduction',

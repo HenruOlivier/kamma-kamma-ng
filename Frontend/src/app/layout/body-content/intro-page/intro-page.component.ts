@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { AddInViewOnceDirective } from '../../shared/directives/addInViewOnce';
-import { TypingEffectDirective } from '../../shared/directives/typingEffect';
-import { ToggleInViewDirective } from '../../shared/directives/toggleInViewClass';
+import { AddInViewOnceDirective } from '../../../shared/directives/addInViewOnce';
+import { TypingEffectDirective } from '../../../shared/directives/typingEffect';
+import { ToggleInViewDirective } from '../../../shared/directives/toggleInViewClass';
 import { CommonModule } from '@angular/common';
 
 @Component({
