@@ -10,6 +10,6 @@ import { Component } from '@angular/core';
 })
 export class SearchAllComponent {
 
-  options: string[] = ['awe', 'jaaaaa'];
+  options: string[] = ['awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa',];
 
 }

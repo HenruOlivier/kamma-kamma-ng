@@ -10,9 +10,11 @@
             </button>
         </div>
     </div>
-    <ng-container *ngFor="let option of options">
-        <div class="option-topic-box">
-            {{option}}
-        </div>
-    </ng-container>
+    <div class="results-container">
+        <ng-container *ngFor="let option of options">
+            <div class="result-box">
+                {{option}}
+            </div>
+        </ng-container>
+    </div>
 </div>

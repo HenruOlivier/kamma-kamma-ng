@@ -4,6 +4,7 @@
 
 .sp-info-section {
     display: flex;
+    justify-content: space-between;
 }
 
 .sort-filter-section {
@@ -25,6 +26,17 @@
     font-size: larger;
 }
 
-.option-topic-box {
-    
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.result-box {
+    padding: 10px;
+    margin: 10px;
+    height: 180px;
+    width: 120px;
+    border: 1px solid rgba(128, 128, 128, 0.432);
+    border-radius: 5px;
 }
