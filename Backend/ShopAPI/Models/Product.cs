@@ -28,8 +28,10 @@ namespace ShopAPI.Models
         [Required]
         public int WarehouseId { get; set; }
 
-        public Warehouse Warehouse { get; set; } = new(); // Initialize with default value
+        // Remove the default initialization here
+        public Warehouse? Warehouse { get; set; }
 
         public List<Image> Images { get; set; } = new(); // Initialize with an empty list
     }
+
 }

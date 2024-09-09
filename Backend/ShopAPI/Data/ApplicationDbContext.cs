@@ -41,6 +41,33 @@ namespace ShopAPI.Data
                 .WithMany(c => c.Products);
 
             base.OnModelCreating(modelBuilder);
+
+            // Seed Warehouses
+            modelBuilder.Entity<Warehouse>().HasData(
+                new Warehouse { Id = 1, Name = "Main Warehouse", Location = "New York" },
+                new Warehouse { Id = 2, Name = "Backup Warehouse", Location = "San Francisco" }
+            );
+
+            // Seed Products (use WarehouseId, not the Warehouse object)
+            modelBuilder.Entity<Product>().HasData(
+                new Product { Id = 1, Name = "Sample Product 1", Description = "Sample description", Price = 10.99m, StockQuantity = 100, WarehouseId = 1 },
+                new Product { Id = 2, Name = "Sample Product 2", Description = "Another sample description", Price = 20.50m, StockQuantity = 200, WarehouseId = 2 }
+            );
+
+            // Seed Categories
+            modelBuilder.Entity<Category>().HasData(
+                new Category { Id = 1, Name = "Electronics", Description = "Electronic gadgets and devices" },
+                new Category { Id = 2, Name = "Clothing", Description = "Apparels and fashion wear" }
+            );
+
+            // Seed Product-Category relationships (many-to-many)
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.Categories)
+                .WithMany(c => c.Products)
+                .UsingEntity(j => j.HasData(
+                    new { ProductsId = 1, CategoriesId = 1 },
+                    new { ProductsId = 2, CategoriesId = 2 }
+                ));
         }
     }
 }
