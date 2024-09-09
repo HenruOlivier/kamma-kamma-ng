@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ProductsService } from '../../shared/services/products.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-search-all',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './search-all.component.html',
   styleUrl: './search-all.component.scss'
 })
