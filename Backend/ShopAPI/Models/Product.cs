@@ -34,7 +34,7 @@ namespace ShopAPI.Models
         public Warehouse Warehouse { get; set; }
 
         // List of product images
-        public List<string> Images { get; set; } = new();
+        public List<Image> Images { get; set; } = new();
     }
 }
 

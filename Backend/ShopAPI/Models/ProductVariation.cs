@@ -18,7 +18,7 @@ namespace ShopAPI.Models
 
         public int StockQuantity { get; set; }
 
-        public List<string> Images { get; set; } = new();
+        public List<Image> Images { get; set; } = new();
 
         // Foreign key to the main Product
         [Required]
