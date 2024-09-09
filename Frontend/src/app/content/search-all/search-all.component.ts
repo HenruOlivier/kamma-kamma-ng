@@ -25,6 +25,7 @@ export class SearchAllComponent implements OnInit {
     this.productsService.getProducts().subscribe(
       (data) => {
         this.products = data;
+        console.log('products: ', this.products)
       },
       (error) => {
         console.error('Error fetching products:', error);
