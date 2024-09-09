@@ -35,19 +35,6 @@ namespace ShopAPI.Data
                 .Property(so => so.Rate)
                 .HasPrecision(18, 2);
 
-            // Define relationships for Image
-            // modelBuilder.Entity<Image>()
-            //     .HasOne(i => i.Product)
-            //     .WithMany(p => p.Images)
-            //     .HasForeignKey(i => i.ProductId)
-            //     .OnDelete(DeleteBehavior.Cascade);
-
-            // modelBuilder.Entity<Image>()
-            //     .HasOne(i => i.ProductVariation)
-            //     .WithMany(pv => pv.Images)
-            //     .HasForeignKey(i => i.ProductVariationId)
-            //     .OnDelete(DeleteBehavior.Cascade);
-
             // Define many-to-many relationship for Product and Category
             modelBuilder.Entity<Product>()
                 .HasMany(p => p.Categories)

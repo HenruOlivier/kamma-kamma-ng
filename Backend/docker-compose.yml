@@ -15,9 +15,9 @@ services:
       - shop-network
     healthcheck:
       test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong!Passw0rd -Q 'SELECT 1'"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      interval: 30s  # wait longer between health checks
+      timeout: 10s   # increase timeout to give SQL Server more time
+      retries: 10    # increase number of retries
 
   webapi:
     build:
@@ -29,9 +29,9 @@ services:
       ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;Encrypt=True;TrustServerCertificate=True;"
     ports:
       - "5000:80"
-    depends_on:
-      sqlserver:
-        condition: service_healthy
+    # depends_on:
+    #   sqlserver:
+    #     condition: service_healthy
     networks:
       - shop-network
 
