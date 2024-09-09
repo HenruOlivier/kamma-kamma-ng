@@ -1,30 +1,37 @@
 version: '3.8'
 
 services:
-  api:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    networks:
+      - shop-network
+
+  webapi:
     build:
-      context: .
+      context: ./ShopAPI
       dockerfile: Dockerfile
+    container_name: shopapi
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;"
     ports:
       - "5000:80"
     depends_on:
-      - db
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=db;Database=PartyShopDb;User=sa;Password=YourStrong!Passw0rd;
+      - sqlserver
     networks:
-      - partyshop-network
+      - shop-network
 
-  db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    environment:
-      - SA_PASSWORD=YourStrong!Passw0rd
-      - ACCEPT_EULA=Y
-    ports:
-      - "1433:1433"
-    networks:
-      - partyshop-network
+volumes:
+  sqlserverdata:
 
 networks:
-  partyshop-network:
+  shop-network:
     driver: bridge

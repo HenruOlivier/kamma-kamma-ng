@@ -1,22 +1,23 @@
-# Use the official .NET SDK image to build the application
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+# Use the official .NET SDK image for building the app
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
 
-# Copy the csproj and restore dependencies
+# Copy csproj and restore as distinct layers
 COPY *.csproj ./
 RUN dotnet restore
 
-# Copy the rest of the application and build it
+# Copy the remaining files and build the release
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Use the .NET runtime image to run the application
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
+# Use the official ASP.NET runtime image for running the app
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=build /app/out ./
 
-# Expose the default port used by ASP.NET Core
+# Expose port 80
 EXPOSE 80
+EXPOSE 443
 
-# Run the application
-ENTRYPOINT ["dotnet", "PartyShopApi.dll"]
+# Set the entry point
+ENTRYPOINT ["dotnet", "ShopAPI.dll"]
