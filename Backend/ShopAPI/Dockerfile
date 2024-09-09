@@ -1,23 +1,25 @@
-# Use the official .NET SDK image for building the app
+# Stage 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
 
-# Copy csproj and restore as distinct layers
+# Copy the .csproj file and restore dependencies
 COPY *.csproj ./
 RUN dotnet restore
 
-# Copy the remaining files and build the release
+# Copy the rest of the application and build it
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Use the official ASP.NET runtime image for running the app
+# Stage 2: Create the runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app
-COPY --from=build /app/out ./
 
-# Expose port 80
+# Copy the published output from the build stage
+COPY --from=build /app/out .
+
+# Expose ports if necessary (optional)
 EXPOSE 80
 EXPOSE 443
 
-# Set the entry point
+# Specify the entry point for the container
 ENTRYPOINT ["dotnet", "ShopAPI.dll"]
