@@ -6,10 +6,16 @@ namespace ShopAPI.Models
     public class Image
     {
         public int Id { get; set; }
-        public string Url { get; set; }
 
-        // Foreign key to the Product
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
+        [Required]
+        public string Url { get; set; } = string.Empty;  // Initialize non-nullable property
+
+        [Required]
+        public string EntityType { get; set; } = string.Empty;  // Initialize non-nullable property
+
+        public string Description { get; set; } = string.Empty;  // Initialize non-nullable property
+
+        public int EntityId { get; set; }
     }
+
 }

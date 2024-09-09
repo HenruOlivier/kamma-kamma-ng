@@ -8,15 +8,13 @@ namespace ShopAPI.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty; // Initialize with default value
 
         [Required]
-        public string Location { get; set; }
+        public string Location { get; set; } = string.Empty; // Initialize with default value
 
-        // Products stored in this warehouse
-        public List<Product> Products { get; set; } = new();
+        public List<Product> Products { get; set; } = new(); // Initialize with an empty list
 
-        // Shipping options available for this warehouse
-        public List<ShippingOption> ShippingOptions { get; set; } = new();
+        public List<ShippingOption> ShippingOptions { get; set; } = new(); // Initialize with an empty list
     }
 }

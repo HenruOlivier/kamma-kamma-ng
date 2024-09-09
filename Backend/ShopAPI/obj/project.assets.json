@@ -3925,9 +3925,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopApi.csproj",
-      "projectName": "ShopApi",
-      "projectPath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopApi.csproj",
+      "projectUniqueName": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj",
+      "projectName": "ShopAPI",
+      "projectPath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj",
       "packagesPath": "/home/henru/.nuget/packages/",
       "outputPath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/",
       "projectStyle": "PackageReference",

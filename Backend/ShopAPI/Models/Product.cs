@@ -8,9 +8,9 @@ namespace ShopAPI.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty; // Initialize with default value
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty; // Initialize with default value
 
         [Range(0.01, double.MaxValue)]
         public decimal Price { get; set; }
@@ -21,20 +21,15 @@ namespace ShopAPI.Models
 
         public int StockQuantity { get; set; }
 
-        // Product categories (many-to-many relationship).
-        public List<Category> Categories { get; set; } = new();
+        public List<Category> Categories { get; set; } = new(); // Initialize with an empty list
 
-        // Product variations (e.g., sizes, colors).
-        public List<ProductVariation> Variations { get; set; } = new();
+        public List<ProductVariation> Variations { get; set; } = new(); // Initialize with an empty list
 
-        // Foreign key to Warehouse
-        [Required] // Warehouse is mandatory
+        [Required]
         public int WarehouseId { get; set; }
 
-        public Warehouse Warehouse { get; set; }
+        public Warehouse Warehouse { get; set; } = new(); // Initialize with default value
 
-        // List of product images
-        public List<Image> Images { get; set; } = new();
+        public List<Image> Images { get; set; } = new(); // Initialize with an empty list
     }
 }
-

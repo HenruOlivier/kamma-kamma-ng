@@ -10,6 +10,50 @@ namespace ShopAPI.Data
         {
         }
 
+        // DbSets for all entities
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductVariation> ProductVariations { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<ShippingOption> ShippingOptions { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Decimal precision for Product.Price
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasPrecision(18, 2); // 18 digits in total, 2 digits after the decimal
+
+            // Decimal precision for ProductVariation.Price
+            modelBuilder.Entity<ProductVariation>()
+                .Property(pv => pv.Price)
+                .HasPrecision(18, 2);
+
+            // Decimal precision for ShippingOption.Rate
+            modelBuilder.Entity<ShippingOption>()
+                .Property(so => so.Rate)
+                .HasPrecision(18, 2);
+
+            // Define relationships for Image
+            // modelBuilder.Entity<Image>()
+            //     .HasOne(i => i.Product)
+            //     .WithMany(p => p.Images)
+            //     .HasForeignKey(i => i.ProductId)
+            //     .OnDelete(DeleteBehavior.Cascade);
+
+            // modelBuilder.Entity<Image>()
+            //     .HasOne(i => i.ProductVariation)
+            //     .WithMany(pv => pv.Images)
+            //     .HasForeignKey(i => i.ProductVariationId)
+            //     .OnDelete(DeleteBehavior.Cascade);
+
+            // Define many-to-many relationship for Product and Category
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.Categories)
+                .WithMany(c => c.Products);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -13,6 +13,11 @@ services:
       - sqlserverdata:/var/opt/mssql
     networks:
       - shop-network
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong!Passw0rd -Q 'SELECT 1'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   webapi:
     build:
@@ -21,11 +26,12 @@ services:
     container_name: shopapi
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
-      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;Encrypt=True;TrustServerCertificate=True;"
     ports:
       - "5000:80"
     depends_on:
-      - sqlserver
+      sqlserver:
+        condition: service_healthy
     networks:
       - shop-network
 

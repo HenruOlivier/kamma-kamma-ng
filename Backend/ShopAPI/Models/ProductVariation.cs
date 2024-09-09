@@ -8,22 +8,21 @@ namespace ShopAPI.Models
         public int Id { get; set; }
 
         [Required]
-        public string OptionName { get; set; } // e.g., "Size", "Color"
+        public string OptionName { get; set; } = string.Empty; // Initialize with default value
 
         [Required]
-        public string OptionValue { get; set; } // e.g., "Large", "Red"
+        public string OptionValue { get; set; } = string.Empty; // Initialize with default value
 
         [Range(0.01, double.MaxValue)]
         public decimal Price { get; set; }
 
         public int StockQuantity { get; set; }
 
-        public List<Image> Images { get; set; } = new();
+        public List<Image> Images { get; set; } = new(); // Initialize with an empty list
 
-        // Foreign key to the main Product
         [Required]
         public int ProductId { get; set; }
 
-        public Product Product { get; set; }
+        public Product Product { get; set; } = new(); // Initialize with default value
     }
 }

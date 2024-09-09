@@ -8,11 +8,10 @@ namespace ShopAPI.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty; // Initialize with default value
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty; // Initialize with default value
 
-        // Products in this category (many-to-many relationship)
-        public List<Product> Products { get; set; } = new();
+        public List<Product> Products { get; set; } = new(); // Initialize with an empty list
     }
 }

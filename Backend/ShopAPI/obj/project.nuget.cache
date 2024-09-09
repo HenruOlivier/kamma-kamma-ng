@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LgGoyhYcVPsem4gETnOvGBkeikRSwqHD6CDnXRcBpkp2W216jukYwzvT6RiDFUuEKhH6K9y9yX0V7iItORWL1w==",
+  "dgSpecHash": "MiFe51pL8ntDyLI1aH42GmSwlBX2OAtnNlGJFySCTbEugQQlxj8KoYkwYfwkG5adg8IPrxQBpVVD+3soODjuMg==",
   "success": true,
-  "projectFilePath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopApi.csproj",
+  "projectFilePath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj",
   "expectedPackageFiles": [
     "/home/henru/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/home/henru/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
