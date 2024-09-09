@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
   selector: 'app-search-all',
@@ -10,6 +11,25 @@ import { Component } from '@angular/core';
 })
 export class SearchAllComponent {
 
+  constructor(private productsService: ProductsService) {}
+
   options: string[] = ['awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa',];
+
+  products: any[] = [];
+
+  ngOnInit(): void {
+    this.fetchProducts();
+  }
+
+  fetchProducts(): void {
+    this.productsService.getProducts().subscribe(
+      (data) => {
+        this.products = data;
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );
+  }
 
 }
