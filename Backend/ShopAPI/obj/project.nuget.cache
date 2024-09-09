@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PKnpBoEP8aRXpTH5lrV5E4HgDUUq9B8Ldmw/kVzBQN37Rba51nBu8BbPY0ZqgNeqCuTfZSFKI2fUIBkFGhMQsA==",
+  "dgSpecHash": "EmEc4CJZU0YDli30aGTP7lF4d3NfEettvA4Xv5OCkdIJd/4ZSDFlJ9nULg3KKz5m7bbr0wc/TpJr0qi1ZOTGnA==",
   "success": true,
-  "projectFilePath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopApi/ShopApi.csproj",
+  "projectFilePath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopApi.csproj",
   "expectedPackageFiles": [
     "/home/henru/.nuget/packages/microsoft.aspnetcore.openapi/7.0.19/microsoft.aspnetcore.openapi.7.0.19.nupkg.sha512",
     "/home/henru/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

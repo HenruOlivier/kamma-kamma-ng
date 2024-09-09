@@ -13,10 +13,10 @@ namespace ShopAPI.Models
         [Required]
         public string Location { get; set; }
 
-        // Products stored in this warehouse.
-        public List<Product> Products { get; set; }
+        // Products stored in this warehouse
+        public List<Product> Products { get; set; } = new();
 
-        // Shipping options available for this warehouse.
-        public List<ShippingOption> ShippingOptions { get; set; }
+        // Shipping options available for this warehouse
+        public List<ShippingOption> ShippingOptions { get; set; } = new();
     }
 }

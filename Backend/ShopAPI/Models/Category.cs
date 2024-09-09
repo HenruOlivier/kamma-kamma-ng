@@ -10,10 +10,9 @@ namespace ShopAPI.Models
         [Required]
         public string Name { get; set; }
 
-        // A description of the category.
         public string Description { get; set; }
 
-        // Products that belong to this category.
-        public List<Product> Products { get; set; }
+        // Products in this category (many-to-many relationship)
+        public List<Product> Products { get; set; } = new();
     }
 }

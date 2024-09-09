@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace ShopAPI.Models
 {
@@ -7,22 +8,22 @@ namespace ShopAPI.Models
         public int Id { get; set; }
 
         [Required]
-        public string OptionName { get; set; } // e.g., "Size", "Color", etc.
+        public string OptionName { get; set; } // e.g., "Size", "Color"
 
         [Required]
-        public string OptionValue { get; set; } // e.g., "Large", "Red", etc.
+        public string OptionValue { get; set; } // e.g., "Large", "Red"
 
         [Range(0.01, double.MaxValue)]
-        public decimal Price { get; set; } // Optional: Override base product price.
+        public decimal Price { get; set; }
 
-        // Individual stock count for this variation.
         public int StockQuantity { get; set; }
 
-        // Images for this variation.
-        public List<string> Images { get; set; }
+        public List<string> Images { get; set; } = new();
 
-        // Foreign Key to the main Product
+        // Foreign key to the main Product
+        [Required]
         public int ProductId { get; set; }
+
         public Product Product { get; set; }
     }
 }

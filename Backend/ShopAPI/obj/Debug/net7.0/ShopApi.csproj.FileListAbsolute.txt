@@ -1,0 +1,7 @@
+/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/Debug/net7.0/ShopApi.csproj.AssemblyReference.cache
+/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/Debug/net7.0/ShopApi.GeneratedMSBuildEditorConfig.editorconfig
+/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/Debug/net7.0/ShopApi.AssemblyInfoInputs.cache
+/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/Debug/net7.0/ShopApi.AssemblyInfo.cs
+/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/Debug/net7.0/ShopApi.csproj.CoreCompileInputs.cache
+/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/Debug/net7.0/ShopApi.MvcApplicationPartsAssemblyInfo.cs
+/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/Debug/net7.0/ShopApi.MvcApplicationPartsAssemblyInfo.cache
