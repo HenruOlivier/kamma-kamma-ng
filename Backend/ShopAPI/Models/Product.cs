@@ -21,9 +21,6 @@ namespace ShopAPI.Models
         // Indicates if the product is available for hire (renting).
         public bool IsHireable { get; set; }
 
-        // Images for this product.
-        public List<string> Images { get; set; }
-
         // Stock count for this product.
         public int StockQuantity { get; set; }
 
