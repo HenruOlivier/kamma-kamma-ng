@@ -11,8 +11,10 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
 
+  
+
   // Fetch all products from backend
-  getProducts(): Observable<any> {
-    return this.http.get<any>(this.baseUrl);
-  }
+  // getProducts(): Observable<any> {
+  //   return this.http.get<any>(this.baseUrl);
+  // }
 }

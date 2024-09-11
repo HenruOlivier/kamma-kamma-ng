@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SearchPageService } from '../../shared/services/search-page.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-all',
@@ -11,7 +12,10 @@ import { SearchPageService } from '../../shared/services/search-page.service';
 })
 export class SearchAllComponent implements OnInit {
 
-  constructor(public searchPageService: SearchPageService) {}
+  constructor(
+    public searchPageService: SearchPageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     // this.fetchProducts();
@@ -22,7 +26,9 @@ export class SearchAllComponent implements OnInit {
   // }
 
   onItemClick(id: string) {
-    console.log('item: ', id)
+    console.log('item: ', id);
+
+    this.router.navigate(['/product-page'], { queryParams: { p: id } });
   }
 
 }
