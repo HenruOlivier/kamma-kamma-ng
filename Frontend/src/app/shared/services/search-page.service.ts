@@ -11,17 +11,16 @@ export class SearchPageService {
   private baseUrl: string = 'http://localhost:5000/api/products';  // Adjust this URL if necessary
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {
-    // Listen for the _searchText in the URL and fetch results when it changes
+   // Listen to changes in the 'q' query parameter and fetch results
     this.route.queryParams
-      .pipe(
-        // Listen to changes in the `_searchText` query parameter
-        switchMap(params => {
-          console.log('aweeeeeee: ', params)
-          const searchText = params['_searchText'] || ''; // Get the _searchText parameter or use empty string
-          return this.fetchFromSearch(searchText); // Call fetchFromSearch with the search text
-        })
-      )
-      .subscribe(); // Subscribe to the Observable to trigger the fetch
+    .pipe(
+      // Listen to changes in the `q` query parameter
+      switchMap(params => {
+        const searchQuery = params['q'] || ''; // Get the 'q' parameter or default to an empty string
+        return this.fetchFromSearch(searchQuery); // Fetch data with the search query
+      })
+    )
+    .subscribe(); // Subscribe to trigger the fetch
   }
 
   private searchPageLoadingSubject = new BehaviorSubject<boolean>(false);
@@ -36,6 +35,7 @@ export class SearchPageService {
 
   // Fetch products based on the search text
   fetchFromSearch(searchText: string): Observable<any> {
+    console.log('fetchFromsearch called')
     this.searchPageLoadingSubject.next(true);
 
     const url = `${this.baseUrl}?search=${encodeURIComponent(searchText)}`; // Append search text to the URL
@@ -44,7 +44,7 @@ export class SearchPageService {
     .pipe(
       tap((res) => {
         // If successful, update the local state with the fetched products
-        this.searchPageItemsSubject.next(res.data);
+        this.searchPageItemsSubject.next(res);
       }),
       catchError(error => {
         // Handle the error appropriately
