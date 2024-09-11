@@ -21,4 +21,8 @@ export class SearchAllComponent implements OnInit {
   //   this.searchPageService.fetchFromSearch();
   // }
 
+  onItemClick(id: string) {
+    console.log('item: ', id)
+  }
+
 }
