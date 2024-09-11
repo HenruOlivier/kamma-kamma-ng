@@ -18,10 +18,11 @@ export class SearchBarComponent {
 
   // Method to handle the keydown event
   onSearchKeyDown(event: KeyboardEvent) {
-    console.log('keyyy ', event)
+    // console.log('keyyy ', event)
     if (event.key === 'Enter') {
       // Navigate to the /search route, optionally with query parameters
-      this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
+      // this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
+      this.router.navigate([`/search/${this.searchQuery}`]);
     }
   }
 
