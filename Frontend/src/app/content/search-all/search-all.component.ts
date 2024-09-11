@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../../shared/services/products.service';
+import { SearchPageService } from '../../shared/services/search-page.service';
 
 @Component({
   selector: 'app-search-all',
@@ -11,26 +11,14 @@ import { ProductsService } from '../../shared/services/products.service';
 })
 export class SearchAllComponent implements OnInit {
 
-  constructor(private productsService: ProductsService) {}
-
-  options: string[] = ['awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa','awe', 'jaaaaa',];
-
-  products: any[] = [];
+  constructor(public searchPageService: SearchPageService) {}
 
   ngOnInit(): void {
-    this.fetchProducts();
+    // this.fetchProducts();
   }
 
-  fetchProducts(): void {
-    this.productsService.getProducts().subscribe(
-      (data) => {
-        this.products = data;
-        console.log('products: ', this.products)
-      },
-      (error) => {
-        console.error('Error fetching products:', error);
-      }
-    );
-  }
+  // fetchFromSearch(): void {
+  //   this.searchPageService.fetchFromSearch();
+  // }
 
 }

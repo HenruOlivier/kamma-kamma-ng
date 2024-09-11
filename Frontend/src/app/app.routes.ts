@@ -5,4 +5,5 @@ import { SearchAllComponent } from './content/search-all/search-all.component';
 export const routes: Routes = [
     { path: '', component: ContentOutletComponent },
     { path: 'search', component: SearchAllComponent },
+    { path: 'search/:_searchText', component: SearchAllComponent },
 ];
