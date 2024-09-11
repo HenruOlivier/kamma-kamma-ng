@@ -21,8 +21,8 @@ export class SearchBarComponent {
     // console.log('keyyy ', event)
     if (event.key === 'Enter') {
       // Navigate to the /search route, optionally with query parameters
-      // this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
-      this.router.navigate([`/search/${this.searchQuery}`]);
+      this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
+      // this.router.navigate([`/search/${this.searchQuery}`]);
     }
   }
 

@@ -16,6 +16,7 @@ export class SearchPageService {
       .pipe(
         // Listen to changes in the `_searchText` query parameter
         switchMap(params => {
+          console.log('aweeeeeee: ', params)
           const searchText = params['_searchText'] || ''; // Get the _searchText parameter or use empty string
           return this.fetchFromSearch(searchText); // Call fetchFromSearch with the search text
         })
