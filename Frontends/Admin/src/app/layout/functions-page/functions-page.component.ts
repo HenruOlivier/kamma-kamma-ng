@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class FunctionsPageComponent {
 
   onFunctionSelected(func: string) {
-
+    
   }
 
 }
