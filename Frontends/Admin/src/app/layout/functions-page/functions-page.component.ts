@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PerformanceImageComponent } from '../../shared/components/performance-image/performance-image.component';
 import { FadeScale } from '../../shared/animations/FadeScale';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-functions-page',
@@ -13,8 +14,10 @@ import { CommonModule } from '@angular/common';
 })
 export class FunctionsPageComponent {
 
+  constructor(private router: Router) {}
+
   onFunctionSelected(func: string) {
-    
+    this.router.navigate(['/product-page/' + func]);
   }
 
 }

@@ -27,7 +27,6 @@ export class SearchAllComponent implements OnInit {
 
   onItemClick(id: string) {
     console.log('item: ', id);
-
     this.router.navigate(['/product-page'], { queryParams: { p: id } });
   }
 
