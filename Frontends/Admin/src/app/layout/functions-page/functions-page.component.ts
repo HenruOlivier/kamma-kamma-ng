@@ -17,7 +17,7 @@ export class FunctionsPageComponent {
   constructor(private router: Router) {}
 
   onFunctionSelected(func: string) {
-    this.router.navigate(['/product-page/' + func]);
+    this.router.navigate([func]);
   }
 
 }

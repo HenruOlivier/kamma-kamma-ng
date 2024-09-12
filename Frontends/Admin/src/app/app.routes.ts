@@ -4,7 +4,7 @@ import { ProductGridComponent } from './functions/products/product-grid/product-
 
 export const routes: Routes = [
     { path: '', component: ContentOutletComponent },
-    { path: '/products', component:  ProductGridComponent},
+    { path: 'products', component:  ProductGridComponent},
     { path: '', component: ContentOutletComponent },
     { path: '', component: ContentOutletComponent },
     { path: '', component: ContentOutletComponent },
