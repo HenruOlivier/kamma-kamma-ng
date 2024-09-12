@@ -1,0 +1,25 @@
+<ng-container *ngIf="useSkeleton">
+    <ng-container *ngIf="!fullImage; else fit">
+        <div class="br-inherit relative">
+            <div [ngClass]="imageLoaded ? 'hp-loaded' : ''" class="slow-transition loading-shimmer br-inherit">
+            </div>
+            <img [src]="src" [alt]="alt ? alt : 'kulumi-image'" [title]="title ? title : 'kulumi-image'" class="br-inherit fit-img" [ngClass]="imageLoaded ? 'hp-loaded' : 'hp-loading'"/>
+        </div>
+    </ng-container>
+    <ng-template #fit>
+        <div class="br-inherit relative full-img-container">
+            <div [ngClass]="imageLoaded ? 'hp-loaded' : ''" class="slow-transition loading-shimmer br-inherit">
+            </div>
+            <img [src]="src" [alt]="alt ? alt : 'kulumi-image'" [title]="title ? title : 'kulumi-image'" class="full-img" [ngClass]="imageLoaded ? 'hp-loaded' : 'hp-loading'"/>
+        </div>
+    </ng-template>
+
+</ng-container>
+
+<ng-container *ngIf="slowGrow">
+    <div [class.full-screen]="fullScreen">
+        <div class="w-fit br-inherit" [class.fade-right]="fadeRight">
+            <img [src]="src" [alt]="alt ? alt : 'kulumi-image'" [title]="title ? title : 'kulumi-image'" [class]="imageLoaded ? 'hp-loaded' : 'hp-loading'" class="br-inherit" />
+        </div>
+    </div>
+</ng-container>
