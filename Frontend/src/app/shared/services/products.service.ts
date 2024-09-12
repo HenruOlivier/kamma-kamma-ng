@@ -7,26 +7,26 @@ import { BehaviorSubject, catchError, finalize, Observable, of, tap } from 'rxjs
 })
 export class ProductsService {
 
-  private baseUrl: string = 'http://localhost:5000/api/products';  // Adjust this URL if necessary
+  private baseUrl: string = 'http://localhost:5000/api/products/';  // Adjust this URL if necessary
   
   private currentProductLoadingSubject = new BehaviorSubject<boolean>(false);
   public get currentProductLoading$(): Observable<boolean> {
     return this.currentProductLoadingSubject.asObservable();
   }
 
-  private currentProductSubject = new BehaviorSubject<any[]>([]);
-  public get currentProduct$(): Observable<any[]> {
+  private currentProductSubject = new BehaviorSubject<any>(null);
+  public get currentProduct$(): Observable<any> {
     return this.currentProductSubject.asObservable();
   }
 
   constructor(private http: HttpClient) {}
 
   // Fetch products based on the search text
-  fetchCurrentProduct(searchText: string): Observable<any> {
+  fetchCurrentProduct(productId: string): Observable<any> {
     console.log('fetchFromsearch called')
     this.currentProductLoadingSubject.next(true);
 
-    return this.http.get<any>(this.baseUrl)
+    return this.http.get<any>(this.baseUrl + productId)
     .pipe(
       tap((res) => {
         // If successful, update the local state with the fetched products

@@ -1,1 +1,8 @@
-<p>product-page works!</p>
+<ng-container *ngIf="productService.currentProduct$ | async">
+    <div>
+        {{(productService.currentProduct$ | async)?.name}}
+    </div>
+</ng-container>
+<div>
+
+</div>
