@@ -1,0 +1,25 @@
+<div class="menu-container-wrapper disable-select">
+    <div class="menu-container">
+
+        <!-- <div class="menu-card" *ngFor="let func of functionList" (click)="onFunctionSelected(func)" @fadeScale>
+            <div class="image-box">
+                <app-performance-image
+                class="menu-card-img"
+                [src]="(basicService.appTheme | async) === appTheme.DARK ? func.imageRouteLight! : func.imageRouteDark!"
+                [useSkeleton]="true"
+                ></app-performance-image>
+            </div>
+            <p class="func-name">{{func.name}}</p>
+        </div> -->
+        <div class="menu-card" (click)="onFunctionSelected('products')" @fadeScale>
+            <div class="image-box">
+                <app-performance-image
+                class="menu-card-img"
+                [src]="'assets/images/function'"
+                [useSkeleton]="true"
+                ></app-performance-image>
+            </div>
+            <p class="func-name">Products</p>
+        </div>
+    </div>
+</div>
