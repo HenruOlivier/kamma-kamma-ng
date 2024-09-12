@@ -18,16 +18,5 @@ export class AppComponent {
   constructor(public uiToolsService: UitoolsService) {
   }
 
-  ngOnInit() {
-    // this.updateViewportHeight();
-  }
-
-  // @HostListener('window:resize')
-  // @HostListener('window:orientationchange')
-  // updateViewportHeight() {
-  //   const vh = window.innerHeight * 0.01;
-  //   document.documentElement.style.setProperty('--vh', `${vh}px`);
-  // }
-
   title = 'henru-dev';
 }
