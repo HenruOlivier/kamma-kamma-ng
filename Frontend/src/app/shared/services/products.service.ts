@@ -23,7 +23,9 @@ export class ProductsService {
 
   // Fetch products based on the search text
   fetchCurrentProduct(productId: string): Observable<any> {
-    console.log('fetchFromsearch called')
+
+    this.currentProductSubject.next(null);
+
     this.currentProductLoadingSubject.next(true);
 
     return this.http.get<any>(this.baseUrl + productId)
@@ -50,13 +52,4 @@ export class ProductsService {
     );
   }
 
-  // Fetch all products from backend
-  // getProducts(): Observable<any> {
-  //   return this.http.get<any>(this.baseUrl);
-  // }
-
-  // Fetch all products from backend
-  // getProducts(): Observable<any> {
-  //   return this.http.get<any>(this.baseUrl);
-  // }
 }

@@ -35,7 +35,9 @@ export class SearchPageService {
 
   // Fetch products based on the search text
   fetchFromSearch(searchText: string): Observable<any> {
-    console.log('fetchFromsearch called')
+    
+    this.searchPageItemsSubject.next([]);
+
     this.searchPageLoadingSubject.next(true);
 
     const url = `${this.baseUrl}?search=${encodeURIComponent(searchText)}`; // Append search text to the URL
@@ -64,38 +66,4 @@ export class SearchPageService {
     );
   }
 
-  // fetchFromSearch(searchText: string): void {
-  //   this.searchPageLoadingSubject.next(true);
-  //   this.http.get<any>(this.baseUrl)
-  //   .pipe(
-  //     tap((res) => {
-
-  //       // const products = res.data as any[];
-
-  //       // If successful, update the local state with the fetched products
-  //       this.searchPageItemsSubject.next(res.data);
-
-  //       // Notify success, if needed
-  //       // this.notificationService.notifySuccess({message: res.message});
-  //     }),
-  //     catchError(error => {
-  //       // Handle the error appropriately
-  //       console.error('Error while fetching products:', error);
-
-  //       let errorMessage = 'Error while fetching products';
-  //       if (error.error && error.error.message) {
-  //         errorMessage = error.error.message;
-  //       }
-
-  //       // Notify failure
-  //       // this.notificationService.notifyError({message: errorMessage});
-
-  //       return of(null);
-  //     }),
-  //     finalize(() => {
-  //       this.searchPageLoadingSubject.next(false);
-  //     })
-  //   )
-  //   .subscribe();
-  // }
 }
