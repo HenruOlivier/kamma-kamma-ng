@@ -14,6 +14,11 @@ export class ProductsService {
     return this.currentProductLoadingSubject.asObservable();
   }
 
+  private currentProductErrorSubject = new BehaviorSubject<string | null>(null);
+  public get currentProductError$(): Observable<string | null> {
+    return this.currentProductErrorSubject.asObservable();
+  }
+
   private currentProductSubject = new BehaviorSubject<any>(null);
   public get currentProduct$(): Observable<any> {
     return this.currentProductSubject.asObservable();
@@ -28,6 +33,8 @@ export class ProductsService {
 
     this.currentProductLoadingSubject.next(true);
 
+    this.currentProductErrorSubject.next(null);
+
     return this.http.get<any>(this.baseUrl + productId)
     .pipe(
       tap((res) => {
@@ -36,12 +43,14 @@ export class ProductsService {
       }),
       catchError(error => {
         // Handle the error appropriately
-        console.error('Error while fetching products:', error);
+        console.error('Error while fetching product:', error);
 
-        let errorMessage = 'Error while fetching products';
+        let errorMessage = 'Error while fetching product';
         if (error.error && error.error.message) {
           errorMessage = error.error.message;
         }
+
+        this.currentProductErrorSubject.next(errorMessage);
 
         // Notify failure
         return of(null);
