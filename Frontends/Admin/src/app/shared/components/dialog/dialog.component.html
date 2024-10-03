@@ -1,0 +1,33 @@
+<dialog class="dialog-outer-all" id="dialogElementRef" #dialogElementRef>
+    <div class="backdrop" [ngClass]="backdrop && hasBackdrop ? 'backdrop-open' :  ''" *ngIf="backdrop"
+        (click)="onBackdropClick()"></div>
+    <div class="card-wrapper" [ngClass]="'y-' + yAxisPosition + ' x-' + xAxisPosition">
+        <div class="dialog-outer" [ngStyle]="{'width': width, 'height': height}">
+            <div *ngIf="hasExitCross" class="exit-cross">
+                <button (click)="onExitCross()" class="ss-btn-circle-transparent" style="border:none">
+                    <i class="ss-fs-5 bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="dialog-content-container">
+                <div class="inner-content-container">
+                    <ng-content></ng-content>
+                </div>
+
+                <ng-container *ngIf="dialogExitType">
+                    <div class="buttons-container">
+                        <div class="button-wrapper" *ngFor="let button of dialogExitType">
+                            <button class="mx-1" *ngIf="button.type == DialogExitType.CONFIRM" (click)="onConfirm()"
+                                [ngClass]="button.classList">{{button.text}}</button>
+                            <button class="mx-1" *ngIf="button.type == DialogExitType.CANCEL" (click)="onCancel()"
+                                [ngClass]="button.classList">{{button.text}}</button>
+                            <button class="mx-1" *ngIf="button.type == DialogExitType.OK" (click)="onOk()"
+                                [ngClass]="button.classList">{{button.text}}</button>
+                            <button class="mx-1" *ngIf="button.type == DialogExitType.DISMISS" (click)="onDismiss()"
+                                [ngClass]="button.classList">{{button.text}}</button>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</dialog>
