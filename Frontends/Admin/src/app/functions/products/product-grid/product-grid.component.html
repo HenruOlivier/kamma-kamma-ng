@@ -1,1 +1,11 @@
-<p>product-grid works!</p>
+<data-grid
+[manager]="gridManager"
+[loading]="(productService.productsLoading$ | async) || false"
+[error]="(productService.productsError$ | async) || false"
+[errorText]="errorMessage"
+(createNew)="onCreateNew()"
+(editSingle)="onEditSingle($event)"
+(deleteSingle)="onDeleteSingle($event)"
+(deleteMany)="onDeleteMany($event)"
+>
+</data-grid>

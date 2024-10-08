@@ -10,7 +10,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { InputCheckboxComponent } from '../input-checkbox/input-checkbox.component';
 
 @Component({
-  selector: 'ss-data-grid',
+  selector: 'data-grid',
   standalone: true,
   imports: [CommonModule, InputSearchComponent, DateAgoPipe, FormsModule, DialogComponent, InputCheckboxComponent],
   templateUrl: './data-grid.component.html',
