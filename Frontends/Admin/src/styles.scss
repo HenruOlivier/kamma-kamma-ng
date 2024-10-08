@@ -1,3 +1,45 @@
+// Inputs
+@import 'styles/Inputs/checkbox-control.scss';
+@import 'styles/Inputs/form-control.scss';
+@import 'styles/Inputs/range-slider-control.scss';
+
+// Buttons
+@import 'styles/Buttons/circle-buttons.scss';
+@import 'styles/Buttons/outline-buttons.scss';
+@import 'styles/Buttons/slim-button.scss';
+@import 'styles/Buttons/standard-button.scss';
+
+// Badges
+@import 'styles/Badge/standard-badge.scss';
+@import 'styles/Badge/slim-badge.scss';
+
+
+@import 'styles/Utility/flex.scss';
+@import 'styles/Utility/padding.scss';
+@import 'styles/Utility/margin.scss';
+@import 'styles/Utility/height.scss';
+@import 'styles/Utility/width.scss';
+@import 'styles/Utility/opacity.scss';
+
+@import 'styles/Utility/utils.scss';
+
+
+@import 'styles/Layout/sidebar.scss';
+@import 'styles/Layout/header.scss';
+@import 'styles/Layout/layout.scss';
+@import 'styles/Layout/menu.scss';
+
+@import 'styles/Theming/background.scss';
+@import 'styles/Theming/theme.scss';
+// @import 'styles/Theming/fonts.scss';
+@import 'styles/Theming/border.scss';
+
+@import 'styles/Misc/scrollbar.scss';
+
+@import 'styles/Cards/cards.scss';
+
+@import 'styles/Loading/loading-sm.scss';
+
 .light-mode {
     //Text Color
     color: rgb(46, 44, 46);

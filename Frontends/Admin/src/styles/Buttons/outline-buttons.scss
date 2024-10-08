@@ -1,0 +1,190 @@
+@mixin ss-btn-outline-base {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    outline: none;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    min-height: 40px;
+    min-width: 40px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-weight: 700;
+    background-color: transparent;
+
+
+    &:after {
+        display: none;
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(83, 83, 83, 0.3);
+
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+
+        /* Center the ripple */
+        top: 50%;
+        left: 50%;
+
+        animation: ripple 1.5s;
+        opacity: 0;
+    }
+
+    &:focus:not(:active)::after {
+        display: none;
+    }
+
+    // New click effect using inset box-shadow
+    &:active {
+        box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -4px; // Increase distance for more spacing
+        right: -4px;
+        bottom: -4px;
+        left: -4px;
+        border-radius: 8px; // Adjust to match outer border radius
+        border: solid 2px #333;
+        background-color: transparent; // Ensure it's transparent
+        transition: all 0.3s;
+    }
+
+    &:focus:not(:active)::after {
+        display: block;
+    }
+
+    & i {
+        margin-right: 4px;
+        margin-left: 4px;
+    }
+}
+
+@keyframes ripple {
+    from {
+        opacity: 1;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(10);
+    }
+}
+
+.ss-btn-outline {
+    @include ss-btn-outline-base();
+}
+
+.ss-btn-outline-sm {
+    @include ss-btn-outline-base();
+    padding: 2px;
+    min-height: 25px !important;
+}
+
+.ss-btn-outline-lg {
+    @include ss-btn-outline-base();
+    padding: 10px !important;
+}
+
+.ss-btn-outline-transparent {
+    @include ss-btn-outline-base();
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--text-color);
+    border: 1px solid var(--muted-color-3);
+}
+
+.ss-btn-outline-primary {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--primary);
+    color: white;
+}
+
+.ss-btn-outline-primary:disabled {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--primary-disabled);
+    cursor: not-allowed;
+}
+
+.ss-btn-outline-secondary {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--secondary);
+    color: white;
+}
+
+.ss-btn-outline-secondary:disabled {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--secondary-disabled);
+    cursor: not-allowed;
+}
+
+.ss-btn-outline-danger {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--danger);
+    color: white;
+}
+
+.ss-btn-outline-danger:disabled {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--danger-disabled);
+    cursor: not-allowed;
+}
+
+.ss-btn-outline-success {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--success);
+    color: white;
+}
+
+.ss-btn-outline-success:disabled {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--success-disabled);
+    cursor: not-allowed;
+}
+
+.ss-btn-outline-warning {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--warning);
+    color: rgb(42, 42, 42);
+}
+
+.ss-btn-outline-warning:disabled {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--primary);
+    cursor: not-allowed;
+}
+
+.ss-btn-outline-white {
+    @include ss-btn-outline-base();
+    border: solid 2px white;
+    color: black;
+}
+
+.ss-btn-outline-white:disabled {
+    @include ss-btn-outline-base();
+    border: solid 2px gray;
+    cursor: not-allowed;
+}
+
+.ss-btn-outline-accent-light {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--accent-light-backround-color);
+    color: black;
+}
+
+.ss-btn-outline-accent-dark {
+    @include ss-btn-outline-base();
+    border: solid 2px var(--accent-dark-backround-color);
+    color: black;
+}

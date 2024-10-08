@@ -1,0 +1,111 @@
+.ss-form-label{
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: small;
+    text-align: left;
+}
+
+.ss-form-control {
+    border: none;
+    border-radius: 8px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+    outline: none;
+    font-family: 'SSFont-Normal';
+    background-color: var(--from-control-background-color);
+    color: var(--text-color);
+    border: 1px solid var(--from-control-border-color);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.ss-form-control-valid {
+    border: 1px solid var(--success);
+}
+
+.ss-form-control-invalid {
+    border: 1px solid var(--danger);
+}
+
+.ss-form-control-valid:focus {
+    border: 1px solid var(--success) !important;
+    box-shadow: 0 0 5px var(--success) !important;
+}
+
+.ss-form-control-invalid:focus {
+    border: 1px solid var(--danger) !important;
+    box-shadow: 0 0 5px var(--danger) !important;
+}
+
+.ss-form-control:focus {
+    border: 1px solid var(--accent-dark-backround-color);
+    box-shadow: 0 0 5px var(--accent-dark-backround-color);
+}
+
+.ss-form-control::placeholder {
+    color: var(--muted-color-1);
+}
+
+.ss-form-control[disabled] {
+    background-color: var(--from-control-disabled-background-color);
+    /* Set a gray background color */
+    cursor: not-allowed;
+}
+
+.ss-form-control-sm {
+    border: none;
+    border-radius: 8px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    outline: none;
+    font-family: 'SSFont-Normal';
+    background-color: var(--from-control-background-color);
+    color: var(--text-color);
+    border: 1px solid var(--from-control-border-color);
+}
+
+.ss-form-control-sm:focus {
+    border: 1px solid var(--accent-dark-backround-color);
+    box-shadow: 0 0 5px var(--accent-dark-backround-color);
+}
+
+.ss-form-control-sm::placeholder {
+    color: var(--muted-color-1);
+}
+
+.ss-form-control-sm[disabled] {
+    background-color: var(--from-control-disabled-background-color);
+    /* Set a gray background color */
+    cursor: not-allowed;
+}
+
+.form-control-label {
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.ss-form-control-label-valid {
+    color: var(--success);
+}
+
+.ss-form-control-label-invalid {
+    color: var(--danger);
+}
+
+.ss-form-control-loading {
+    background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-highlight) 50%, var(--skeleton-base) 75%);
+    background-size: 200% 100%;
+    border-radius: 4px;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}

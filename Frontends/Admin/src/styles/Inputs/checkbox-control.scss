@@ -1,0 +1,34 @@
+/* Hide the default checkbox */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 18px;
+    min-width: 18px;
+    max-width: 18px;
+
+    height: 18px;
+    min-height: 18px;
+    max-height: 18px;
+    
+    border: 2px solid #dfdfdf;
+    border-radius: 50%;
+    /* Rounded border */
+    outline: none;
+    cursor: pointer;
+}
+
+/* Customize the appearance of the custom checkbox */
+input[type="checkbox"]:checked {
+    background-color: var(--accent-dark-backround-color);
+}
+
+/* Style the checkmark when hovered */
+input[type="checkbox"]:hover {
+    border-color: var(--accent-dark-backround-color);
+}
+
+input[type="checkbox"]:active {
+    border-color: var(--accent-light-backround-color);
+}

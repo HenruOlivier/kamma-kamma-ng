@@ -1,0 +1,118 @@
+@mixin ss-badge-slim-base {
+    border: none;
+    border-radius: 15px;
+    outline: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.ss-badge-slim {
+    @include ss-badge-slim-base();
+}
+
+.ss-badge-slim-sm {
+    @include ss-badge-slim-base();
+    font-size: x-small;
+}
+
+.ss-badge-slim-lg {
+    @include ss-badge-slim-base();
+    font-size: large
+}
+
+.ss-badge-slim-transparent {
+    @include ss-badge-slim-base();
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--text-color);
+    border: 1px solid var(--muted-color-3);
+}
+
+.ss-badge-slim-primary {
+    @include ss-badge-slim-base();
+    background-color: var(--primary);
+    color: white;
+}
+
+.ss-badge-slim-primary:disabled {
+    @include ss-badge-slim-base();
+    background-color: var(--primary-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-slim-secondary {
+    @include ss-badge-slim-base();
+    background-color: var(--secondary);
+    color: white;
+}
+
+.ss-badge-slim-secondary:disabled {
+    @include ss-badge-slim-base();
+    background-color: var(--secondary-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-slim-danger {
+    @include ss-badge-slim-base();
+    background-color: var(--danger);
+    color: white;
+}
+
+.ss-badge-slim-danger:disabled {
+    @include ss-badge-slim-base();
+    background-color: var(--danger-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-slim-success {
+    @include ss-badge-slim-base();
+    background-color: var(--success);
+    color: white;
+}
+
+.ss-badge-slim-success:disabled {
+    @include ss-badge-slim-base();
+    background-color: var(--success-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-slim-warning {
+    @include ss-badge-slim-base();
+    background-color: var(--warning);
+    color: rgb(42, 42, 42);
+}
+
+.ss-badge-slim-warning:disabled {
+    @include ss-badge-slim-base();
+    background-color: var(--warning-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-slim-white {
+    @include ss-badge-slim-base();
+    background-color: white;
+    color: black;
+}
+
+.ss-badge-slim-white:disabled {
+    @include ss-badge-slim-base();
+    background-color: rgb(167, 167, 167);
+    cursor: not-allowed;
+}
+
+.ss-badge-slim-accent-light {
+    @include ss-badge-slim-base();
+    background-color: var(--accent-light-backround-color);
+    color: black;
+}
+
+.ss-badge-slim-accent-dark {
+    @include ss-badge-slim-base();
+    background-color: var(--accent-dark-backround-color);
+    color: black;
+}

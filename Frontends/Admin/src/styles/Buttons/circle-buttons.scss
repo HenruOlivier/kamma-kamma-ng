@@ -1,0 +1,163 @@
+@mixin ss-btn-circle-base {
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    //box-shadow: 0 0 4px rgb(59, 59, 59);
+    outline: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-weight: 700;
+
+    width: 40px;
+    height: 40px;
+
+
+    &:after {
+        display: none;
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(83, 83, 83, 0.3);
+
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+
+        /* Center the ripple */
+        top: 50%;
+        left: 50%;
+
+        animation: ripple 1.5s;
+        opacity: 0;
+    }
+
+    &:focus:not(:active)::after {
+        display: block;
+    }
+}
+
+@keyframes ripple {
+    from {
+        opacity: 1;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(10);
+    }
+}
+
+.ss-btn-circle {
+    @include ss-btn-circle-base();
+}
+
+.ss-btn-circle-sm {
+    @include ss-btn-circle-base();
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.ss-btn-circle-lg {
+    @include ss-btn-circle-base();
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.ss-btn-circle-transparent {
+    @include ss-btn-circle-base();
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--text-color);
+    border: 1px solid var(--muted-color-3);
+}
+
+.ss-btn-circle-primary {
+    @include ss-btn-circle-base();
+    background-color: var(--primary);
+    color: white;
+}
+
+.ss-btn-circle-primary:disabled {
+    @include ss-btn-circle-base();
+    background-color: var(--primary-disabled);
+    cursor: not-allowed;
+}
+
+.ss-btn-circle-secondary {
+    @include ss-btn-circle-base();
+    background-color: var(--secondary);
+    color: white;
+}
+
+.ss-btn-circle-secondary:disabled {
+    @include ss-btn-circle-base();
+    background-color: var(--secondary-disabled);
+    cursor: not-allowed;
+}
+
+.ss-btn-circle-danger {
+    @include ss-btn-circle-base();
+    background-color: var(--danger);
+    color: white;
+}
+
+.ss-btn-circle-danger:disabled {
+    @include ss-btn-circle-base();
+    background-color: var(--danger-disabled);
+    cursor: not-allowed;
+}
+
+.ss-btn-circle-success {
+    @include ss-btn-circle-base();
+    background-color: var(--success);
+    color: white;
+}
+
+.ss-btn-circle-success:disabled {
+    @include ss-btn-circle-base();
+    background-color: var(--success-disabled);
+    cursor: not-allowed;
+}
+
+.ss-btn-circle-warning {
+    @include ss-btn-circle-base();
+    background-color: var(--warning);
+    color: rgb(42, 42, 42);
+}
+
+.ss-btn-circle-warning:disabled {
+    @include ss-btn-circle-base();
+    background-color: var(--warning-disabled);
+    cursor: not-allowed;
+}
+
+.ss-btn-circle-white {
+    @include ss-btn-circle-base();
+    background-color: white;
+    color: black;
+}
+
+.ss-btn-circle-white:disabled {
+    @include ss-btn-circle-base();
+    background-color: rgb(167, 167, 167);
+    cursor: not-allowed;
+}
+
+.ss-btn-circle-accent-light {
+    @include ss-btn-circle-base();
+    background-color: var(--accent-light-backround-color);
+    color: black;
+}
+
+.ss-btn-circle-accent-dark {
+    @include ss-btn-circle-base();
+    background-color: var(--accent-dark-backround-color);
+    color: black;
+}

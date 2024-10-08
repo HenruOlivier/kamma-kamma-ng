@@ -1,0 +1,35 @@
+.ss-loading-sm {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    border-top-color: var(--loading-spinner);
+    animation: spin-loading-sm 0.75s linear infinite;
+}
+
+@keyframes spin-loading-sm {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -2000px 0;
+    }
+    100% {
+        background-position: 2000px 0;
+    }
+}
+
+.ss-loading-shimmer {
+    animation: shimmer 3.5s infinite linear;
+    background: linear-gradient(to right, #eeeeee 8%, #919191 18%, #eeeeee 33%);
+    background-size: 2000px 100%;
+    position: relative;
+    border-radius: 8px
+}

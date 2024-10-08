@@ -1,0 +1,50 @@
+@mixin ss-card-base {
+    border-radius: 15px;
+    min-height: 50px;
+    min-width: 50px;
+    display: inline-block;
+}
+
+.ss-card {
+    @include ss-card-base();
+}
+
+.ss-card-primary {
+    @include ss-card-base();
+    background-color: var(--primary);
+}
+
+.ss-card-secondary {
+    @include ss-card-base();
+    background-color: var(--secondary);
+}
+
+.ss-card-success {
+    @include ss-card-base();
+    background-color: var(--success);
+}
+
+.ss-card-danger {
+    @include ss-card-base();
+    background-color: var(--danger);
+}
+
+.ss-card-waring {
+    @include ss-card-base();
+    background-color: var(--warning);
+}
+
+.ss-card-active {
+    @include ss-card-base();
+    background-color: var(--active-background-color);
+}
+
+.ss-card-accent-light {
+    @include ss-card-base();
+    background-color: var(--accent-light-backround-color);
+}
+
+.ss-card-accent-dark {
+    @include ss-card-base();
+    background-color: var(--accent-dark-backround-color);
+}

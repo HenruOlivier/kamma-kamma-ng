@@ -1,0 +1,209 @@
+@font-face {
+    font-family: "SSFont-Normal";
+    src: url('../../fonts/Poppins-Medium.ttf');
+}
+
+//FONT WEIGHT
+
+@font-face {
+    font-family: "SSFont-Bold";
+    src: url('../../fonts/Poppins-Bold.ttf');
+}
+
+.ss-fw-bold {
+    font-family: "SSFont-Bold";
+}
+
+@font-face {
+    font-family: "SSFont-Bolder";
+    src: url('../../fonts/Poppins-ExtraBold.ttf');
+}
+
+.ss-fw-bolder {
+    font-family: "SSFont-bolder";
+}
+
+
+@font-face {
+    font-family: "SSFont-Light";
+    src: url('../../fonts/Poppins-Light.ttf');
+}
+
+.ss-fw-light {
+    font-family: "SSFont-Light";
+}
+
+
+@font-face {
+    font-family: "SSFont-Lighter";
+    src: url('../../fonts/Poppins-ExtraLight.ttf');
+}
+
+.ss-fw-lighter {
+    font-family: "SSFont-Lighter";
+}
+
+@font-face {
+    font-family: "SSFont-Lightest";
+    src: url('../../fonts/Poppins-Thin.ttf');
+}
+
+.ss-fw-lightest {
+    font-family: "SSFont-Lightest";
+}
+
+@font-face {
+    font-family: "SSFont-Display";
+    src: url('../../fonts/Poppins-Light.ttf');
+}
+
+//FONT COLOR
+
+.ss-fc-primary {
+    color: var(--primary);
+}
+
+.ss-fc-secondary {
+    color: var(--secondary);
+}
+
+
+.ss-fc-success {
+    color: var(--success);
+}
+
+.ss-fc-warning {
+    color: var(--warning);
+}
+
+.ss-fc-danger {
+    color: var(--danger);
+}
+
+.ss-fc-white {
+    color: white;
+}
+
+.ss-fc-black {
+    color: black;
+}
+
+.ss-fc-accent {
+    color: var(--accent-text-color)
+}
+
+.ss-fc-muted-1 {
+    color: var(--muted-color-1);
+}
+
+.ss-fc-muted-2 {
+    color: var(--muted-color-2);
+}
+
+.ss-fc-muted-3 {
+    color: var(--muted-color-3);
+}
+
+//TEXT ALIGNMENT
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+//TEXT DECORATION
+
+.ss-td-underline {
+    text-decoration: underline;
+}
+
+.ss-td-line {
+    text-decoration: line-through;
+}
+
+.ss-td-link {
+    text-decoration: underline;
+    color: var(--primary);
+}
+
+.ss-td-italic {
+    font-style: italic;
+}
+
+.ss-td-none {
+    text-decoration: none;
+}
+
+//TEXT TYPES
+
+.ss-tt-h1 {
+    font-size: 60px;
+    font-family: "SSFont-Bolder";
+}
+
+.ss-tt-h2 {
+    font-size: 40px;
+    font-family: "SSFont-Bolder";
+}
+
+.ss-tt-h3 {
+    font-size: 30px;
+    font-family: "SSFont-Bolder";
+}
+
+.ss-tt-sub1 {
+    font-size: 25px;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+.ss-tt-sub2 {
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+.ss-tt-sub3 {
+    font-size: 15px;
+    font-weight: 100;
+    opacity: 0.7;
+}
+
+.ss-fs-1 {
+    font-size: 38px;
+}
+
+.ss-fs-2 {
+    font-size: 33px;
+}
+
+.ss-fs-3 {
+    font-size: 28px;
+}
+
+.ss-fs-4 {
+    font-size: 23px;
+}
+
+.ss-fs-5 {
+    font-size: 18px;
+}
+
+.ss-fs-6 {
+    font-size: 10px;
+}
+
+.ss-fs-sm{
+    font-size: 12px;
+}
+
+.ss-fs-xsm{
+    font-size: 10px;
+}

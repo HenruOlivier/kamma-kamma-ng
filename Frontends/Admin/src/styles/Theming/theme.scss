@@ -1,0 +1,174 @@
+.light-mode {
+    //Text Color
+    color: rgb(46, 44, 46);
+    --text-color: rgb(46, 44, 46);
+
+    //Theme color variables
+    --primary: hsl(216, 74%, 53%);
+    --primary-disabled: hsl(216, 47%, 37%);
+
+    --secondary: hsl(0, 0%, 50%);
+    --secondary-disabled: hsl(217, 4%, 62%);
+
+    --success: hsl(134, 33%, 40%);
+    --success-disabled: hsl(140, 48%, 22%);
+
+    --danger: hsl(0, 65%, 45%);
+    --danger-disabled: hsl(0, 29%, 49%);
+
+    --warning: hsl(49, 79%, 55%);
+    --warning-disabled: hsl(49, 36%, 58%);
+
+    --muted-color-1: hsl(0, 0%, 30%);
+    --muted-color-2: hsl(0, 0%, 40%);
+    --muted-color-3: hsl(0, 0%, 50%);
+
+    //Header Background Color
+    --header-background-color: hsl(228, 33%, 97%);
+
+    //Body Background Color
+    --body-background-color: hsl(228, 33%, 97%);
+
+    //Sidebar Background Color
+    --sidebar-background-color: hsl(228, 33%, 97%);
+    --sidebar-border-color: #cbcccf;
+
+    //Footer Background Color
+    --footer-background-color: hsl(0, 0%, 100%);
+
+    --theme-content-color: hsl(0, 0%, 100%);
+
+    //Active Colors
+    --active-text-color: hsl(25, 45%, 54%);
+    --active-background-color: hsl(25, 47%, 94%);
+
+    //Accent Color
+    --accent-light-backround-color: hsl(25, 48%, 89%);
+    --accent-dark-backround-color: hsl(25, 60%, 50%);
+    --accent-text-color: hsl(25, 45%, 54%);
+
+    //Menu Cards
+    --menu-card-background1: hsl(261, 47%, 94%);
+    --menu-card-background2: hsl(261, 47%, 94%);
+    --menu-card-text-color: hsl(0, 0%, 27%);
+
+    //Grid Colors
+    --grid-background-color: rgb(248, 248, 248);
+    --grid-head-background-color: hsl(0, 0%, 100%);
+    --grid-row-border-color: hsla(0, 0%, 85%, 0.6);
+
+    //Form Control Colors
+    --from-control-background-color: hsl(0, 0%, 93%);
+    --from-control-disabled-background-color: hsl(0, 0%, 85%);
+    --from-control-border-color: hsl(0, 0%, 85%);
+
+    --slider-track-color: hsla(0, 0%, 50%, 0.3);
+    --slider-progress-color: hsl(25, 70%, 50%);
+
+    //Keyboard
+    --keyboard-body-background-color: hsl(0, 0%, 90%);
+    --keyboard-key-background-color: #ffffff;
+    --keyboard-key-press-background-color: #e6e6e6;
+    --keyboard-key-color: rgb(0, 0, 0);
+    --keyboard-accent-key-color: #6cc415;
+
+    //Skeleton loader
+    --skeleton-base: #e0e0e0;
+    --skeleton-highlight: #f3f3f3;
+
+    //Dialog Backdrop
+    --dialog-backdrop: hsla(0, 0%, 39%, 0.301);
+    --dialog-background-color: rgb(255, 255, 255);
+
+    --generic-border-color: hsla(0, 0%, 85%, 0.6);
+    --select-item-box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.1);
+
+    --loading-spinner: rgb(73,155,145);
+}
+
+.dark-mode {
+    //Text Color
+    color: white;
+    --text-color: white;
+
+    //Theme color variables
+    --primary: hsl(216, 74%, 53%);
+    --primary-disabled: hsl(216, 47%, 37%);
+
+    --secondary: hsl(0, 0%, 50%);
+    --secondary-disabled: hsl(217, 4%, 62%);
+
+    --success: hsl(134, 33%, 40%);
+    --success-disabled: hsl(140, 48%, 22%);
+
+    --danger: hsl(0, 65%, 45%);
+    --danger-disabled: hsl(0, 29%, 49%);
+
+    --warning: hsl(49, 79%, 55%);
+    --warning-disabled: hsl(49, 36%, 58%);
+
+    --muted-color-1: hsl(0, 0%, 70%);
+    --muted-color-2: hsl(0, 0%, 60%);
+    --muted-color-3: hsl(0, 0%, 50%);
+
+    //Header Background Color
+    --header-background-color: hsl(228, 6%, 15%);
+
+    //Body Background Color
+    --body-background-color: hsl(228, 6%, 15%);
+
+    //Sidebar Background Color
+    --sidebar-background-color: hsl(228, 6%, 15%);
+    --sidebar-border-color: hsl(220, 5%, 25%);
+
+    //Footer Background Color
+    --footer-background-color: hsl(228, 6%, 15%);
+
+    --theme-content-color: hsl(233, 7%, 22%);
+
+    //Active Colors
+    --active-text-color: hsla(25, 100%, 81%, 0.9);
+    --active-background-color: hsla(25, 50%, 50%, 0.3);
+
+    //Accent Color
+    --accent-light-backround-color: hsla(25, 55%, 50%, 0.4);
+    --accent-dark-backround-color: hsl(25, 60%, 50%);
+    --accent-text-color: hsla(25, 100%, 75%, 0.9);
+
+    //Menu Cards
+    --menu-card-background1: hsl(232, 7%, 22%);
+    --menu-card-background2: hsl(270, 7%, 22%);
+    --menu-card-text-color: white;
+
+    //Grid Colors
+    --grid-background-color: rgb(54, 54, 54);
+    --grid-head-background-color: rgb(42, 42, 42);
+    --grid-row-border-color: hsla(0, 0%, 30%, 0.6);
+
+    --from-control-background-color: hsl(0, 0%, 18%);
+    --from-control-disabled-background-color: hsl(0, 0%, 23%);
+    --from-control-border-color: hsl(0, 0%, 30%);
+
+    --slider-track-color: hsla(0, 0%, 50%, 0.3);
+    --slider-progress-color: hsl(25, 60%, 50%);
+
+    //Keyboard
+    --keyboard-body-background-color: #000000;
+    --keyboard-key-background-color: #2a2926;
+    --keyboard-key-press-background-color: #2a2926;
+    --keyboard-key-color: white;
+    --keyboard-accent-key-color: #87e22b;
+
+    //Skeleton loader
+    --skeleton-base: #444;
+    --skeleton-highlight: #555;
+
+    //Dialog Backdrop
+    --dialog-backdrop: hsla(0, 0%, 39%, 0.301);
+    --dialog-background-color: rgb(41, 41, 41);
+
+    --generic-border-color: hsla(0, 0%, 30%, 0.6);
+    --select-item-box-shadow: 0px 3px 9px rgba(105, 105, 105, 0.1);
+
+    --loading-spinner: rgb(73,155,145);
+}

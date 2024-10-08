@@ -1,0 +1,118 @@
+@mixin ss-badge-base {
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.ss-badge {
+    @include ss-badge-base();
+}
+
+.ss-badge-sm {
+    @include ss-badge-base();
+    font-size: x-small;
+}
+
+.ss-badge-lg {
+    @include ss-badge-base();
+    font-size: large
+}
+
+.ss-badge-transparent {
+    @include ss-badge-base();
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--text-color);
+    border: 1px solid var(--muted-color-3);
+}
+
+.ss-badge-primary {
+    @include ss-badge-base();
+    background-color: var(--primary);
+    color: white;
+}
+
+.ss-badge-primary:disabled {
+    @include ss-badge-base();
+    background-color: var(--primary-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-secondary {
+    @include ss-badge-base();
+    background-color: var(--secondary);
+    color: white;
+}
+
+.ss-badge-secondary:disabled {
+    @include ss-badge-base();
+    background-color: var(--secondary-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-danger {
+    @include ss-badge-base();
+    background-color: var(--danger);
+    color: white;
+}
+
+.ss-badge-danger:disabled {
+    @include ss-badge-base();
+    background-color: var(--danger-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-success {
+    @include ss-badge-base();
+    background-color: var(--success);
+    color: white;
+}
+
+.ss-badge-success:disabled {
+    @include ss-badge-base();
+    background-color: var(--success-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-warning {
+    @include ss-badge-base();
+    background-color: var(--warning);
+    color: rgb(42, 42, 42);
+}
+
+.ss-badge-warning:disabled {
+    @include ss-badge-base();
+    background-color: var(--warning-disabled);
+    cursor: not-allowed;
+}
+
+.ss-badge-white {
+    @include ss-badge-base();
+    background-color: white;
+    color: black;
+}
+
+.ss-badge-white:disabled {
+    @include ss-badge-base();
+    background-color: rgb(167, 167, 167);
+    cursor: not-allowed;
+}
+
+.ss-badge-accent-light {
+    @include ss-badge-base();
+    background-color: var(--accent-light-backround-color);
+    color: black;
+}
+
+.ss-badge-accent-dark {
+    @include ss-badge-base();
+    background-color: var(--accent-dark-backround-color);
+    color: black;
+}
