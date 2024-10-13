@@ -10,12 +10,7 @@ namespace ShopAPI.Models
         [Required]
         public string Url { get; set; } = string.Empty;  // Initialize non-nullable property
 
-        [Required]
-        public string EntityType { get; set; } = string.Empty;  // Initialize non-nullable property
-
         public string Description { get; set; } = string.Empty;  // Initialize non-nullable property
-
-        public int EntityId { get; set; }
     }
 
 }
