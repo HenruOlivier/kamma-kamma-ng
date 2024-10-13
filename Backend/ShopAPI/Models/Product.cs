@@ -19,17 +19,13 @@ namespace ShopAPI.Models
 
         public bool IsHireable { get; set; }
 
+        public bool IsForSale { get; set; }
+
         public int StockQuantity { get; set; }
 
         public List<Category> Categories { get; set; } = new(); // Initialize with an empty list
 
         public List<ProductVariation> Variations { get; set; } = new(); // Initialize with an empty list
-
-        [Required]
-        public int WarehouseId { get; set; }
-
-        // Remove the default initialization here
-        public Warehouse? Warehouse { get; set; }
 
         public List<Image> Images { get; set; } = new(); // Initialize with an empty list
     }

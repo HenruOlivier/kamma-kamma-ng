@@ -16,7 +16,6 @@ namespace ShopAPI.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<ShippingOption> ShippingOptions { get; set; }
-        public DbSet<Warehouse> Warehouses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,16 +41,10 @@ namespace ShopAPI.Data
 
             base.OnModelCreating(modelBuilder);
 
-            // Seed Warehouses
-            modelBuilder.Entity<Warehouse>().HasData(
-                new Warehouse { Id = 1, Name = "Main Warehouse", Location = "New York" },
-                new Warehouse { Id = 2, Name = "Backup Warehouse", Location = "San Francisco" }
-            );
-
-            // Seed Products (use WarehouseId, not the Warehouse object)
+            // Seed Products
             modelBuilder.Entity<Product>().HasData(
-                new Product { Id = 1, Name = "Sample Product 1", Description = "Sample description", Price = 10.99m, StockQuantity = 100, WarehouseId = 1 },
-                new Product { Id = 2, Name = "Sample Product 2", Description = "Another sample description", Price = 20.50m, StockQuantity = 200, WarehouseId = 2 }
+                new Product { Id = 1, Name = "Sample Product 1", Description = "Sample description", Price = 10.99m, StockQuantity = 100, IsHireable = true, IsForSale = false },
+                new Product { Id = 2, Name = "Sample Product 2", Description = "Another sample description", Price = 20.50m, StockQuantity = 200, IsHireable = false, IsForSale = true }
             );
 
             // Seed Categories
