@@ -1,0 +1,43 @@
+<ng-container *ngIf="keyboardSetup">
+    <ng-container *ngIf="!numberOnly; else numberKB">
+        <div class="temporary-comtainer-for-margin">
+            <div class="keyboard-container disable-select">
+                <ng-container *ngFor="let keyRow of currentState.keys">
+                    <div class="key-row">
+                        <ng-container class="key-row" *ngFor="let key of keyRow">
+                            <ng-container *ngIf="!key.innerHTML">
+                                <button [ngClass]="key.keyClass" (click)="onKeyPress(key)"
+                                    class="ss-btn ss-fw-light">{{key.key}}</button>
+                            </ng-container>
+                            <ng-container *ngIf="key.innerHTML">
+                                <button [ngClass]="key.keyClass" (click)="onKeyPress(key)" class="ss-btn ss-fw-light"
+                                    [innerHTML]="key.innerHTML">{{key.key}}</button>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+    
+    <ng-template #numberKB>
+        <div class="temporary-comtainer-for-margin">
+            <div class="keyboard-container disable-select">
+                <ng-container *ngFor="let keyRow of currentState.keys">
+                    <div class="key-row">
+                        <ng-container class="key-row" *ngFor="let key of keyRow">
+                            <ng-container *ngIf="!key.innerHTML">
+                                <button [ngClass]="key.keyClass" (click)="onKeyPress(key)"
+                                    class="ss-btn ss-fw-light">{{key.key}}</button>
+                            </ng-container>
+                            <ng-container *ngIf="key.innerHTML">
+                                <button [ngClass]="key.keyClass" (click)="onKeyPress(key)" class="ss-btn ss-fw-light"
+                                    [innerHTML]="key.innerHTML">{{key.key}}</button>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-template>
+</ng-container>

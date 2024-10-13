@@ -1,0 +1,105 @@
+<p>Upload</p>
+<div *ngIf="canUploadMany"
+     (drop)="onDrop($event)"
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)"
+     (click)="triggerFileInputClick()"
+     class="upload-area-container"
+     [class.dragover]="isDragOver">
+    <p><label class="ss-fc-primary ss-fw-bold ss-fs-5">Click to browse</label> or drag and drop
+        to upload multiple files
+    </p>
+</div>
+
+<div *ngIf="!canUploadMany && !isUploadActive"
+     (drop)="onDrop($event)"
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)"
+     (click)="triggerFileInputClick()"
+     class="upload-area-container"
+     [class.dragover]="isDragOver">
+    <p><label class="ss-fc-primary ss-fw-bold ss-fs-5">Click to browse</label> or drag and drop
+        to upload a single file
+    </p>
+</div>
+
+<ng-container *ngIf="canUploadMany">
+    <input type="file"
+           #fileInput
+           (change)="onFileSelected($event)"
+           multiple
+           hidden>
+</ng-container>
+<ng-container *ngIf="!canUploadMany && !isUploadActive">
+    <input type="file"
+           #fileInput
+           (change)="onFileSelected($event)"
+           hidden>
+</ng-container>
+
+
+<div class="flex-end my-4"
+     *ngIf="files.length && !isUploadActive">
+    <button (click)="onStartUploading()"
+            class="ss-btn-primary w-100">Start Upload</button>
+</div>
+
+<p *ngIf="files.length">Files</p>
+<ng-container *ngFor="let file of files; let i = index">
+
+    <div *ngIf="file.status === 'complete'"
+         class="upload-item">
+        <div>
+            <p class="m-0">{{file.data.name}}</p>
+            <p class="m-0 px-2 ss-fc-muted-3 ss-fs-xsm">{{file.data.size | fileSize}}</p>
+            <p class="m-0 px-2 ss-fc-success ss-fs-xsm">Upload complete</p>
+        </div>
+
+        <div>
+            <button class="success-btn"><i class="bi bi-check2"></i></button>
+        </div>
+    </div>
+
+    <div *ngIf="file.status === 'uploading'"
+         class="upload-item">
+        <div>
+            <p class="m-0">{{file.data.name}}</p>
+            <p class="m-0 px-2 ss-fc-muted-3 ss-fs-xsm">{{file.totalUploadedBytes | fileSize}} of {{file.data.size |
+                fileSize}}</p>
+        </div>
+
+        <div>
+            <ss-loader-sm></ss-loader-sm>
+        </div>
+    </div>
+
+    <div *ngIf="file.status === 'waiting'"
+         class="upload-item">
+        <div>
+            <p class="m-0">{{file.data.name}}</p>
+            <p class="m-0 px-2 ss-fc-muted-3 ss-fs-xsm">{{file.data.size | fileSize}}</p>
+            <p class="m-0 px-2 ss-fc-muted-3 ss-fs-xsm">Not started</p>
+        </div>
+
+        <div>
+            <button class="cancel-btn"
+                    (click)="onRemoveFile(i)"><i class="bi bi-x"></i></button>
+        </div>
+    </div>
+
+    <div *ngIf="file.status === 'error'"
+         class="upload-item">
+        <div>
+            <p class="m-0">{{file.data.name}}</p>
+            <p class="m-0 px-2 ss-fc-muted-3 ss-fs-xsm">{{file.data.size | fileSize}}</p>
+            <p class="m-0 px-2 ss-fc-danger ss-fs-xsm">Error uploading</p>
+        </div>
+
+        <div>
+            <button class="cancel-btn"
+                    (click)="onRemoveFile(i)"><i class="bi bi-x"></i></button>
+        </div>
+    </div>
+
+
+</ng-container>

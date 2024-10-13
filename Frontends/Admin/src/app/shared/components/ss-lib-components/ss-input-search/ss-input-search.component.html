@@ -1,0 +1,13 @@
+<div class="form-control-container">
+    <div class="input-wrapper">
+        <input [disabled]="disabled || (loading | async) || false" *ngIf="ngControl && ngControl.control; else standaloneInput" [ngModel]="value"
+            (input)="onInput($event)" type="text" class="ss-form-control"
+            [ngClass]="{'ss-form-control-loading': (loading | async)}">
+        <ng-template #standaloneInput>
+            <input [disabled]="disabled || (loading | async) || false" type="text" class="ss-form-control" [(ngModel)]="value"
+                [ngClass]="{'ss-form-control-loading': (loading | async)}"
+                (input)="onInput($event)">
+        </ng-template>
+        <button class="form-control-clear-button" (click)="onClear()"><i [ngClass]="iconClass"></i></button>
+    </div>
+</div>

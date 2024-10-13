@@ -1,0 +1,10 @@
+<div class="form-control-container">
+    <div class="ss-input-radio-container" [ngClass]="{'ss-form-control-valid': isValid() === true && !(loading | async), 'ss-form-control-invalid': isValid() === false && !(loading | async)}">
+        <ng-container *ngFor="let option of radioOptions">
+            <div class="radio-field">
+                <input [checked]="isSelected(option)" type="checkbox" (click)="onRadioSelect(option)" [ngClass]="{'ss-form-control-loading': (loading | async)}" [disabled]="disabled || (loading | async) || false">
+                <label class="ml-1">{{option.displayName}}</label>
+            </div>
+        </ng-container>
+    </div>
+</div>

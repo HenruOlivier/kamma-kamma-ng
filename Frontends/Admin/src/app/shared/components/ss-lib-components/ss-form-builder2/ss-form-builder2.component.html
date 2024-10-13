@@ -1,0 +1,173 @@
+<ng-container *ngIf="!(formController.dataError | async); else errorPage">
+    <div class="form-builder-container"
+     *ngIf="formReady; else formLoading">
+    <form [formGroup]="form">
+        <ng-container *ngFor="let control of formDefinition">
+            <div class="form-control-field-container">
+                <!-- Form Labels -->
+                <ng-container *ngIf="control.label !== ''">
+
+                    <ng-container *ngIf="!(combinedObservable | async); else loadingLabel">
+                        <ng-container *ngIf="control.required">
+                            <p [ngClass]="{'ss-form-control-label-valid': isControlValid(control.name), 'ss-form-control-label-invalid': !isControlValid(control.name)}"
+                               *ngIf="control.label !== ''"
+                               class="form-control-label">{{control.label + ' *'}}</p>
+                        </ng-container>
+                        <ng-container *ngIf="!control.required">
+                            <p [ngClass]="{'ss-form-control-label-valid': isControlValid(control.name), 'ss-form-control-label-invalid': !isControlValid(control.name)}"
+                               *ngIf="control.label !== ''"
+                               class="form-control-label">{{control.label}}</p>
+                        </ng-container>
+                    </ng-container>
+                    <ng-template #loadingLabel>
+                        <p *ngIf="control.label !== ''"
+                           class="form-control-label ss-fc-muted-1">{{control.label}}</p>
+                    </ng-template>
+
+                    <!-- <ng-container *ngIf="control.required">
+                        <p [ngClass]="{'ss-form-control-label-valid': isControlValid(control.name), 'ss-form-control-label-invalid': !isControlValid(control.name)}"
+                           *ngIf="control.label !== ''"
+                           class="form-control-label">{{control.label + ' *'}}</p>
+                    </ng-container>
+                    <ng-container *ngIf="!control.required">
+                        <p [ngClass]="{'ss-form-control-label-valid': isControlValid(control.name), 'ss-form-control-label-invalid': !isControlValid(control.name)}"
+                           *ngIf="control.label !== ''"
+                           class="form-control-label">{{control.label}}</p>
+                    </ng-container>
+                    <ng-template>
+                        <p *ngIf="control.label !== ''"
+                           class="form-control-label">{{control.label}}</p>
+                    </ng-template> -->
+                </ng-container>
+
+                <!-- Form Controls -->
+                <ng-container [ngSwitch]="control.type">
+                    <ng-container *ngSwitchCase="formFieldTypes.Text">
+                        <div class="form-control-field">
+                            <ss-input-text [formControlName]="control.name"
+                                           [loading]="combinedObservable"
+                                           [userVirtualKeyboard]="useVirtualKeyboard"
+                                           ></ss-input-text>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.TextArea">
+                        <div class="form-control-field">
+                            <ss-input-textarea [formControlName]="control.name"
+                                               [loading]="combinedObservable"></ss-input-textarea>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Number">
+                        <div class="form-control-field">
+                            <ss-input-number [formControlName]="control.name"
+                                             [min]="getFieldProperties(control.name)?.min"
+                                             [max]="getFieldProperties(control.name)?.max"
+                                             [stepSize]="getFieldProperties(control.name)?.stepSize"
+                                             [loading]="combinedObservable"
+                                             [userVirtualKeyboard]="useVirtualKeyboard"
+                                             ></ss-input-number>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Password">
+                        <div class="form-control-field">
+                            <ss-input-password [formControlName]="control.name"
+                                               [loading]="combinedObservable"
+                                               [userVirtualKeyboard]="useVirtualKeyboard"
+                                               ></ss-input-password>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Email">
+                        <div class="form-control-field">
+                            <ss-input-email [formControlName]="control.name"
+                                            [loading]="combinedObservable"></ss-input-email>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Date">
+                        <div class="form-control-field">
+                            <ss-input-calendar [formControlName]="control.name"
+                                               [loading]="combinedObservable"></ss-input-calendar>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Time">
+                        <div class="form-control-field">
+                            <ss-input-time [formControlName]="control.name"
+                                           [loading]="combinedObservable"></ss-input-time>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Select">
+                        <div class="form-control-field">
+                            <ss-input-dropselect [formControlName]="control.name"
+                                                 [dataset]="!(combinedObservable | async) ? getFieldProperties(control.name)?.dataset : []"
+                                                 [headerField]="getFieldProperties(control.name)?.headerField"
+                                                 [subFields]="getFieldProperties(control.name)?.subFields"
+                                                 [imageField]="getFieldProperties(control.name)?.imageField"
+                                                 [roundImage]="getFieldProperties(control.name)?.roundImage"
+                                                 [returnObject]="getFieldProperties(control.name)?.returnObject"
+                                                 [returnField]="getFieldProperties(control.name)?.returnField"
+                                                 [searchEnabled]="getFieldProperties(control.name)?.searchEnabled"
+                                                 [loading]="combinedObservable"></ss-input-dropselect>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.MultiSelect">
+                        <div class="form-control-field">
+                            <ss-input-multiselect [formControlName]="control.name"
+                                                  [dataset]="!(combinedObservable | async) ? getFieldProperties(control.name)?.dataset : []"
+                                                  [headerField]="getFieldProperties(control.name)?.headerField"
+                                                  [subFields]="getFieldProperties(control.name)?.subFields"
+                                                  [imageField]="getFieldProperties(control.name)?.imageField"
+                                                  [roundImage]="getFieldProperties(control.name)?.roundImage"
+                                                  [returnObject]="getFieldProperties(control.name)?.returnObject"
+                                                  [returnField]="getFieldProperties(control.name)?.returnField"
+                                                  [searchEnabled]="getFieldProperties(control.name)?.searchEnabled"
+                                                  [max]="getFieldProperties(control.name)?.max"
+                                                  [loading]="combinedObservable"></ss-input-multiselect>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Radio">
+                        <div class="form-control-field">
+                            <ss-input-radio [formControlName]="control.name"
+                                            [radioOptions]="getFieldProperties(control.name)?.radioOptions"
+                                            [loading]="combinedObservable"></ss-input-radio>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Range">
+                        <div class="form-control-field">
+                            <ss-input-range-slider [formControlName]="control.name"
+                                                   [min]="getFieldProperties(control.name)?.min"
+                                                   [max]="getFieldProperties(control.name)?.max"
+                                                   [step]="getFieldProperties(control.name)?.step"
+                                                   [loading]="combinedObservable"></ss-input-range-slider>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Checkbox">
+                        <div class="form-control-field">
+                            <ss-input-checkbox [formControlName]="control.name"
+                                               [loading]="combinedObservable"></ss-input-checkbox>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="formFieldTypes.Custom">
+                        <div class="form-control-field">
+                            <ss-form-builder-generic-host-container [formControlName]="control.name"
+                                                                    [component]="getFieldProperties(control.name)?.component"
+                                                                    [args]="getFieldProperties(control.name)?.args"
+                                                                    [loading]="combinedObservable"></ss-form-builder-generic-host-container>
+                        </div>
+                    </ng-container>
+                </ng-container>
+
+                <ng-container *ngIf="getFieldProperties(control.name)?.subtext">
+                    <p class="m-0 pt-1 ss-fs-xsm ss-fw-lighter text-left">{{getFieldProperties(control.name)?.subtext}}
+                    </p>
+                </ng-container>
+            </div>
+        </ng-container>
+    </form>
+</div>
+
+<ng-template #formLoading>
+    <ss-loader-sm></ss-loader-sm>
+</ng-template>
+</ng-container>
+
+<ng-template #errorPage>
+    <ss-error></ss-error>
+</ng-template>

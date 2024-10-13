@@ -1,0 +1,354 @@
+<!-- This is the grid view container -->
+<div class="grid-container disable-select">
+    <div class="grid-controls-container">
+        <div class="grid-controls">
+            <div class="grid-controls-left">
+                <button *ngIf="manager.createNewActive"
+                        class="ss-btn-success mx-1"
+                        (click)="onNew()"><i class="bi bi-plus-lg"></i><span>New</span></button>
+                <button *ngIf="manager.deleteManyActive"
+                        class="ss-btn-danger mx-1"
+                        (click)="onDeleteMany()"><i class="bi bi-trash3"></i><span>Delete</span></button>
+            </div>
+            <div class="grid-controls-center">
+                <button *ngIf="manager.settingsActive"
+                        (click)="onOpenGridSettings()"
+                        class="ss-btn-circle-transparent border-none"><i
+                       class="bi bi-gear-fill m-0 ss-fs-5"></i></button>
+            </div>
+            <div class="grid-controls-right">
+                <button *ngIf="manager.importActive"
+                        class="ss-btn-primary mx-1"
+                        (click)="importUlpoader.click()"><i class="bi bi-upload"></i><span>Import</span></button>
+                <input hidden
+                       type="file"
+                       #importUlpoader
+                       (change)="onImport($event)" />
+                <button *ngIf="manager.exportActive"
+                        class="ss-btn-accent-dark ss-fc-white mx-1"
+                        (click)="onExport()"><i class="bi bi-download"></i><span>Export</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-body-container">
+        <div class="grid-body">
+            <ng-container *ngIf="!loading && !error">
+                <table>
+                    <thead>
+                        <tr>
+                            <th *ngIf="manager.selectActive">
+                                <input [checked]="false"
+                                       type="checkbox"
+                                       (change)="onToggleAll($event)">
+                            </th>
+
+                            <ng-container *ngFor="let column of manager.definition">
+                                <th *ngIf="!column.hidden">
+                                    <ng-container *ngIf="isSafeGridValue(column)">
+                                        <div class="grid-head-controls">
+                                            <Label>{{column.displayName}}</Label>
+                                            <div>
+                                                <ng-container
+                                                              *ngIf="manager.sortField !== column.lookup && column.sortable">
+                                                    <button (click)="onSort(column.lookup)"
+                                                            class="ss-btn-circle-sm ss-btn-circle-transparent border-none "><i
+                                                           class="bi bi-arrow-down-up"></i></button>
+                                                </ng-container>
+                                                <ng-container
+                                                              *ngIf="manager.sortField !== column.lookup && !column.sortable">
+                                                    <button disabled
+                                                            class="ss-btn-circle-sm ss-btn-circle-transparent border-none "><i
+                                                           class="bi bi-lock"></i></button>
+                                                </ng-container>
+
+                                                <ng-container *ngIf="manager.sortField === column.lookup">
+                                                    <button (click)="onSortDescending()"
+                                                            *ngIf="manager.sortDirection === 'asc'"
+                                                            class="ss-btn-circle-sm ss-btn-circle-transparent border-none "><i
+                                                           class="bi bi-sort-up-alt ss-fc-warning ss-fs-5"></i></button>
+                                                    <button (click)="onSortAscending()"
+                                                            *ngIf="manager.sortDirection !== 'asc'"
+                                                            class="ss-btn-circle-sm ss-btn-circle-transparent border-none "><i
+                                                           class="bi bi-sort-down ss-fc-warning ss-fs-5"></i></button>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <ss-input-search [disabled]="!column.filterable"
+                                                             (valueChange)="onSearchChangeEvent(column.lookup, $event)"
+                                                             class="w-100"></ss-input-search>
+                                        </div>
+                                    </ng-container>
+                                </th>
+                            </ng-container>
+
+                            <ng-container *ngIf="manager.gridControls.length>0">
+                                <th>
+                                    <Label>Actions</Label>
+                                </th>
+                            </ng-container>
+                        </tr>
+                    </thead>
+                    <tbody class="ss-fs-sm">
+                        <ng-container *ngIf="manager.output.length >0">
+                            <tr *ngFor="let row of manager.output">
+                                <ng-container *ngIf="manager.selectActive">
+                                    <td style="text-align: center;"><input type="checkbox"
+                                               [checked]="row.$isSelected"
+                                               (click)="onToggleOne(row)">
+                                    </td>
+                                </ng-container>
+
+                                <ng-container *ngFor="let field of manager.definition">
+                                    <ng-container *ngIf="!field.hidden">
+                                        <ng-container [ngSwitch]="field.valueType">
+                                            <ng-container *ngSwitchCase="gridFieldTypes.Text">
+                                                <td>
+                                                    <div class="grid-col-data-container">
+                                                        {{manager.getFieldValue(field.lookup,row)}}
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container *ngSwitchCase="gridFieldTypes.ShortDate">
+                                                <td>
+                                                    <div class="grid-col-data-container"
+                                                         *ngIf="manager.getFieldValue(field.lookup, row)">
+                                                        {{manager.getFieldValue(field.lookup,row) | date:
+                                                        'shortDate'}}</div>
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container *ngSwitchCase="gridFieldTypes.ShortDateWithTime">
+                                                <td>
+                                                    <div class="grid-col-data-container"
+                                                         *ngIf="manager.getFieldValue(field.lookup, row)">
+                                                        {{manager.getFieldValue(field.lookup,row) | date:
+                                                        'short'}}</div>
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container *ngSwitchCase="gridFieldTypes.Currency">
+                                                <td>
+                                                    <div class="grid-col-data-container"
+                                                         *ngIf="manager.getFieldValue(field.lookup, row)">
+                                                        {{manager.getFieldValue(field.lookup,row) | currency:
+                                                        'R'}}</div>
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container *ngSwitchCase="gridFieldTypes.HTML">
+                                                <td>
+                                                    <div class="grid-col-data-container"
+                                                         [innerHTML]="manager.getFieldValue(field.lookup,row)"></div>
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container *ngSwitchCase="gridFieldTypes.Count">
+                                                <td>
+                                                    <div class="grid-col-data-container"
+                                                         *ngIf="manager.getFieldValue(field.lookup, row)">
+                                                        {{manager.getFieldValue(field.lookup, row).length || 0}}</div>
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container *ngSwitchCase="gridFieldTypes.TimeAgo">
+                                                <td>
+                                                    <div class="grid-col-data-container"
+                                                         *ngIf="manager.getFieldValue(field.lookup, row)">
+                                                        {{manager.getFieldValue(field.lookup, row) | dateAgo}}</div>
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container *ngSwitchCase="gridFieldTypes.FileSize">
+                                                <td>
+                                                    <div class="grid-col-data-container"
+                                                         *ngIf="manager.getFieldValue(field.lookup, row)">
+                                                        {{manager.getFieldValue(field.lookup, row) | fileSize}}</div>
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container *ngSwitchCase="gridFieldTypes.Image">
+                                                <td>
+                                                    <div class="grid-col-data-container m-2"
+                                                         style="border-radius: 8px; width: 150px; height: 150px;">
+                                                        <ss-img style="width: 100%;"
+                                                                [src]="manager.getFieldValue(field.lookup, row)"></ss-img>
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+                                            <ng-container *ngSwitchDefault>
+                                                <td>
+                                                    <div class="grid-col-data-container">
+                                                        <i
+                                                           class="ss-fc-warning bi bi-exclamation-triangle-fill ss-fs-5"></i>
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+
+                                <ng-container *ngIf="manager.gridControls.length>0">
+                                    <td>
+                                        <div class="grid-col-controls-container">
+                                            <ng-container *ngFor="let control of manager.gridControls">
+                                                <button *ngIf="control.name === 'Edit'"
+                                                        (click)="onEditSingle(row)"
+                                                        [ngClass]="control.classList.length > 0 ? control.classList : 'ss-btn-circle-primary'"><i
+                                                       [ngClass]="control.iconClass"></i></button>
+
+                                                <button *ngIf="control.name ==='Delete'"
+                                                        (click)="onDeleteSingle(row)"
+                                                        [ngClass]="control.classList.length > 0 ? control.classList : 'ss-btn-circle-primary'"><i
+                                                       [ngClass]="control.iconClass"></i></button>
+
+                                                <ng-container
+                                                              *ngIf="control.name !== 'Edit' && control.name !== 'Delete'">
+                                                    <button (click)="onCustomEvent(control, row)"
+                                                            [ngClass]="control.classList.length > 0 ? control.classList : 'ss-btn-circle-warning'"><i
+                                                           [ngClass]="control.iconClass.length >0 ? control.iconClass : 'bi bi-question-lg'"></i></button>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+                <ng-container *ngIf="manager.output.length === 0">
+                    <div class="grid-no-data-container">
+                        <p class="ss-fs-1"><i class="bi bi-search"></i></p>
+                        <p>No data found</p>
+                    </div>
+                </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="loading && !error">
+                <div class="grid-load-container">
+                    <div class="grid-load-spinner"></div>
+                    <ss-img [src]="getBrandURL()"
+                            class="grid-load-img"></ss-img>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!loading && error">
+                <div class="grid-error-container">
+                    <p>{{errorText || "Something went wrong"}}</p>
+                    <ss-img [src]="getErrorImgURL()"
+                            class="grid-error-img"></ss-img>
+                    <div class="m-2">
+                        <button (click)="onRefresh()"
+                                class="ss-btn-circle-primary ss-fs-5"><i class="bi bi-arrow-clockwise"></i></button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="grid-footer ss-fs-6">
+        <div>
+            <p>{{manager.dataset.length}} Items Total</p>
+        </div>
+        <div>
+            <button (click)="onPreviousPage()"
+                    class="ss-btn-circle-sm ss-btn-circle-transparent border-none"><i
+                   class="bi bi-chevron-left"></i></button>
+            <button class="ss-btn-circle-sm ss-btn-circle-transparent border-none">{{manager.currentPage
+                + '/' + manager.totalPages}}</button>
+            <button (click)="onNextPage()"
+                    class="ss-btn-circle-sm ss-btn-circle-transparent border-none"><i
+                   class="bi bi-chevron-right"></i></button>
+        </div>
+        <div>
+            <label class="m-2">Items Per Page:</label>
+            <select (ngModelChange)="onItemsPerPageChange()"
+                    [(ngModel)]="manager.itemsPerPage"
+                    class="ss-form-control-sm ss-fs-sm">
+                <option *ngFor="let option of itemsPerPageOptions"
+                        [value]="option">{{ option }}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<ss-dialog [isOpen]="deleteSingleDialogOpen">
+    <p class="ss-fs-1 ss-fc-danger my-2"><i class="bi bi-trash3-fill"></i></p>
+    <p class="ss-fs-4 mb-0">Are your sure?</p>
+    <p class="ss-fc-danger my-1">Deleting 1 item</p>
+    <p class="text-center ss-fw-light ss-fs-sm">This cannot be undone. Deleted items cannot be recovered</p>
+
+    <br>
+
+    <div class="flex">
+        <button (click)="onDeleteSingleDialogCancel()"
+                class="ss-btn-secondary flex-grow mx-1">
+            <p>Cancel</p>
+        </button>
+        <button (click)="onDeleteSingleDialogConfirm()"
+                class="ss-btn-danger flex-grow mx-1">
+            <p>Confirm</p>
+        </button>
+    </div>
+</ss-dialog>
+
+<ss-dialog [isOpen]="deleteManyDialogOpen">
+    <p class="ss-fs-1 ss-fc-danger my-2"><i class="bi bi-trash3-fill"></i></p>
+    <p class="ss-fs-4 mb-0">Are your sure?</p>
+    <p class="ss-fc-danger my-1">{{'Deleting ' + deleteManySelectedItems.length + ' item(s)'}}</p>
+    <p class="text-center ss-fw-light ss-fs-sm">This cannot be undone. Deleted items cannot be recovered</p>
+
+    <br>
+
+    <div class="flex">
+        <button (click)="onDeleteManyDialogCancel()"
+                class="ss-btn-secondary flex-grow mx-1">
+            <p>Cancel</p>
+        </button>
+        <button (click)="onDeleteManyDialogConfirm()"
+                class="ss-btn-danger flex-grow mx-1">
+            <p>Confirm</p>
+        </button>
+    </div>
+</ss-dialog>
+
+<ss-dialog [(isOpen)]="gridSettingsDialogOpen"
+           [width]="'100%'"
+           [height]="'100%'"
+           [hasExitCross]="true">
+    <div class="flex-col"
+         style="height: calc(100% - 50px);">
+        <div class="flex-grow"
+             style="overflow: scroll;">
+            <p class="ss-fs-3 text-left">Grid Settings</p>
+            <div class="text-left px-4">
+                <p class="ss-form-label">Hide Columns</p>
+                <div class="grid-settings-menu-container">
+                    <div class="grid-settings-menu-item"
+                         *ngFor="let column of manager.definition">
+                        <p>{{column.displayName}}</p>
+                        <div class="ml-4">
+                            <ss-input-checkbox [(value)]="column.hidden"></ss-input-checkbox>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="ss-form-label">Display</p>
+                <div class="grid-settings-menu-container">
+                    <div class="grid-settings-menu-item">
+                        <p>Use card view on small screens</p>
+                        <div class="ml-4">
+                            <p class="ss-fs-5"><i class="bi bi-lock-fill"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex">
+            <button (click)="onCloseGridSettings()"
+                    class="ss-btn-primary flex-grow"><i class="ss-fs-5 bi bi-check2"></i></button>
+        </div>
+    </div>
+</ss-dialog>

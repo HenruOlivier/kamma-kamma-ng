@@ -1,0 +1,31 @@
+.ss-input-text-button-container {
+    display: flex;
+}
+
+.ss-form-control {
+    height: 100%;
+}
+
+.ss-form-control-border-left-hidden {
+    border-radius: 0px 7px 7px 0px;
+    border-left-color: transparent !important;
+}
+
+.ss-form-control-border-right-hidden {
+    border-radius: 7px 0px 0px 7px;
+    border-right-color: transparent !important;
+}
+
+.input-wrapper {
+    flex-grow: 1;
+}
+
+.btn-left {
+    margin: 0;
+    border-radius: 7px 0px 0px 7px;
+}
+
+.btn-right {
+    margin: 0;
+    border-radius: 0px 7px 7px 0px;
+}

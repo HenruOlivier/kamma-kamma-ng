@@ -1,0 +1,31 @@
+.chips-container {
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+.chip {
+    display: inline-flex;
+    background-color: var(--accent-light-backround-color);
+    border: 1px solid var(--accent-dark-backround-color);
+    border-radius: 20px;
+    margin: 3px;
+}
+
+.chip-inner{
+    display: flex;
+    align-items: center;
+}
+
+.chip-text{
+    margin-left: 8px;
+    margin-right: 3px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.ss-btn-circle-transparent{
+    width: 25px;
+    height: 25px;
+}

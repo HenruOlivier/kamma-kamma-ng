@@ -1,0 +1,21 @@
+<div class="form-control-container">
+    <div class="ss-input-text-button-container">
+        <button *ngIf="leftBtn" class="btn-left" [ngClass]="btnClass" (click)="onButtonClick()"><i
+                [ngClass]="iconClass"></i></button>
+        <div class="input-wrapper">
+            <input
+                [ngClass]="{'ss-form-control-valid': isValid() === true && !(loading | async), 'ss-form-control-invalid': isValid() === false && !(loading | async), 'ss-form-control-loading': (loading | async),
+                            'ss-form-control-border-left-hidden':leftBtn, 'ss-form-control-border-right-hidden':rightBtn }"
+                [disabled]="disabled" *ngIf="ngControl && ngControl.control; else standaloneInput" [ngModel]="value"
+                (ngModelChange)="valueChange.emit($event)" type="text" class="ss-form-control">
+            <ng-template #standaloneInput>
+                <input [disabled]="disabled || (loading | async) || false"
+                    [ngClass]="{'ss-form-control-border-left-hidden':leftBtn, 'ss-form-control-border-right-hidden':rightBtn, 'ss-form-control-loading': (loading | async)}"
+                    type="text" class="ss-form-control" [(ngModel)]="value" (ngModelChange)="valueChange.emit($event)"
+                    (change)="valueChange.emit(value)">
+            </ng-template>
+        </div>
+        <button *ngIf="rightBtn" [ngClass]="btnClass" class="btn-right" (click)="onButtonClick()"><i
+                [ngClass]="iconClass"></i></button>
+    </div>
+</div>

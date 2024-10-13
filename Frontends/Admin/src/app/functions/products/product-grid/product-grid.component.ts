@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { DataGridComponent } from '../../../shared/components/ss-data-grid/data-grid.component';
-import { GridDefinitionField } from '../../../shared/components/ss-data-grid/grid-definition-field.model';
-import { GridFieldTypes } from '../../../shared/components/ss-data-grid/grid-field-types.model';
-import { GridManager } from '../../../shared/components/ss-data-grid/gridManager';
+import { DataGridComponent } from '../../../shared/components/data-grid/data-grid.component';
+import { GridDefinitionField } from '../../../shared/components/data-grid/grid-definition-field.model';
+import { GridFieldTypes } from '../../../shared/components/data-grid/grid-field-types.model';
+import { GridManager } from '../../../shared/components/data-grid/gridManager';
 import { ProductsService } from '../../../shared/services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
+import { Product } from '../../../shared/models/product.model';
 
 @Component({
   selector: 'app-product-grid',
@@ -58,17 +59,17 @@ export class ProductGridComponent {
     this.router.navigate(['form'], { relativeTo: this.route });
   }
 
-  onEditSingle(data: any) {
+  onEditSingle(data: Product) {
     // this.router.navigate(['water-tank-group-form', data._id]);
-    this.router.navigate(['form', data._id], { relativeTo: this.route });
+    this.router.navigate(['form', data.id], { relativeTo: this.route });
   }
 
-  onDeleteSingle(data: any) {
-    // this.productService.deleteProduct(data._id)
-    //   .subscribe();
+  onDeleteSingle(data: Product) {
+    this.productService.deleteProduct(data.id)
+      .subscribe();
   }
 
-  onDeleteMany(data: any) {
+  onDeleteMany(data: Product[]) {
     // this.productService.deleteManyProducts(data)
     //   .subscribe();
   }

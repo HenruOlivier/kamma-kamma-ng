@@ -1,0 +1,44 @@
+<ng-container *ngIf="!userVirtualKeyboard; else withVirtualKeyboard">
+    <div class="form-control-container">
+        <div class="ss-input-number-container">
+            <button class="ss-btn-danger btn-minus" [ngClass]="{'ss-btn-secondary' : (loading | async) || disabled}" (click)="onMinus()" [disabled]="disabled || (loading | async)"><i class="bi bi-dash-lg"></i></button>
+            <div class="input-wrapper">
+                <input
+                    [ngClass]="{'ss-form-control-valid': isValid() === true && !(loading | async), 'ss-form-control-invalid': isValid() === false && !(loading | async), 'ss-form-control-loading': (loading | async)}"
+                    [disabled]="disabled || (loading | async) || false" *ngIf="ngControl && ngControl.control; else standaloneInput" [ngModel]="value"
+                    (ngModelChange)="valueChange.emit($event)" type="number" min="{{min}}" max="{{max}}"
+                    class="ss-form-control">
+                <ng-template #standaloneInput>
+                    <input [disabled]="disabled || (loading | async) || false" type="number" min="{{min}}" max="{{max}}" class="ss-form-control"
+                        [ngClass]="{'ss-form-control-loading': (loading | async)}"
+                        [(ngModel)]="value" (ngModelChange)="valueChange.emit($event)" (change)="valueChange.emit(value)">
+                </ng-template>
+            </div>
+            <button class="ss-btn-success btn-plus" [ngClass]="{'ss-btn-secondary' : (loading | async) || disabled}" (click)="onPlus()" [disabled]="disabled || (loading | async)"><i class="bi bi-plus-lg"></i></button>
+        </div>
+    </div>
+</ng-container>
+<ng-template #withVirtualKeyboard>
+    <div class="form-control-container">
+        <div class="ss-input-number-container">
+            <button class="ss-btn-danger btn-minus" [ngClass]="{'ss-btn-secondary' : (loading | async) || disabled}" (click)="onMinus()" [disabled]="disabled || (loading | async)"><i class="bi bi-dash-lg"></i></button>
+            <div class="input-wrapper">
+                <input
+                    [ngClass]="{'ss-form-control-valid': isValid() === true && !(loading | async), 'ss-form-control-invalid': isValid() === false && !(loading | async), 'ss-form-control-loading': (loading | async)}"
+                    [disabled]="disabled || (loading | async) || false" *ngIf="ngControl && ngControl.control; else standaloneInput" [ngModel]="value"
+                    (ngModelChange)="valueChange.emit($event)" type="number" min="{{min}}" max="{{max}}"
+                    class="ss-form-control"
+                    virtualKeyboard
+                    >
+                <ng-template #standaloneInput>
+                    <input [disabled]="disabled || (loading | async) || false" type="number" min="{{min}}" max="{{max}}" class="ss-form-control"
+                        [ngClass]="{'ss-form-control-loading': (loading | async)}"
+                        [(ngModel)]="value" (ngModelChange)="valueChange.emit($event)" (change)="valueChange.emit(value)"
+                        virtualKeyboard
+                        >
+                </ng-template>
+            </div>
+            <button class="ss-btn-success btn-plus" [ngClass]="{'ss-btn-secondary' : (loading | async) || disabled}" (click)="onPlus()" [disabled]="disabled || (loading | async)"><i class="bi bi-plus-lg"></i></button>
+        </div>
+    </div>
+</ng-template>

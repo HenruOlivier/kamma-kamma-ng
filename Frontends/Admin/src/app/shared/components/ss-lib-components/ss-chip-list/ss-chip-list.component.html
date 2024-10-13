@@ -1,0 +1,29 @@
+<ng-container *ngIf="displayField; else stringChips">
+    <div class="chips-container">
+        <ng-container *ngFor="let chip of getChipsArray()">
+            <div class="chip" @enterExit>
+                <div class="chip-inner">
+                    <p class="chip-text ss-fs-sm">{{chip[displayField]}}</p>
+                </div>
+                <div class="chip-inner">
+                    <button (click)="onChipRemove(chip)" class="ss-btn-circle-transparent border-none"><i class="bi bi-x-lg ss-fs-sm"></i></button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>
+
+<ng-template #stringChips>
+    <div class="chips-container" @enterExit>
+        <ng-container *ngFor="let chip of getChipsArray()">
+            <div class="chip">
+                <div class="chip-inner">
+                    <p class="chip-text ss-fs-sm">{{chip}}</p>
+                </div>
+                <div class="chip-inner">
+                    <button (click)="onChipRemove(chip)" class="ss-btn-circle-transparent border-none"><i class="bi bi-x-lg ss-fs-sm"></i></button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>

@@ -1,1 +1,7 @@
-<p>product-form works!</p>
+<ss-form-builder2
+[formDefinition]="formDefinition"
+(formValueChange)="onFormValueChange($event)"
+[loading]="(scaleService.dataLoading | async) || false"
+[loadingObservable]="scaleService.singleItemLoading"
+[useVirtualKeyboard]="true"
+></ss-form-builder2>

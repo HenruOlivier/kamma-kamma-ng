@@ -1,0 +1,23 @@
+<div class="form-control-container">
+    <div class="value-area">
+        <p *ngIf="before" class="ss-fs-1 mt-2 mb-0">{{before+ " "}}</p>
+        <p class="ss-fs-1 m-1">{{ value ?? '' }}</p>
+        <div class="flex-col flex-end">
+            <p *ngIf="after" class="mb-3 ss-fs-5">{{" " + after}}</p>
+        </div>
+    </div>
+    <div class="slider-area" [ngClass]="{'ss-form-control-loading': (loading | async)}">
+        <button (click)="onMinus()" class="ss-btn btn-minus"><i class="bi bi-dash-lg"></i></button>
+        <div class="slider-inner">
+            <input (input)="onInput($event)" min="{{min}}" max="{{max}}" step="{{step}}" [disabled]="disabled || (loading | async) || false"
+                *ngIf="ngControl && ngControl.control; else standaloneInput" [ngModel]="value"
+                (ngModelChange)="valueChange.emit($event)" type="range">
+            <ng-template #standaloneInput>
+                <input (input)="onInput($event)" min="{{min}}" max="{{max}}" step="{{step}}" [disabled]="disabled"
+                    type="range" [(ngModel)]="value" (ngModelChange)="valueChange.emit($event)"
+                    (change)="valueChange.emit(value)">
+            </ng-template>
+        </div>
+        <button (click)="onPlus()" class="ss-btn btn-plus"><i class="bi bi-plus-lg"></i></button>
+    </div>
+</div>

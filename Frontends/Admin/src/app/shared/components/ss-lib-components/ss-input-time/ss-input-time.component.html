@@ -1,0 +1,38 @@
+<div class="form-control-container">
+    <div class="ss-input-timeselect-container">
+        <div class="input-wrapper">
+            <input
+                [ngClass]="{'ss-form-control-valid': isValid() === true && !(loading | async), 'ss-form-control-invalid': isValid() === false && !(loading | async), 'ss-form-control-loading': (loading | async)}"
+                [disabled]="true" *ngIf="ngControl && ngControl.control; else standaloneInput" [ngModel]="value"
+                type="text" class="ss-form-control">
+            <ng-template #standaloneInput>
+                <input [disabled]="true" type="text" class="ss-form-control" [(ngModel)]="value" [ngClass]="{'ss-form-control-loading': (loading | async)}">
+            </ng-template>
+        </div>
+        <button class="ss-btn-primary btn-toggle-select" (click)="toggleSelect()"><i class="bi bi-clock"></i></button>
+    </div>
+
+    <ss-dialog [isOpen]="isOpen">
+        <div class="select-area-inner">
+            <div class="time-ticker-body">
+                <button (click)="onHoursPlus()" class="ss-btn-secondary"><i class="bi bi-chevron-up"></i></button>
+                <label [@numberChange]="selectedHour" class="ss-fs-1">{{selectedHour | number: '2.0-0'}}</label>
+                <button (click)="onHoursMinus()" class="ss-btn-secondary"><i class="bi bi-chevron-down"></i></button>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <p class="ss-fs-1">:</p>
+            </div>
+            <div class="time-ticker-body">
+                <button (click)="onMinutesPlus()" class="ss-btn-secondary"><i class="bi bi-chevron-up"></i></button>
+                <label [@numberChange]="selectedMinute" class="ss-fs-1">{{selectedMinute | number: '2.0-0'}}</label>
+                <button (click)="onMinutesMinus()" class="ss-btn-secondary"><i class="bi bi-chevron-down"></i></button>
+            </div>
+        </div>
+        <br>
+        <div class="flex">
+            <button (click)="toggleSelect()" class="ss-btn-primary flex-grow">
+                <p>Close</p>
+            </button>
+        </div>
+    </ss-dialog>
+</div>

@@ -1,0 +1,47 @@
+<div class="stepper-container">
+    <ng-container *ngIf="stepController.getStepsLength() > 0">
+
+        <ng-container *ngFor="let step of steps$ | async; let i = index">
+            <div>
+                <div class="step-header-container">
+                    <div class="step-icon-container" [ngClass]="getStateClass(i)">
+                        <i [ngClass]="step.icon"></i>
+                    </div>
+                    <div class="step-info">
+                        <p class="m-0 ss-fs-xsm ss-fw-bold ss-fc-muted-3">STEP {{ i + 1 }}</p>
+                        <p class="m-0 ss-fw-bold ss-fs-5">{{ step.displayName }}</p>
+                    </div>
+                </div>
+    
+                <div class="flex">
+                    <div class="step-line" *ngIf="!isLastStep(i)" [ngClass]="getStateClass(i)">
+    
+                    </div>
+                    <div *ngIf="isStepActive(i)" class="flex-grow">
+                        <div class="step-content-container">
+                            <ng-template #stepContent></ng-template>
+                        </div>
+    
+                        <div class="step-controls-container">
+                            <div>
+                                <button *ngIf="stepController.canBack && !stepController.isFirstStep()" (click)="onBack()"
+                                    class="ss-btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</button>
+                            </div>
+                            <div>
+                                <button *ngIf="stepController.canNext && !stepController.isLastStep()" (click)="onNext()"
+                                    class="ss-btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </ng-container>
+
+    </ng-container>
+    
+
+    <ng-container *ngIf="stepController.getStepsLength() < 1">
+        <p>Not steps</p>
+    </ng-container>
+</div>

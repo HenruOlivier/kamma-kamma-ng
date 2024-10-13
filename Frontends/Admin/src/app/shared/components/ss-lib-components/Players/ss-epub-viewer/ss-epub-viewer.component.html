@@ -1,0 +1,50 @@
+<div id="viewer-wrapper">
+    <div id="viewer-toolbar"
+         *ngIf="showToolbar">
+        <div class="d-flex flex-row align-items-center">
+            <div class="click-item flex-fill text-center p1 d-sm-none d-md-block"
+                 (click)="openTOC()"><i class="bi bi-list-ul"></i></div>
+            <div class="click-item flex-fill text-center p1"
+                 (click)="prev()"
+                 [class.disabled]="isAtStart"><i class="bi bi-caret-left-fill"></i></div>
+            <div class="click-item flex-fill text-center p1"
+                 (click)="decreaseFont()"
+                 [class.disabled]="fontSize <= minimumFontSize"><i class="bi bi-dash"></i></div>
+            <div class="click-item flex-fill text-center p1"
+                 (click)="increaseFont()"><i class="bi bi-plus"></i></div>
+            <div class="click-item flex-fill text-center p1"
+                 (click)="next()"
+                 [class.disabled]="isAtEnd"><i class="bi bi-caret-right-fill"></i></div>
+            <div class="click-item flex-fill text-center p1 d-sm-none d-md-block"
+                 (click)="download()">
+                <i class="bi bi-cloud-arrow-down-fill"
+                   *ngIf="!isDownloading"></i>
+                <i class="bi bi-arrow-clockwise"
+                   *ngIf="isDownloading"></i>
+            </div>
+        </div>
+    </div>
+    <div id="epub-view-wrapper">
+        <p *ngIf="!src">The document is unavailable.</p>
+        <div id="touchlayer"
+             (swipeLeft)="changePage('left')"
+             (swipeRight)="changePage('right')"></div>
+        <div id="book"></div>
+    </div>
+</div>
+<ss-dialog [(isOpen)]="isPanelOpen"
+           [width]="'50%'"
+           [height]="'80%'"
+           [hasExitCross]="true"
+           (exitCross)="closeTOC()">
+    <div id="table-of-contents">
+        <h3>Table of Contents</h3>
+        <div class="toc-body">
+            <ul class="list-group">
+                <li class="hoverable list-group-item list-group-item-action"
+                    *ngFor="let item of toc"
+                    (click)="openTOCItem(item)">{{ item.label }}</li>
+            </ul>
+        </div>
+    </div>
+</ss-dialog>

@@ -1,0 +1,71 @@
+.temporary-comtainer-for-margin {
+    width: 100vw;
+    // margin: 10px;
+    //border: 1px solid red;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.keyboard-container {
+    width: 90%;
+    max-width: 1200px;
+    height: fit-content;
+    background-color: var(--keyboard-body-background-color);
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 5px;
+    box-sizing: border-box;
+    // border: 1px solid hsla(0, 0%, 50%, 0.4);
+}
+
+.key-row {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.ss-btn {
+    background-color: var(--keyboard-key-background-color);
+    color: var(--keyboard-key-color);
+    border: none;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.ss-btn:active {
+    background-color: var(--keyboard-key-press-background-color);
+    top: 1px;
+}
+
+// Small key
+.vk-sm {
+    flex: 1;
+    padding: 20px 10px; // Small padding for small keys
+    font-size: 14px; // Font size for the key label
+}
+
+// Medium key
+.vk-md {
+    flex: 1.5;
+    padding: 5px 15px; // Slightly larger padding for medium keys
+    font-size: 16px;
+}
+
+// Large key
+.vk-lg {
+    flex: 2;
+    padding: 5px 20px; // Even larger padding for large keys
+    font-size: 18px;
+}
+
+// Extra Large key (e.g., space bar)
+.vk-xl {
+    flex-grow: 2;
+    padding: 5px 40px; // Maximum padding for the space bar
+    font-size: 20px;
+}
+
+.vk-accent {
+    color: var(--keyboard-accent-key-color);
+}

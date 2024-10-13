@@ -1,0 +1,10 @@
+<div class="form-control-container">
+    <input [ngClass]="{'ss-form-control-valid': isValid() === true && !(loading | async), 'ss-form-control-invalid': isValid() === false && !(loading | async)}" [disabled]="disabled || (loading | async) || false"
+        *ngIf="ngControl && ngControl.control; else standaloneInput" [ngModel]="value"
+        (ngModelChange)="valueChange.emit($event)" type="text" class="ss-form-control">
+    <ng-template #standaloneInput>
+        <input [disabled]="disabled || (loading | async) || false" type="text" class="ss-form-control" [(ngModel)]="value"
+            [ngClass]="{'ss-form-control-loading': (loading | async)}"
+            (ngModelChange)="valueChange.emit($event)" (change)="valueChange.emit(value)">
+    </ng-template>
+</div>

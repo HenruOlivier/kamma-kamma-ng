@@ -1,0 +1,16 @@
+.ss-input-radio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+
+    background-color: var(--from-control-background-color);
+    border-radius: 8px;
+}
+
+.radio-field {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}

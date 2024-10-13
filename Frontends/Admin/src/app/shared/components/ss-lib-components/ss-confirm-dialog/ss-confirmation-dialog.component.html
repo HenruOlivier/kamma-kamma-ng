@@ -1,0 +1,17 @@
+<div class="backdrop" [ngClass]="backdrop ? 'backdrop-open' :  ''" *ngIf="backdrop"></div>
+<dialog class="dialog-outer" id="dialogElementRef" #dialogElementRef>
+    <div class="dialog-content-container">
+        <div class="text-container">
+            <div class="dialog-heading">
+                <h1>{{ messageHeader }}</h1>
+            </div>
+            <div class="dialog-message">
+                <p>{{ message }}</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <button (click)="onConfirm()" class="ss-btn-danger mx-1">{{buttonConfirm}}</button>
+            <button (click)="onCancel()" class="ss-btn-secondary mx-1">{{buttonCancel}}</button>
+        </div>
+    </div>
+</dialog>

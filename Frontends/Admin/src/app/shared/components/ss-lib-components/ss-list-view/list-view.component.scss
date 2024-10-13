@@ -1,0 +1,25 @@
+.list-view {
+    display: grid;
+    overflow: auto;
+    scrollbar-width: none;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &.horizontal {
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+    }
+
+    &.vertical {
+        grid-auto-flow: row;
+        grid-auto-rows: max-content;
+        height: 100%;
+    }
+
+    &>* {
+        margin: 10px;
+    }
+}

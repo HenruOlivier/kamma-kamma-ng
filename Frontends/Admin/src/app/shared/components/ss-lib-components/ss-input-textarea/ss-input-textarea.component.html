@@ -1,0 +1,16 @@
+<div class="form-control-container">
+    <!-- <div *ngIf="loading" class="loading-input"> -->
+        <!-- <ss-skeleton-loader></ss-skeleton-loader> -->
+    <!-- </div> -->
+    <!-- <div *ngIf="!loading"> -->
+        <textarea rows="5" [ngClass]="{'ss-form-control-valid': (isValid() && !(loading | async)), 'ss-form-control-invalid': (!isValid() && !(loading | async)), 'ss-form-control-loading': (loading | async)}" [disabled]="disabled || (loading | async) || false"
+        *ngIf="ngControl && ngControl.control; else standaloneInput" [ngModel]="value"
+        (ngModelChange)="valueChange.emit($event)" class="ss-form-control"></textarea>  
+        <ng-template #standaloneInput>
+            <textarea rows="5" [disabled]="disabled || (loading | async) || false" class="ss-form-control" [(ngModel)]="value"
+                [ngClass]="{'ss-form-control-loading': (loading | async)}"
+                (ngModelChange)="valueChange.emit($event)" (change)="valueChange.emit(value)"></textarea>
+        </ng-template>
+    <!-- </div> -->
+
+</div>

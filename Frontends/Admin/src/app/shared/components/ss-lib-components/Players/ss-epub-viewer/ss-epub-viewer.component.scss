@@ -1,0 +1,91 @@
+#viewer-wrapper {
+    background-color: #FFFFFF;
+    height: 100%;
+    width: 100%;
+}
+
+#viewer-toolbar {
+    background-color: var(--body-background-color);
+    color: var(--text-color);
+    font-size: 1.5em;
+    height: 8%;
+    min-height: 55px;
+    width: 100%;
+    z-index: 200;
+}
+
+#touchlayer,
+#epub-view-wrapper,
+#epub-view-wrapper #book {
+    height: 92%;
+    width: 100%;
+}
+
+#epub-view-wrapper,
+#epub-view-wrapper #book {
+    display: block;
+}
+
+#touchlayer {
+    z-index: 100;
+    position: absolute;
+}
+
+#book {
+    z-index: 20;
+
+    iframe {
+        border: none;
+    }
+}
+
+#table-of-contents {
+    background-color: var(--body-background-color);
+    color: var(--text-color);
+    padding: 1em 0.5em;
+
+    li {
+        background-color: var(--body-background-color);
+        color: var(--text-color);
+        padding: .5em 0;
+    }
+}
+
+.hoverable {
+    cursor: pointer;
+    opacity: 1.0;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.click-item {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    cursor: pointer;
+
+    &.disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+    .d-sm-none {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .d-md-block {
+        display: block;
+    }
+}

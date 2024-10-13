@@ -1,0 +1,20 @@
+<div *ngIf="isLoading"
+     [ngStyle]="loaderStyles"
+     class="img loading">
+    <ss-skeleton-loader></ss-skeleton-loader>
+</div>
+
+<img *ngIf="validImgSrc && !hasError"
+     [src]="src"
+     [ngStyle]="imgStyles"
+     [class.hidden]="isLoading"
+     class="img"
+     (load)="onLoad()"
+     (error)="onError()" />
+
+<div *ngIf="hasError"
+     class="img error"
+     [ngStyle]="errorStyles">
+    <img class="img"
+         src="assets/statics/error-img.png">
+</div>

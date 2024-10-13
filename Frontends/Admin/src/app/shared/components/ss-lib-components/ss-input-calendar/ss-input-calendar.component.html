@@ -1,0 +1,106 @@
+<div class="form-control-container">
+    <div class="ss-input-dropselect-container">
+        <div class="input-wrapper">
+            <input
+                [ngClass]="{'ss-form-control-valid': isValid() === true && !(loading | async), 'ss-form-control-invalid': isValid() === false && !(loading | async), 'ss-form-control-loading': (loading | async)}"
+                [disabled]="true" *ngIf="ngControl && ngControl.control; else standaloneInput" [ngModel]="displayValue"
+                type="text" class="ss-form-control">
+            <ng-template #standaloneInput>
+                <input [disabled]="true" type="text" class="ss-form-control" [(ngModel)]="displayValue" [ngClass]="{'ss-form-control-loading': (loading | async)}">
+            </ng-template>
+        </div>
+        <button class="ss-btn-primary btn-toggle-select" (click)="toggleCalendar()"><i
+                class="bi bi-chevron-down"></i></button>
+    </div>
+</div>
+
+<ss-dialog [isOpen]="isOpen">
+    <div class="calendar-container">
+        <div class="calendar-body">
+            <!-- day -->
+            <ng-container *ngIf="currentValueOpen === calenderType.DAY">
+                <div class="heading-container">
+                    <div>
+                        <button class="ss-btn-circle-transparent border-none" (click)="previousMonth()"><i
+                                class="prev-arrow bi bi-arrow-left ss-fs-4"></i></button>
+                    </div>
+                    <div class="flex">
+                        <p class="pointer-item ss-fs-4" (click)="changeMonth()">{{monthsString[currentMonth - 1]}}</p>
+                        <!-- <p class="pointer" (click)="changeYear()">{{currentYear}}</p> -->
+                    </div>
+                    <div>
+                        <button class="ss-btn-circle-transparent border-none" (click)="nextMonth()"><i
+                                class="next-arrow bi bi-arrow-right ss-fs-4"></i></button>
+                    </div>
+                </div>
+                <div class="week-day-container">
+                    <div class="week-day">Su</div>
+                    <div class="week-day">Mo</div>
+                    <div class="week-day">Tu</div>
+                    <div class="week-day">We</div>
+                    <div class="week-day">Th</div>
+                    <div class="week-day">Fr</div>
+                    <div class="week-day">Sa</div>
+                </div>
+                <div class="options light">
+                    <div class="option day-options" *ngFor="let dayObj of displayedDays"
+                        [ngClass]="{ 'day-muted': !dayObj.isCurrentMonth, 'day-selected': dayObj.day === currentDay && dayObj.isCurrentMonth && selectedMonth === currentMonth && selectedYear === currentYear }"
+                        (click)="dayObj.isCurrentMonth ? selectDay(dayObj.day) : null">
+                        {{ dayObj.day }}
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- month -->
+
+            <ng-container *ngIf="currentValueOpen === calenderType.MONTH && monthOptionsOpen">
+                <div class="heading-container">
+                    <div>
+                        <button class="ss-btn-circle-transparent border-none" (click)="previousYear()"><i
+                                class="prev-arrow bi bi-arrow-left ss-fs-4"></i></button>
+                    </div>
+                    <div>
+                        <p class="pointer-item ss-fs-4" (click)="changeYear()">{{currentYear}}</p>
+                    </div>
+                    <div>
+                        <button class="ss-btn-circle-transparent border-none" (click)="nextYear()"><i
+                                class="next-arrow bi bi-arrow-right ss-fs-4"></i></button>
+                    </div>
+                </div>
+                <div class="options light">
+                    <div class="option month-options" *ngFor="let month of monthsString; let i = index"
+                        (click)="selectMonth(i + 1)">{{ month }}</div>
+                </div>
+            </ng-container>
+
+            <!-- year -->
+
+            <ng-container *ngIf="currentValueOpen === calenderType.YEAR && yearOptionsOpen">
+                <div class="heading-container">
+                    <div>
+                        <button class="ss-btn-circle-transparent border-none" (click)="previousTenYears()"><i
+                                class="prev-arrow bi bi-arrow-left ss-fs-4"></i></button>
+                    </div>
+                    <div>
+                        <p class="pointer-item ss-fs-4">{{currentYearRange[0] + ' - ' + currentYearRange[9]}}</p>
+                    </div>
+                    <div>
+                        <button class="ss-btn-circle-transparent border-none" (click)="nextTenYears()"><i
+                                class="next-arrow bi bi-arrow-right ss-fs-4"></i></button>
+                    </div>
+                </div>
+                <div class="options light">
+                    <div class="option year-options" *ngFor="let year of currentYearRange" (click)="selectYear(year)">{{
+                        year }}</div>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+    <br>
+    <div class="flex">
+        <button (click)="toggleCalendar()" class="ss-btn-primary flex-grow">
+            <p>Close</p>
+        </button>
+    </div>
+</ss-dialog>
