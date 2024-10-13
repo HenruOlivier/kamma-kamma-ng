@@ -7,11 +7,11 @@ export interface Product {
     name: string;
     description: string;
     price: number;
-    quantity?: number;  // Optional field
+    quantity?: number;
     isHireable: boolean;
     isForSale: boolean;
     stockQuantity: number;
-    categories: Category[];  // List of categories
-    variations: ProductVariation[];  // List of variations
-    images: Image[];  // List of images
+    categories: Category[];
+    variations: ProductVariation[];
+    images: Image[];
 }
