@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class SSFormBuilderGenericHostContainerComponent implements OnInit {
 
-  @Input() component: Type<any>;
+  @Input() component!: Type<any>;
 
   @Input() args: any;
 
@@ -19,7 +19,7 @@ export class SSFormBuilderGenericHostContainerComponent implements OnInit {
 
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
 
-  componentRef: ComponentRef<any>;
+  componentRef!: ComponentRef<any>;
 
   value: any;
 

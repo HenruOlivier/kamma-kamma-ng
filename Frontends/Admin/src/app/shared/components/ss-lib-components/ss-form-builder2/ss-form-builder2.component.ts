@@ -11,7 +11,7 @@ import { BehaviorSubject, combineLatest, map, Observable, of } from 'rxjs';
 })
 export class SSFormBuilder2Component implements OnInit, OnDestroy {
 
-  @Input() formDefinition: FormFieldDefinition[];
+  @Input() formDefinition!: FormFieldDefinition[];
   @Input() formInitValue: any;
   @Input() loading: boolean = false;
   @Input() loadingObservable: Observable<boolean> = of(false);
@@ -19,7 +19,7 @@ export class SSFormBuilder2Component implements OnInit, OnDestroy {
 
   @Output() formValueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  form: FormGroup;
+  form!: FormGroup;
 
   formReady: boolean = false;
 
@@ -46,7 +46,7 @@ export class SSFormBuilder2Component implements OnInit, OnDestroy {
     // this.formBuilt
 
     this.combinedObservable = combineLatest([this.loadingObservable, this.formBuilt]).pipe(
-      map(([loading, formBuilt]) => loading || !formBuilt)
+      map(([loading, formBuilt]: [boolean, boolean]) => loading || !formBuilt)
     );
 
     this.form = this.formController.getEmptyForm(this.formDefinition);
@@ -60,7 +60,7 @@ export class SSFormBuilder2Component implements OnInit, OnDestroy {
         console.log('formGroup with all data: ', patchValues);
         this.formBuiltSubject.next(true);
 
-        this.form.valueChanges.subscribe(result => {
+        this.form.valueChanges.subscribe((result: any) => {
           this.formValueChange.emit(result);
         });
 

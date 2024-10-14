@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { EnterExit } from '../../animations/enter-exit';
+import { EnterExit } from '../../../animations/enter-exit';
 
 @Component({
   selector: 'ss-chip-list',

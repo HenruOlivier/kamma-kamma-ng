@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class SSInputTextButtonComponent {
 
-  private _value: string;
+  private _value!: string;
   @Input()
   set value(value: string) {
     this._value = value !== undefined ? value : '';
@@ -19,7 +19,7 @@ export class SSInputTextButtonComponent {
     return this._value || '';
   }
 
-  private _leftBtn: boolean;
+  private _leftBtn!: boolean;
   @Input()
   set leftBtn(leftBtn: boolean) {
     this._leftBtn = leftBtn !== undefined ? leftBtn : false;
@@ -29,7 +29,7 @@ export class SSInputTextButtonComponent {
     return this._leftBtn || false;
   }
 
-  private _rightBtn: boolean;
+  private _rightBtn!: boolean;
   @Input()
   set rightBtn(rightBtn: boolean) {
     this._rightBtn = rightBtn !== undefined ? rightBtn : false;
@@ -39,7 +39,7 @@ export class SSInputTextButtonComponent {
     return this._rightBtn || false;
   }
 
-  private _iconClass: string;
+  private _iconClass!: string;
   @Input()
   set iconClass(iconClass: string) {
     this._iconClass = iconClass !== undefined ? iconClass : '';
@@ -49,7 +49,7 @@ export class SSInputTextButtonComponent {
     return this._iconClass || '';
   }
 
-  private _btnClass: string;
+  private _btnClass!: string;
   @Input()
   set btnClass(btnClass: string) {
     this._btnClass = btnClass !== undefined ? btnClass : '';
@@ -59,7 +59,7 @@ export class SSInputTextButtonComponent {
     return this._btnClass || '';
   }
 
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() loading: Observable<boolean>;
 
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();

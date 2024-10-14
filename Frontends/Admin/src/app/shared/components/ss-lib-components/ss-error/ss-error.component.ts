@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import * as UITools from '../../helpers/ui-tools';
+import * as UITools from '../../../helpers/ui-tools';
 
 @Component({
   selector: 'ss-error',
@@ -8,7 +8,7 @@ import * as UITools from '../../helpers/ui-tools';
 })
 export class SSErrorComponent {
 
-  private _errorMessage: string;
+  private _errorMessage!: string;
   @Input()
   set errorMessage(value: string) {
     this._errorMessage = value !== undefined ? value : 'Something went wrong';
@@ -18,7 +18,7 @@ export class SSErrorComponent {
     return this._errorMessage || 'Something went wrong';
   }
 
-  private _showImage: boolean;
+  private _showImage!: boolean;
   @Input()
   set showImage(value: boolean) {
     this._showImage = value !== undefined ? value : true;

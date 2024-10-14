@@ -29,7 +29,6 @@ import { SSImgComponent } from './ss-img/ss-img.component';
 import { SSInputTextButtonComponent } from './ss-input-text-button/ss-input-text-button.component';
 import { SSInputTextareaComponent } from './ss-input-textarea/ss-input-textarea.component';
 import { SSFormBuilder2Component } from './ss-form-builder2/ss-form-builder2.component';
-import { SSChunkUploaderComponent } from './ss-chunk-uploader/ss-chunk-uploader.component';
 import { SSErrorComponent } from './ss-error/ss-error.component';
 import { SSStepperComponent } from './ss-stepper/ss-stepper.component';
 import { SSDialogComponent } from './ss-dialog/ss-dialog.component';
@@ -70,7 +69,6 @@ import { SSListViewComponent } from './ss-list-view/list-view.component';
     SSInputTextButtonComponent,
     SSInputTextareaComponent,
     SSFormBuilder2Component,
-    SSChunkUploaderComponent,
     SSErrorComponent,
     SSStepperComponent,
     SSListViewComponent,
@@ -118,7 +116,6 @@ import { SSListViewComponent } from './ss-list-view/list-view.component';
     SSInputTextareaComponent,
     SSSkeletonLoaderComponent,
     SSImgComponent,
-    SSChunkUploaderComponent,
     SSFormBuilderGenericHostContainerComponent,
     SSFormBuilder2Component,
     SSErrorComponent,

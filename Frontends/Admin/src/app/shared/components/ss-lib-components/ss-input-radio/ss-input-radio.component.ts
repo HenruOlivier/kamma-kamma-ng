@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class SSInputRadioComponent {
 
   @Input() value: string = '';
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() radioOptions: FormRadioOption[] = [];
   @Input() loading: Observable<boolean>;
 

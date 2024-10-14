@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PerformanceImageComponent } from '../../shared/components/performance-image/performance-image.component';
-import { FadeScale } from '../../shared/animations/FadeScale';
+import { FadeScale } from '../../shared/animations/fade-scale';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 

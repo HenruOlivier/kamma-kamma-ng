@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { GridFieldTypes } from './grid-field-types.model';
 import { GridManager } from './gridManager';
-import * as UITools from '../../helpers/ui-tools';
+import * as UITools from '../../../helpers/ui-tools';
 import { GridControlEvent } from './grid-control-event.model';
 
 @Component({
@@ -11,7 +11,7 @@ import { GridControlEvent } from './grid-control-event.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SSDataGridComponent {
-  @Input() manager: GridManager;
+  @Input() manager!: GridManager;
   @Input() loading: boolean = false;
   @Input() error: boolean = false;
   @Input() errorText: string = '';
@@ -136,7 +136,7 @@ export class SSDataGridComponent {
 
   onSearchChangeEvent(column: string, value: any) {
     this.manager.setFieldFilterValue(column, value);
-    this.filterChange.next({ column: column, value: value });
+    this.filterChange.emit({ column: column, value: value });
   }
 
   onToggleAll(event: any) {

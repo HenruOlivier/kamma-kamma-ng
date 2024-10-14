@@ -18,7 +18,7 @@ export class SSInputRangeSliderComponent {
   private _before: string = '';
   private _after: string = '';
 
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() loading: Observable<boolean>;
 
   @Input()

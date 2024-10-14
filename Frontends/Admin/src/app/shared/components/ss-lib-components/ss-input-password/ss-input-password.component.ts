@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class SSInputPasswordComponent {
   @Input() value: string = '';
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() loading: Observable<boolean>;
   @Input() userVirtualKeyboard: boolean = false;
 

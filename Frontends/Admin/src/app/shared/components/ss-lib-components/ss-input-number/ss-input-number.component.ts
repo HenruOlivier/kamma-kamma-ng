@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Optional, Output, Self } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { roundToStepSizeDecimalPlaces } from '../../helpers/helpers';
+import { roundToStepSizeDecimalPlaces } from '../../../helpers/helpers';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class SSInputNumberComponent {
 
-  private _min: number;
+  private _min!: number;
   @Input()
   set min(value: number) {
     this._min = value !== undefined ? value : 0;
@@ -20,7 +20,7 @@ export class SSInputNumberComponent {
     return Number(this._min) || 0;
   }
 
-  private _max: number;
+  private _max!: number;
   @Input()
   set max(value: number) {
     this._max = value !== undefined ? value : 100;
@@ -30,7 +30,7 @@ export class SSInputNumberComponent {
     return Number(this._max) || 100;
   }
 
-  private _stepSize: number;
+  private _stepSize!: number;
   @Input()
   set stepSize(value: number) {
     this._stepSize = value !== undefined ? value : 1;
@@ -40,7 +40,7 @@ export class SSInputNumberComponent {
     return Number(this._stepSize) || 1;
   }
 
-  private _value: number;
+  private _value!: number;
   @Input()
   set value(value: number) {
     this._value = value !== undefined ? value : 0;
@@ -50,7 +50,7 @@ export class SSInputNumberComponent {
     return Number(this._value) || 0;
   }
 
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
 
   @Input() loading: Observable<boolean>;
 

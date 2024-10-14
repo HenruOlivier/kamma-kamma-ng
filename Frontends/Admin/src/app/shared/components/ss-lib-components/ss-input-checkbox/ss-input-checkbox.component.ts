@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class SSInputCheckboxComponent {
 
   @Input() value: boolean = false;
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() loading: Observable<boolean>;
 
   @Output() valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();

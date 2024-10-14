@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class SSInputTextareaComponent {
 
   @Input() value: string = '';
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() loading: Observable<boolean>;
 
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();

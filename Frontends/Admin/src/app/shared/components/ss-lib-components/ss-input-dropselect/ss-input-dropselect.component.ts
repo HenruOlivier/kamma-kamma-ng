@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Optional, Output, Self, SimpleChanges } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { Expand } from '../../animations/expand';
+import { Expand } from '../../../animations/expand';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class SSInputDropselectComponent {
   @Input() value: string = '';
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() dataset: any = [];
   @Input() headerField: string = '';
   @Input() subFields: Array<string> | null = null;
