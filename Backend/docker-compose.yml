@@ -20,18 +20,15 @@ services:
       retries: 10
 
   webapi:
-    image: mcr.microsoft.com/dotnet/sdk:7.0  # Use SDK image for hot reload
+    build:
+      context: ./ShopAPI
+      dockerfile: Dockerfile
     container_name: shopapi
-    ports:
-      - "5000:80"
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
       ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;Encrypt=True;TrustServerCertificate=True;"
-    volumes:
-      - ./ShopAPI:/app  # Mount the source code directory into the container
-      - /app/bin        # Optional: you can map the bin directory as well to persist builds
-    working_dir: /app
-    command: ["dotnet", "watch", "run"]  # Use dotnet watch for hot reload
+    ports:
+      - "5000:80"
     networks:
       - shop-network
 
@@ -41,3 +38,47 @@ volumes:
 networks:
   shop-network:
     driver: bridge
+
+# version: '3.8'
+
+# services:
+#   sqlserver:
+#     image: mcr.microsoft.com/mssql/server:2022-latest
+#     container_name: sqlserver
+#     environment:
+#       SA_PASSWORD: "YourStrong!Passw0rd"
+#       ACCEPT_EULA: "Y"
+#     ports:
+#       - "1433:1433"
+#     volumes:
+#       - sqlserverdata:/var/opt/mssql
+#     networks:
+#       - shop-network
+#     healthcheck:
+#       test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong!Passw0rd -Q 'SELECT 1'"]
+#       interval: 30s
+#       timeout: 10s
+#       retries: 10
+
+#   webapi:
+#     image: mcr.microsoft.com/dotnet/sdk:7.0  # Use SDK image for hot reload
+#     container_name: shopapi
+#     ports:
+#       - "5000:5289"
+#     environment:
+#       ASPNETCORE_ENVIRONMENT: "Development"
+#       ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;Encrypt=True;TrustServerCertificate=True;"
+#     volumes:
+#       - ./ShopAPI:/app  # Mount the source code directory into the container
+#       - /app/bin        # Optional: you can map the bin directory as well to persist builds
+#     working_dir: /app
+#     command: ["dotnet", "watch", "run"]  # Use dotnet watch for hot reload
+#     networks:
+#       - shop-network
+
+# volumes:
+#   sqlserverdata:
+
+# networks:
+#   shop-network:
+#     driver: bridge

@@ -45,8 +45,8 @@ namespace ShopAPI.Data
 
             // Seed Categories
             modelBuilder.Entity<Category>().HasData(
-                new Category { Id = 1, Name = "Electronics", Description = "Electronic gadgets and devices" },
-                new Category { Id = 2, Name = "Clothing", Description = "Apparels and fashion wear" }
+                new Category { Id = "dsfa", Name = "Electronics", Description = "Electronic gadgets and devices" },
+                new Category { Id = "kjlfs", Name = "Clothing", Description = "Apparels and fashion wear" }
             );
 
             // Seed Product-Category relationships
@@ -54,8 +54,8 @@ namespace ShopAPI.Data
                 .HasMany(p => p.Categories)
                 .WithMany(c => c.Products)
                 .UsingEntity(j => j.HasData(
-                    new { ProductsId = "PRD001", CategoriesId = 1 },
-                    new { ProductsId = "PRD002", CategoriesId = 2 }
+                    new { ProductsId = "PRD001", CategoriesId = "dsfa" },
+                    new { ProductsId = "PRD002", CategoriesId = "kjlfs" }
                 ));
         }
     }
