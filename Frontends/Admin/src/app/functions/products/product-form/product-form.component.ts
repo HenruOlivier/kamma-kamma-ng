@@ -237,7 +237,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Fetch the product ID from the route
-    this._id = this.activatedRoute.snapshot.params['id'] || null;
+    this._id = this.activatedRoute.snapshot.params['_id'] || null;
 
     if (this._id) {
       // If editing an existing product, fetch it by ID

@@ -136,6 +136,16 @@ export class ProductsService {
     return this.allProductsSubject.asObservable();
   }
 
+  private singleUpdateLoadingSubject = new BehaviorSubject<boolean>(false);
+  public get singleUpdateLoading$(): Observable<boolean> {
+    return this.singleUpdateLoadingSubject.asObservable();
+  }
+
+  private createUpdateErrSubject = new BehaviorSubject<string | null>(null);
+  public get createUpdateErr$(): Observable<string | null> {
+    return this.createUpdateErrSubject.asObservable();
+  }
+
   constructor(private http: HttpClient) {}
 
   // Fetch all products
@@ -189,12 +199,14 @@ export class ProductsService {
         finalize(() => {
           this.currentProductLoadingSubject.next(false);
         })
-      ).subscribe();
+      )
   }
 
   // Add a new product
   addProduct(product: Product): Observable<Product | null> {
     this.productsLoadingSubject.next(true);
+    this.singleUpdateLoadingSubject.next(true);
+    this.createUpdateErrSubject.next(null);
 
     return this.http.post<Product>(this.baseUrl, product)
       .pipe(
@@ -203,11 +215,12 @@ export class ProductsService {
         }),
         catchError((error: any) => {
           console.error('Error while adding product:', error);
-          this.productsErrorSubject.next('Error while adding product');
+          this.createUpdateErrSubject.next('Error while adding product');
           return of(null);
         }),
         finalize(() => {
           this.productsLoadingSubject.next(false);
+          this.singleUpdateLoadingSubject.next(false);
         })
       );
   }
@@ -215,6 +228,8 @@ export class ProductsService {
   // Update an existing product by ID
   updateProduct(productId: string, updatedProduct: Product): Observable<Product | null> {
     this.currentProductLoadingSubject.next(true);
+    this.singleUpdateLoadingSubject.next(true);
+    this.createUpdateErrSubject.next(null);
 
     return this.http.put<Product>(`${this.baseUrl}${productId}`, updatedProduct)
       .pipe(
@@ -235,11 +250,12 @@ export class ProductsService {
         }),
         catchError((error: any) => {
           console.error('Error while updating product:', error);
-          this.currentProductErrorSubject.next('Error while updating product');
+          this.createUpdateErrSubject.next('Error while updating product');
           return of(null);
         }),
         finalize(() => {
           this.currentProductLoadingSubject.next(false);
+          this.singleUpdateLoadingSubject.next(false);
         })
       );
   }

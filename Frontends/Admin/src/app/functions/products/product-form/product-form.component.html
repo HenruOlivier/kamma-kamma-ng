@@ -1,6 +1,16 @@
-<ss-form-builder2
-[formDefinition]="formDefinition"
-[loading]="(productsService.currentProductLoading$ | async) || false"
-[loadingObservable]="productsService.currentProductLoading$"
-[useVirtualKeyboard]="true"
-></ss-form-builder2>
+<div class="ss-container">
+    <ss-form-builder2
+    [formDefinition]="formDefinition"
+    [loading]="(productsService.currentProductLoading$ | async) || false"
+    [loadingObservable]="productsService.currentProductLoading$"
+    ></ss-form-builder2>
+    
+    <button
+    *ngIf="!(productsService.singleUpdateLoading$ | async) && formController.isFormValid() || false" actionButton
+    [state]="(productsService.createUpdateErr$ | async) ? btnError : btnState " 
+    class="ss-btn-success w-100"
+    (click)="onSave()"
+    >
+    Save
+    </button>
+</div>
