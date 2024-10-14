@@ -15,8 +15,6 @@ namespace ShopAPI.Models
         [Range(0.01, double.MaxValue)]
         public decimal Price { get; set; }
 
-        public int? Quantity { get; set; }
-
         public bool IsHireable { get; set; }
 
         public bool IsForSale { get; set; }

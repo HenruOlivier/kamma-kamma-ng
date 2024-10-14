@@ -7,7 +7,6 @@ export interface Product {
     name: string;
     description: string;
     price: number;
-    quantity?: number;
     isHireable: boolean;
     isForSale: boolean;
     stockQuantity: number;
