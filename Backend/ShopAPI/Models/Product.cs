@@ -5,10 +5,12 @@ namespace ShopAPI.Models
 {
     public class Product
     {
-        public int Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();  // Initialize with a GUID by default
 
         [Required]
         public string Name { get; set; } = string.Empty; // Initialize with default value
+
+        public string SKU { get; set; } = string.Empty; // Initialize with default value
 
         public string Description { get; set; } = string.Empty; // Initialize with default value
 

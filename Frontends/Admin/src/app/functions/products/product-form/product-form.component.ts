@@ -219,7 +219,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       { type: FormFieldTypes.Text, name: 'name', label: 'Product Name', required: true },
       { type: FormFieldTypes.Text, name: 'description', label: 'Description', required: false },
       { type: FormFieldTypes.Number, name: 'price', label: 'Price', required: true },
-      { type: FormFieldTypes.Number, name: 'quantity', label: 'Quantity', required: false },
       { type: FormFieldTypes.Checkbox, name: 'isHireable', label: 'Is Hireable', required: true },
       { type: FormFieldTypes.Checkbox, name: 'isForSale', label: 'Is For Sale', required: true },
       { type: FormFieldTypes.Number, name: 'stockQuantity', label: 'Stock Quantity', required: true },

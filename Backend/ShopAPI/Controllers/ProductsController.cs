@@ -2,6 +2,9 @@
 // using Microsoft.EntityFrameworkCore;
 // using ShopAPI.Data;
 // using ShopAPI.Models;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Threading.Tasks;
 
 // namespace ShopAPI.Controllers
 // {
@@ -20,14 +23,24 @@
 //         [HttpGet]
 //         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
 //         {
-//             return await _context.Products.ToListAsync();
+//             // Include related entities if needed (e.g., Categories, Variations, Images)
+//             return await _context.Products
+//                 .Include(p => p.Categories)
+//                 .Include(p => p.Variations)
+//                 .Include(p => p.Images)
+//                 .ToListAsync();
 //         }
 
 //         // GET: api/Products/5
 //         [HttpGet("{id}")]
 //         public async Task<ActionResult<Product>> GetProduct(int id)
 //         {
-//             var product = await _context.Products.FindAsync(id);
+//             // Include related entities if needed
+//             var product = await _context.Products
+//                 .Include(p => p.Categories)
+//                 .Include(p => p.Variations)
+//                 .Include(p => p.Images)
+//                 .FirstOrDefaultAsync(p => p.Id == id);
 
 //             if (product == null)
 //             {
@@ -66,7 +79,29 @@
 //                 return BadRequest(ModelState);
 //             }
 
-//             _context.Entry(product).State = EntityState.Modified;
+//             var existingProduct = await _context.Products
+//                 .Include(p => p.Categories)
+//                 .Include(p => p.Variations)
+//                 .Include(p => p.Images)
+//                 .FirstOrDefaultAsync(p => p.Id == id);
+
+//             if (existingProduct == null)
+//             {
+//                 return NotFound();
+//             }
+
+//             // Update fields
+//             existingProduct.Name = product.Name;
+//             existingProduct.Description = product.Description;
+//             existingProduct.Price = product.Price;
+//             existingProduct.IsHireable = product.IsHireable;
+//             existingProduct.IsForSale = product.IsForSale;
+//             existingProduct.StockQuantity = product.StockQuantity;
+
+//             // Update related entities (Categories, Variations, Images) if necessary
+//             existingProduct.Categories = product.Categories;
+//             existingProduct.Variations = product.Variations;
+//             existingProduct.Images = product.Images;
 
 //             try
 //             {
@@ -91,7 +126,12 @@
 //         [HttpDelete("{id}")]
 //         public async Task<IActionResult> DeleteProduct(int id)
 //         {
-//             var product = await _context.Products.FindAsync(id);
+//             var product = await _context.Products
+//                 .Include(p => p.Categories)
+//                 .Include(p => p.Variations)
+//                 .Include(p => p.Images)
+//                 .FirstOrDefaultAsync(p => p.Id == id);
+
 //             if (product == null)
 //             {
 //                 return NotFound();
@@ -110,14 +150,15 @@
 //     }
 // }
 
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopAPI.Data;
 using ShopAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace ShopAPI.Controllers
 {
@@ -126,17 +167,19 @@ namespace ShopAPI.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<ProductsController> _logger;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, ILogger<ProductsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            // Include related entities if needed (e.g., Categories, Variations, Images)
+            _logger.LogInformation("Getting all products");
             return await _context.Products
                 .Include(p => p.Categories)
                 .Include(p => p.Variations)
@@ -146,9 +189,9 @@ namespace ShopAPI.Controllers
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(string id)
         {
-            // Include related entities if needed
+            _logger.LogInformation($"Getting product with id: {id}");
             var product = await _context.Products
                 .Include(p => p.Categories)
                 .Include(p => p.Variations)
@@ -169,8 +212,12 @@ namespace ShopAPI.Controllers
         {
             if (!ModelState.IsValid)
             {
+                _logger.LogInformation("Invalid model state for product creation");
                 return BadRequest(ModelState);
             }
+
+            // Generate a new GUID for the product ID
+            product.Id = Guid.NewGuid().ToString();
 
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
@@ -180,7 +227,7 @@ namespace ShopAPI.Controllers
 
         // PUT: api/Products/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
+        public async Task<IActionResult> PutProduct(string id, Product product)
         {
             if (id != product.Id)
             {
@@ -207,12 +254,11 @@ namespace ShopAPI.Controllers
             existingProduct.Name = product.Name;
             existingProduct.Description = product.Description;
             existingProduct.Price = product.Price;
-            existingProduct.Quantity = product.Quantity;
             existingProduct.IsHireable = product.IsHireable;
             existingProduct.IsForSale = product.IsForSale;
             existingProduct.StockQuantity = product.StockQuantity;
+            existingProduct.SKU = product.SKU; // Add SKU update
 
-            // Update related entities (Categories, Variations, Images) if necessary
             existingProduct.Categories = product.Categories;
             existingProduct.Variations = product.Variations;
             existingProduct.Images = product.Images;
@@ -238,7 +284,7 @@ namespace ShopAPI.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProduct(string id)
         {
             var product = await _context.Products
                 .Include(p => p.Categories)
@@ -257,7 +303,7 @@ namespace ShopAPI.Controllers
             return NoContent();
         }
 
-        private bool ProductExists(int id)
+        private bool ProductExists(string id)
         {
             return _context.Products.Any(e => e.Id == id);
         }

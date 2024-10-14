@@ -20,15 +20,18 @@ services:
       retries: 10
 
   webapi:
-    build:
-      context: ./ShopAPI
-      dockerfile: Dockerfile
+    image: mcr.microsoft.com/dotnet/sdk:7.0  # Use SDK image for hot reload
     container_name: shopapi
+    ports:
+      - "5000:80"
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
       ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;Encrypt=True;TrustServerCertificate=True;"
-    ports:
-      - "5000:80"
+    volumes:
+      - ./ShopAPI:/app  # Mount the source code directory into the container
+      - /app/bin        # Optional: you can map the bin directory as well to persist builds
+    working_dir: /app
+    command: ["dotnet", "watch", "run"]  # Use dotnet watch for hot reload
     networks:
       - shop-network
 

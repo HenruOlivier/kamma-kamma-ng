@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj": {}
+    "/app/ShopAPI.csproj": {}
   },
   "projects": {
-    "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj": {
+    "/app/ShopAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj",
+        "projectUniqueName": "/app/ShopAPI.csproj",
         "projectName": "ShopAPI",
-        "projectPath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj",
-        "packagesPath": "/home/henru/.nuget/packages/",
-        "outputPath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/",
+        "projectPath": "/app/ShopAPI.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/app/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/henru/.nuget/NuGet/NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.119/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.410/RuntimeIdentifierGraph.json"
         }
       }
     }

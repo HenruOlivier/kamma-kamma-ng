@@ -5,7 +5,7 @@ namespace ShopAPI.Models
 {
     public class ProductVariation
     {
-        public int Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString(); // Initialize with a GUID by default
 
         [Required]
         public string OptionName { get; set; } = string.Empty; // Initialize with default value
@@ -21,7 +21,7 @@ namespace ShopAPI.Models
         public List<Image> Images { get; set; } = new(); // Initialize with an empty list
 
         [Required]
-        public int ProductId { get; set; }
+        public string ProductId { get; set; } // Update to string to match Product's Id type
 
         public Product Product { get; set; } = new(); // Initialize with default value
     }
