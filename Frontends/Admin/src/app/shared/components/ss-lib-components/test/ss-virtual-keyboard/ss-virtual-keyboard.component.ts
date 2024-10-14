@@ -22,10 +22,10 @@ export class SsVirtualKeyboardComponent implements AfterViewInit {
 
   @Input() numberOnly: boolean = false;
 
-  keyboardType: string;
-  keyboardLayout: SSKeyboardLayout;
+  keyboardType!: string;
+  keyboardLayout!: SSKeyboardLayout;
 
-  currentStateName: string;
+  currentStateName!: string;
   currentState: { name: string, keys: SSVirtualKey[][] } = { name: '', keys: [] };
 
   keyboardSetup: boolean = false;

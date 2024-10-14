@@ -10,10 +10,10 @@ import { SSStepController } from './stepper-controller.service';
 })
 export class SSStepperComponent {
 
-  @ViewChild('stepContent', { read: ViewContainerRef }) stepContentPlaceholder: ViewContainerRef;
+  @ViewChild('stepContent', { read: ViewContainerRef }) stepContentPlaceholder!: ViewContainerRef;
 
   steps$: Observable<StepperStep[]>;
-  currentStepIndex: number;
+  currentStepIndex!: number;
 
   private componentRef: any;
 
@@ -26,7 +26,7 @@ export class SSStepperComponent {
   }
 
   ngOnInit() {
-    this.stepsSubscription = this.stepController.getCurrentStepIndex().subscribe(index => {
+    this.stepsSubscription = this.stepController.getCurrentStepIndex().subscribe((index : any) => {
       this.currentStepIndex = index;
       if(this.viewIntialized){
         setTimeout(()=>{
@@ -44,7 +44,7 @@ export class SSStepperComponent {
     if (this.stepController.getStepsLength() > 0) {
       this.stepContentPlaceholder.clear();
 
-      this.stepController.steps$.subscribe(steps => {
+      this.stepController.steps$.subscribe((steps: any) => {
         if (steps[index]) {
           const stepComponent = steps[index].component;
           const componentFactory = this.componentFactoryResolver.resolveComponentFactory(stepComponent);

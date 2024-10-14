@@ -24,7 +24,7 @@ import { Observable } from 'rxjs';
 })
 export class SSInputTimeComponent {
   @Input() value: any;
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() loading: Observable<boolean>;
 
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();

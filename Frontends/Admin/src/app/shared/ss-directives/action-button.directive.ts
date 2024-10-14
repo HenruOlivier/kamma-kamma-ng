@@ -10,7 +10,7 @@ export class ActionButtonDirective implements AfterViewInit {
 
     @Input() state: ActionButtonStates = ActionButtonStates.Idle;
 
-    @Input() text: string;
+    @Input() text!: string;
 
     content = null;
 

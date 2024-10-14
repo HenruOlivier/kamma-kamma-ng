@@ -12,7 +12,7 @@ export class KeyboardDraggerComponent {
   @Output() mouseDown = new EventEmitter<void>();
   @Output() mouseUp = new EventEmitter<void>();
 
-  @ViewChild('keyboardContainer', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
+  @ViewChild('keyboardContainer', { read: ViewContainerRef }) viewContainerRef!: ViewContainerRef;
 
   @HostListener('mousedown', ['$event'])
   onMouseDown(event: MouseEvent): void {
