@@ -1,43 +1,113 @@
-version: '3.8'
 
+version: '3'
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sqlserver
-    environment:
-      SA_PASSWORD: "YourStrong!Passw0rd"
-      ACCEPT_EULA: "Y"
-    ports:
-      - "1433:1433"
-    volumes:
-      - sqlserverdata:/var/opt/mssql
-    networks:
-      - shop-network
-    healthcheck:
-      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong!Passw0rd -Q 'SELECT 1'"]
-      interval: 30s
-      timeout: 10s
-      retries: 10
 
-  webapi:
-    build:
-      context: ./ShopAPI
-      dockerfile: Dockerfile
-    container_name: shopapi
-    environment:
-      ASPNETCORE_ENVIRONMENT: "Development"
-      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;Encrypt=True;TrustServerCertificate=True;"
-    ports:
-      - "5000:80"
+  expeli-node-shop-api:
+    container_name: expeli-node-shop-api
+    image: node:20
+    working_dir: /app
+    volumes:
+      - ./nodeAPI:/app
     networks:
-      - shop-network
+      - expeli-ecom-network
+    ports:
+      - 5000:5000
+    command: ["npm", "run", "dev"]
+
+  expeli-mongo:
+    container_name: expeli-mongo
+    image: mongo:7
+    volumes:
+      - kamma-kamma-mongo-db:/data/db
+    networks:
+      - expeli-ecom-network
+    ports:
+      - 27017:27017
 
 volumes:
-  sqlserverdata:
+  kamma-kamma-mongo-db:
 
 networks:
-  shop-network:
+  expeli-ecom-network:
+    name: expeli-ecom-network
     driver: bridge
+
+
+# version: '3.8'
+
+# services:
+#   sqlserver:
+#     image: mcr.microsoft.com/mssql/server:2022-latest
+#     container_name: sqlserver
+#     environment:
+#       SA_PASSWORD: "YourStrong!Passw0rd"
+#       ACCEPT_EULA: "Y"
+#     ports:
+#       - "1433:1433"
+#     volumes:
+#       - sqlserverdata:/var/opt/mssql
+#     networks:
+#       - shop-network
+#     healthcheck:
+#       test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong!Passw0rd -Q 'SELECT 1'"]
+#       interval: 30s
+#       timeout: 10s
+#       retries: 10
+
+#   webapi:
+#     build:
+#       context: ./ShopAPI
+#       dockerfile: Dockerfile
+#     container_name: shopapi
+#     environment:
+#       ASPNETCORE_ENVIRONMENT: "Development"
+#       ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;Encrypt=True;TrustServerCertificate=True;"
+#     ports:
+#       - "5000:80"
+#     networks:
+#       - shop-network
+  
+  # webapi:
+  #   image: mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim  # Use Debian-based image
+  #   container_name: shopapi
+  #   ports:
+  #     - "5000:5289"  # Ensure the ports match your application
+  #   environment:
+  #     ASPNETCORE_ENVIRONMENT: "Development"
+  #     ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;Encrypt=True;TrustServerCertificate=True;"
+  #   volumes:
+  #     - ./ShopAPI:/app  # Mount the source code directory into the container
+  #     - /app/bin        # Optional: you can map the bin directory as well to persist builds
+  #   working_dir: /app
+  #   command: ["dotnet", "watch", "run"]  # Use dotnet watch for hot reload
+  #   networks:
+  #     - shop-network
+
+  # webapi:
+  #   image: mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim  # Use Debian-based image
+  #   container_name: shopapi
+  #   ports:
+  #     - "5000:5000"  # Expose port 5000 on both host and container
+  #     - "5001:5001"  # Expose port 5001 for HTTPS if needed
+  #   environment:
+  #     ASPNETCORE_ENVIRONMENT: "Development"
+  #     ASPNETCORE_URLS: "http://+:5000;https://+:5001"  # Make sure to listen on port 5000 for HTTP and 5001 for HTTPS
+  #     ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ShopDb;User=sa;Password=YourStrong!Passw0rd;Encrypt=True;TrustServerCertificate=True;"
+  #   volumes:
+  #     - ./ShopAPI:/app  # Mount the source code directory into the container
+  #     - /app/bin        # Optional: you can map the bin directory as well to persist builds
+  #   working_dir: /app
+  #   command: ["dotnet", "watch", "run"]  # Use dotnet watch for hot reload
+  #   networks:
+  #     - shop-network
+
+
+# volumes:
+#   sqlserverdata:
+
+# networks:
+#   shop-network:
+#     driver: bridge
 
 # version: '3.8'
 

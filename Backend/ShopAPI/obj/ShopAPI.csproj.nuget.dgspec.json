@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/app/ShopAPI.csproj": {}
+    "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj": {}
   },
   "projects": {
-    "/app/ShopAPI.csproj": {
+    "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/app/ShopAPI.csproj",
+        "projectUniqueName": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj",
         "projectName": "ShopAPI",
-        "projectPath": "/app/ShopAPI.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/app/obj/",
+        "projectPath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/ShopAPI.csproj",
+        "packagesPath": "/home/henru/.nuget/packages/",
+        "outputPath": "/home/henru/Documents/Henru/kamma-kamma-ng/Backend/ShopAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "/home/henru/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -63,6 +63,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
             }
           },
           "imports": [
@@ -84,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.410/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.119/RuntimeIdentifierGraph.json"
         }
       }
     }
