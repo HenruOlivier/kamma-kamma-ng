@@ -12,6 +12,6 @@ export const routes: Routes = [
     { path: 'products/form/:_id', component: ProductFormComponent },
     { path: 'catagories', component:  CatagoryGridComponent},
     { path: 'catagories/form', component: CatagoryFormComponent },
-    { path: 'products/form/:_id', component: CatagoryFormComponent },
+    { path: 'catagories/form/:_id', component: CatagoryFormComponent },
     { path: '', component: ContentOutletComponent },
 ];
