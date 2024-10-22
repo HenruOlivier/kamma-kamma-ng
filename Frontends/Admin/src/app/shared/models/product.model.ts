@@ -3,7 +3,7 @@ import { Image } from "./image.model";
 import { ProductVariation } from "./productVariation.model";
 
 export interface Product {
-    id: string;
+    _id: string;
     name: string;
     description: string;
     price: number;

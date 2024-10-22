@@ -243,7 +243,7 @@ export class ProductsService {
           const currentProducts = this.allProductsSubject.value;
           if (currentProducts && currentProducts.length > 0) {
             const updatedProducts = currentProducts.map((p: Product) =>
-              p.id === productId ? res : p
+              p._id === productId ? res : p
             );
             this.allProductsSubject.next(updatedProducts || []);
           }
@@ -271,7 +271,7 @@ export class ProductsService {
           // Remove the product from the product list
           const currentProducts = this.allProductsSubject.value;
           if (currentProducts && currentProducts.length > 0) {
-            const updatedProducts = currentProducts.filter((p : Product) => p.id !== productId);
+            const updatedProducts = currentProducts.filter((p : Product) => p._id !== productId);
             this.allProductsSubject.next(updatedProducts || []);
           }
 

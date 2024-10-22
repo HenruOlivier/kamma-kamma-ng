@@ -22,7 +22,7 @@ export class ProductGridComponent {
   dataSet: any[] = [];
 
   gridDefinition = [
-    new GridDefinitionField('id', 'id', GridFieldTypes.Text, true, true, false),
+    new GridDefinitionField('_id', 'id', GridFieldTypes.Text, true, true, false),
     new GridDefinitionField('name', 'Name', GridFieldTypes.Text, true, true, false),
     new GridDefinitionField('price', 'price', GridFieldTypes.Text, true, true, false),
   ];
@@ -61,11 +61,11 @@ export class ProductGridComponent {
 
   onEditSingle(data: Product) {
     // this.router.navigate(['water-tank-group-form', data._id]);
-    this.router.navigate(['form', data.id], { relativeTo: this.route });
+    this.router.navigate(['form', data._id], { relativeTo: this.route });
   }
 
   onDeleteSingle(data: Product) {
-    this.productService.deleteProduct(data.id)
+    this.productService.deleteProduct(data._id)
       .subscribe();
   }
 
