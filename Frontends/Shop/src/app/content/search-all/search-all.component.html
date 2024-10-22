@@ -12,7 +12,7 @@
     </div>
     <div class="results-container">
         <ng-container *ngFor="let option of searchPageService.searchPageItems$ | async">
-            <div class="result-box" (click)="onItemClick(option.id)">
+            <div class="result-box" (click)="onItemClick(option._id)">
                 {{option.name}}
             </div>
         </ng-container>
