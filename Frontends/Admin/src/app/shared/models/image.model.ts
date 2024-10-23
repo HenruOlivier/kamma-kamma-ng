@@ -1,6 +1,6 @@
 // image.model.ts
 export interface Image {
-    id: number;
+    _id: string;
     url: string;
     description: string;
 }

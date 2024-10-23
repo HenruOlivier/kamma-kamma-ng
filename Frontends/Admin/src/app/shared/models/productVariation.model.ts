@@ -2,7 +2,7 @@ import { Image } from "./image.model";
 import { Product } from "./product.model";
 
 export interface ProductVariation {
-    id: number;
+    _id: string;
     optionName: string;
     optionValue: string;
     price: number;
