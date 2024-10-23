@@ -181,7 +181,7 @@ import { Subject } from 'rxjs';
 import { Product } from '../../../shared/models/product.model';
 import { FormFieldDefinition, FormFieldTypes } from '../../../shared/components/ss-lib-components/ss-form-builder2/form-fields2.model';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../../../shared/services/products.service';
+import { ProductsService } from '../../../shared/services/products/products.service';
 import { SSFormController } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-controller.service';
 import { catchError, finalize, tap } from 'rxjs/operators';
 

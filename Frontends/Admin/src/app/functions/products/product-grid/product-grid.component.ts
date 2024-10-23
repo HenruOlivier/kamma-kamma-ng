@@ -3,7 +3,7 @@ import { DataGridComponent } from '../../../shared/components/data-grid/data-gri
 import { GridDefinitionField } from '../../../shared/components/data-grid/grid-definition-field.model';
 import { GridFieldTypes } from '../../../shared/components/data-grid/grid-field-types.model';
 import { GridManager } from '../../../shared/components/data-grid/gridManager';
-import { ProductsService } from '../../../shared/services/products.service';
+import { ProductsService } from '../../../shared/services/products/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
