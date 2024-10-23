@@ -87,7 +87,7 @@ export class VariationsService {
           const currentVariations = this.allVariationsSubject.value;
           if (currentVariations && currentVariations.length > 0) {
             const updatedVariations = currentVariations.map((v: ProductVariation) =>
-              v.id === variationId ? res : v
+              v._id === variationId ? res : v
             );
             this.allVariationsSubject.next(updatedVariations || []);
           }
@@ -106,7 +106,7 @@ export class VariationsService {
         tap(() => {
           const currentVariations = this.allVariationsSubject.value;
           if (currentVariations && currentVariations.length > 0) {
-            const updatedVariations = currentVariations.filter((v: ProductVariation) => v.id !== variationId);
+            const updatedVariations = currentVariations.filter((v: ProductVariation) => v._id !== variationId);
             this.allVariationsSubject.next(updatedVariations || []);
           }
         }),

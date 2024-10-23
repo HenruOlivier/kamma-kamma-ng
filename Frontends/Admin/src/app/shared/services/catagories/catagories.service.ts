@@ -87,7 +87,7 @@ export class CategoriesService {
           const currentCategories = this.allCategoriesSubject.value;
           if (currentCategories && currentCategories.length > 0) {
             const updatedCategories = currentCategories.map((c: Category) =>
-              c.id === categoryId ? res : c
+              c._id === categoryId ? res : c
             );
             this.allCategoriesSubject.next(updatedCategories || []);
           }
@@ -106,7 +106,7 @@ export class CategoriesService {
         tap(() => {
           const currentCategories = this.allCategoriesSubject.value;
           if (currentCategories && currentCategories.length > 0) {
-            const updatedCategories = currentCategories.filter((c: Category) => c.id !== categoryId);
+            const updatedCategories = currentCategories.filter((c: Category) => c._id !== categoryId);
             this.allCategoriesSubject.next(updatedCategories || []);
           }
         }),
