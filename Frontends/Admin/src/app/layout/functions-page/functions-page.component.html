@@ -12,15 +12,26 @@
             <p class="func-name">Products</p>
         </div>
 
-        <div class="menu-card" (click)="onFunctionSelected('catagories')" @fadeScale>
+        <div class="menu-card" (click)="onFunctionSelected('categories')" @fadeScale>
             <div class="image-box">
                 <app-performance-image
                 class="menu-card-img"
-                [src]="'assets/illustrations/catagories'"
+                [src]="'assets/illustrations/categories'"
                 [useSkeleton]="true"
                 ></app-performance-image>
             </div>
             <p class="func-name">Catagories</p>
+        </div>
+
+        <div class="menu-card" (click)="onFunctionSelected('variations')" @fadeScale>
+            <div class="image-box">
+                <app-performance-image
+                class="menu-card-img"
+                [src]="'assets/illustrations/variations'"
+                [useSkeleton]="true"
+                ></app-performance-image>
+            </div>
+            <p class="func-name">Variations</p>
         </div>
 
         <div class="menu-card" (click)="onFunctionSelected('orders')" @fadeScale>
@@ -32,17 +43,6 @@
                 ></app-performance-image>
             </div>
             <p class="func-name">Orders</p>
-        </div>
-
-        <div class="menu-card" (click)="onFunctionSelected('warehouses')" @fadeScale>
-            <div class="image-box">
-                <app-performance-image
-                class="menu-card-img"
-                [src]="'assets/illustrations/warehouses'"
-                [useSkeleton]="true"
-                ></app-performance-image>
-            </div>
-            <p class="func-name">Warehouses</p>
         </div>
 
     </div>

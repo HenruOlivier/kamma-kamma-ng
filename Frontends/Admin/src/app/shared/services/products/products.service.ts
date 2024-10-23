@@ -74,6 +74,7 @@ export class ProductsService {
     return this.http.get<Product[]>(this.baseUrl)
       .pipe(
         tap((res: Product[]) => {
+          console.log('aweee rp')
           this.allProductsSubject.next(res);
         }),
         catchError((error: any) => {

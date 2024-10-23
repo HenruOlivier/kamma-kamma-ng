@@ -1,0 +1,11 @@
+<data-grid
+  [manager]="gridManager"
+  [loading]="(variationsService.variationsLoading$ | async) || false"
+  [error]="(variationsService.variationsError$ | async) || false"
+  [errorText]="errorMessage"
+  (createNew)="onCreateNew()"
+  (editSingle)="onEditSingle($event)"
+  (deleteSingle)="onDeleteSingle($event)"
+  (deleteMany)="onDeleteMany($event)"
+>
+</data-grid>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CatagoryFormComponent } from './catagory-form.component';
+import { ImageGridComponent } from './image-grid.component';
 
-describe('CatagoryFormComponent', () => {
-  let component: CatagoryFormComponent;
-  let fixture: ComponentFixture<CatagoryFormComponent>;
+describe('ImageGridComponent', () => {
+  let component: ImageGridComponent;
+  let fixture: ComponentFixture<ImageGridComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CatagoryFormComponent]
+      imports: [ImageGridComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CatagoryFormComponent);
+    fixture = TestBed.createComponent(ImageGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

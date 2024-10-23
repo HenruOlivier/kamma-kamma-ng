@@ -1,0 +1,16 @@
+<div class="form-container">
+    <ss-form-builder2
+    [formDefinition]="formDefinition"
+    [loading]="(categoriesService.categoryLoading$ | async) || false"
+    [loadingObservable]="categoriesService.categoryLoading$"
+    ></ss-form-builder2>
+    
+    <button
+    *ngIf="!(categoriesService.singleUpdateLoading$ | async) && formController.isFormValid() || false" actionButton
+    [state]="(categoriesService.createUpdateErr$ | async) ? btnError : btnState " 
+    class="ss-btn-success w-100"
+    (click)="onSave()"
+    >
+    Save
+    </button>
+</div>

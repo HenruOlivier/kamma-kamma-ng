@@ -1,0 +1,11 @@
+<data-grid
+  [manager]="gridManager"
+  [loading]="(categoriesService.categoriesLoading$ | async) || false"
+  [error]="(categoriesService.categoriesError$ | async) || false"
+  [errorText]="errorMessage"
+  (createNew)="onCreateNew()"
+  (editSingle)="onEditSingle($event)"
+  (deleteSingle)="onDeleteSingle($event)"
+  (deleteMany)="onDeleteMany($event)"
+>
+</data-grid>

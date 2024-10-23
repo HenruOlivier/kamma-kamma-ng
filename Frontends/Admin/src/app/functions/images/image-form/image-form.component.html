@@ -1,0 +1,16 @@
+<div class="form-container">
+    <ss-form-builder2
+    [formDefinition]="formDefinition"
+    [loading]="(imagesService.imageLoading$ | async) || false"
+    [loadingObservable]="imagesService.imageLoading$"
+    ></ss-form-builder2>
+    
+    <button
+    *ngIf="!(imagesService.singleUpdateLoading$ | async) && formController.isFormValid() || false" actionButton
+    [state]="(imagesService.createUpdateErr$ | async) ? btnError : btnState " 
+    class="ss-btn-success w-100"
+    (click)="onSave()"
+    >
+    Save
+    </button>
+</div>

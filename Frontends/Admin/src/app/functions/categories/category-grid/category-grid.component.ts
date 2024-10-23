@@ -3,74 +3,72 @@ import { DataGridComponent } from '../../../shared/components/data-grid/data-gri
 import { GridDefinitionField } from '../../../shared/components/data-grid/grid-definition-field.model';
 import { GridFieldTypes } from '../../../shared/components/data-grid/grid-field-types.model';
 import { GridManager } from '../../../shared/components/data-grid/gridManager';
-import { ProductsService } from '../../../shared/services/products/products.service';
+import { CategoriesService } from '../../../shared/services/categories/categories.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
-import { Product } from '../../../shared/models/product.model';
+import { Category } from '../../../shared/models/category.model';
 
 @Component({
-  selector: 'app-product-grid',
+  selector: 'app-category-grid',
   standalone: true,
   imports: [DataGridComponent, AsyncPipe],
-  templateUrl: './product-grid.component.html',
-  styleUrl: './product-grid.component.scss'
+  templateUrl: './category-grid.component.html',
+  styleUrls: ['./category-grid.component.scss']
 })
-export class ProductGridComponent {
+export class CategoryGridComponent {
 
   gridManager = new GridManager;
-  dataSet: any[] = [];
+  errorMessage: string = '';
 
   gridDefinition = [
     new GridDefinitionField('_id', 'id', GridFieldTypes.Text, true, true, false),
     new GridDefinitionField('name', 'Name', GridFieldTypes.Text, true, true, false),
-    new GridDefinitionField('price', 'price', GridFieldTypes.Text, true, true, false),
   ];
-
-  errorMessage: string = '';
 
   private destroy$ = new Subject<void>();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public productService: ProductsService
+    public categoriesService: CategoriesService
   ) {
     this.gridManager.definition = this.gridDefinition;
     this.onRefresh();
   }
 
   ngOnInit(): void {
-
-    this.productService.allProducts$.pipe(
+    this.categoriesService.allCategories$.pipe(
       takeUntil(this.destroy$)
-    ).subscribe((products: any) => {
-      console.log('products: ', products)
-      this.gridManager.dataset = products;
+    ).subscribe((categories: any) => {
+      console.log('categories: ', categories);
+      this.gridManager.dataset = categories;
     });
-
   }
 
   onRefresh() {
-    this.productService.refreshAllProducts();
+    this.categoriesService.fetchAllCategories();
   }
 
   onCreateNew() {
     this.router.navigate(['form'], { relativeTo: this.route });
   }
 
-  onEditSingle(data: Product) {
-    // this.router.navigate(['water-tank-group-form', data._id]);
+  onEditSingle(data: Category) {
     this.router.navigate(['form', data._id], { relativeTo: this.route });
   }
 
-  onDeleteSingle(data: Product) {
-    this.productService.deleteProduct(data._id)
+  onDeleteSingle(data: Category) {
+    this.categoriesService.deleteCategory(data._id)
       .subscribe();
   }
 
-  onDeleteMany(data: Product[]) {
-    
+  onDeleteMany(data: Category[]) {
+    // Implement mass delete if needed
   }
 
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
