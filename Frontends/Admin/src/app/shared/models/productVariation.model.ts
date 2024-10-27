@@ -1,13 +1,6 @@
-import { Image } from "./image.model";
-import { Product } from "./product.model";
+import { VariationOption } from "./variationOption.model";
 
 export interface ProductVariation {
-    _id: string;
-    optionName: string;
-    optionValue: string;
-    price: number;
-    stockQuantity: number;
-    images: Image[];
-    productId: number;
-    product: Product;
+    name: string;
+    options: VariationOption[];
 }
