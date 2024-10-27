@@ -4,8 +4,6 @@ import { ProductGridComponent } from './functions/products/product-grid/product-
 import { ProductFormComponent } from './functions/products/product-form/product-form.component';
 import { CategoryGridComponent } from './functions/categories/category-grid/category-grid.component';
 import { CategoryFormComponent } from './functions/categories/category-form/category-form.component';
-import { VariationGridComponent } from './functions/variations/variation-grid/variation-grid.component';
-import { VariationFormComponent } from './functions/variations/variation-form/variation-form.component';
 import { ImageGridComponent } from './functions/images/image-grid/image-grid.component';
 import { ImageFormComponent } from './functions/images/image-form/image-form.component';
 
@@ -17,9 +15,6 @@ export const routes: Routes = [
     { path: 'categories', component:  CategoryGridComponent},
     { path: 'categories/form', component: CategoryFormComponent },
     { path: 'categories/form/:_id', component: CategoryFormComponent },
-    { path: 'variations', component:  VariationGridComponent},
-    { path: 'variations/form', component: VariationFormComponent },
-    { path: 'variations/form/:_id', component: VariationFormComponent },
     { path: 'images', component:  ImageGridComponent},
     { path: 'images/form', component: ImageFormComponent },
     { path: 'images/form/:_id', component: ImageFormComponent },
