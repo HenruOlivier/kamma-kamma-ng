@@ -47,7 +47,7 @@ export class CategoryGridComponent {
   }
 
   onRefresh() {
-    this.categoriesService.fetchAllCategories();
+    this.categoriesService.refreshAllCategories();
   }
 
   onCreateNew() {

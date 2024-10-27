@@ -47,7 +47,7 @@ export class ImageGridComponent {
   }
 
   onRefresh() {
-    this.imagesService.fetchAllImages();
+    this.imagesService.refreshAllImages();
   }
 
   onCreateNew() {
