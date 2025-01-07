@@ -6,6 +6,9 @@ import { CategoryGridComponent } from './functions/categories/category-grid/cate
 import { CategoryFormComponent } from './functions/categories/category-form/category-form.component';
 import { ImageGridComponent } from './functions/images/image-grid/image-grid.component';
 import { ImageFormComponent } from './functions/images/image-form/image-form.component';
+import { VariationFormComponent } from './functions/variations/variation-form/variation-form.component';
+import { OrderFormComponent } from './functions/orders/order-form/order-form.component';
+import { OrderGridComponent } from './functions/orders/order-grid/order-grid.component';
 
 export const routes: Routes = [
     { path: '', component: ContentOutletComponent },
@@ -15,6 +18,9 @@ export const routes: Routes = [
     { path: 'categories', component:  CategoryGridComponent},
     { path: 'categories/form', component: CategoryFormComponent },
     { path: 'categories/form/:_id', component: CategoryFormComponent },
+    { path: 'orders', component: OrderGridComponent },
+    { path: 'orders/form', component: OrderFormComponent },
+    { path: 'orders/form/:_id', component: OrderFormComponent },
     { path: 'images', component:  ImageGridComponent},
     { path: 'images/form', component: ImageFormComponent },
     { path: 'images/form/:_id', component: ImageFormComponent },
