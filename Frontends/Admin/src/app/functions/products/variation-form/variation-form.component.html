@@ -1,13 +1,13 @@
 <div class="form-container">
 
     <ss-form-builder2
-    [formDefinition]="variationFormDefinition"
-    [loading]="false"
+    [formDefinition]="formDefinition"
+    [loading]="(productsService.currentProductLoading$ | async) || false"
+    [loadingObservable]="productsService.currentProductLoading$"
     ></ss-form-builder2>
 
     <button
-    type="button"
-    *ngIf="variationFormController.isFormValid() || false" actionButton
+    *ngIf="true || false" actionButton
     [state]="btnState " 
     class="ss-btn-success w-100"
     (click)="onSaveVariation()"

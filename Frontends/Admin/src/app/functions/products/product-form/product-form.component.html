@@ -1,57 +1,47 @@
 <div class="flex-center">
-    <div class="form-container">
-        <ss-form-builder2
-        [formDefinition]="formDefinition"
-        [loading]="(productsService.currentProductLoading$ | async) || false"
-        [loadingObservable]="productsService.currentProductLoading$"
-        ></ss-form-builder2>
-    
-        <label>Variations:</label>
-    
-        <div class="variations-container">
-            <ng-container *ngIf="!variationFormOpen; else variationForm">
-                
-                <div class="variation-item" *ngFor="let variation of productVariations">
-        
-                </div>
-                <button class="add-variation-btn" (click)="addVariation()">
-        
-                </button>
+    <ng-container *ngIf="!variationFormOpen; else variationForm">
 
-            </ng-container>
-            <ng-template #variationForm>
-                <div class="form-container">
-
-                    <app-variation-form></app-variation-form>
+        <div class="form-container">
+            <ss-form-builder2
+            [formDefinition]="formDefinition"
+            [loading]="(productsService.currentProductLoading$ | async) || false"
+            [loadingObservable]="productsService.currentProductLoading$"
+            ></ss-form-builder2>
+        
+            <label>Variations:</label>
+        
+            <div class="variations-container">
+                <!-- <ng-container *ngIf="!variationFormOpen; else variationForm"> -->
                     
-                    <!-- <ss-form-builder2
-                    [formDefinition]="variationFormDefinition"
-                    [loading]="(productsService.currentProductLoading$ | async) || false"
-                    [loadingObservable]="productsService.currentProductLoading$"
-                    ></ss-form-builder2>
+                    <div class="variation-item" *ngFor="let variation of productVariations">
+            
+                    </div>
+                    <button class="add-variation-btn" (click)="addVariation()">
+            
+                    </button>
     
-                    <button
-                    type="button"
-                    *ngIf="formController.isFormValid() || false" actionButton
-                    [state]="btnState " 
-                    class="ss-btn-success w-100"
-                    (click)="onSaveVariation()"
-                    >
-                    Add Variation
-                    </button> -->
-
-                </div>
-
-            </ng-template>
+                <!-- </ng-container> -->
+            </div>
+            
+            <button
+            *ngIf="!(productsService.singleUpdateLoading$ | async) && formController.isFormValid() || false" actionButton
+            [state]="(productsService.createUpdateErr$ | async) ? btnError : btnState " 
+            class="ss-btn-success w-100"
+            (click)="onSave()"
+            >
+            Save
+            </button>
         </div>
-        
-        <button
-        *ngIf="!(productsService.singleUpdateLoading$ | async) && formController.isFormValid() || false" actionButton
-        [state]="(productsService.createUpdateErr$ | async) ? btnError : btnState " 
-        class="ss-btn-success w-100"
-        (click)="onSave()"
-        >
-        Save
-        </button>
-    </div>
+
+    </ng-container>
+    
+    <ng-template #variationForm>
+        <div class="form-container">
+
+            <app-variation-form (addVariation)="onSaveVariation($event)"></app-variation-form>
+
+        </div>
+
+    </ng-template>
+
 </div>

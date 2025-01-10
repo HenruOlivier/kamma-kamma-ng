@@ -89,10 +89,21 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         )
         .subscribe();
     }
+
+    // setInterval(() => {
+    //   const formData: any = this.formController.getFormValue();
+    //   console.log('form data: ', formData)
+    // }, 3000)
   }
 
   addVariation() {
     this.variationFormOpen = true;
+  }
+
+  onSaveVariation(variationData: ProductVariation) {
+    console.log('Variation data to save:', variationData);
+    this.productVariations.push(variationData);
+    this.variationFormOpen = false;
   }
 
   onSave() {

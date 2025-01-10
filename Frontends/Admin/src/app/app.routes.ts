@@ -6,15 +6,16 @@ import { CategoryGridComponent } from './functions/categories/category-grid/cate
 import { CategoryFormComponent } from './functions/categories/category-form/category-form.component';
 import { ImageGridComponent } from './functions/images/image-grid/image-grid.component';
 import { ImageFormComponent } from './functions/images/image-form/image-form.component';
-import { VariationFormComponent } from './functions/variations/variation-form/variation-form.component';
 import { OrderFormComponent } from './functions/orders/order-form/order-form.component';
 import { OrderGridComponent } from './functions/orders/order-grid/order-grid.component';
+import { VariationFormComponent } from './functions/products/variation-form/variation-form.component';
 
 export const routes: Routes = [
     { path: '', component: ContentOutletComponent },
     { path: 'products', component:  ProductGridComponent},
     { path: 'products/form', component: ProductFormComponent },
     { path: 'products/form/:_id', component: ProductFormComponent },
+    // { path: 'products/form/:_id', component: VariationFormComponent },
     { path: 'categories', component:  CategoryGridComponent},
     { path: 'categories/form', component: CategoryFormComponent },
     { path: 'categories/form/:_id', component: CategoryFormComponent },
