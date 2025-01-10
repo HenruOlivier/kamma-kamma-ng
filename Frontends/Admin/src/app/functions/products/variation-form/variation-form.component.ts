@@ -43,16 +43,17 @@ export class VariationFormComponent {
       { type: FormFieldTypes.Number, name: 'stockQuantity', label: 'Stock Quantity', required: true },
     ];
 
-    setInterval(() => {
-      const formData: any = this.formController.getFormValue();
-      console.log('form data: ', formData)
-    }, 3000)
+    // setInterval(() => {
+    //   const formData: any = this.formController.getFormValue();
+    //   console.log('form data: ', formData)
+    // }, 3000)
   }
 
   onSaveVariation() {
     const variationData: ProductVariation = this.formController.getFormValue();
     console.log('Variation data to save:', variationData);
     this.productVariations.push(variationData);
+    this.addVariation.emit(variationData);
   }
 
 }
