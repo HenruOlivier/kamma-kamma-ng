@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import { SSFormController } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-controller.service';
 import { catchError, finalize, tap } from 'rxjs/operators';
+import { ProductVariation } from '../../../shared/models/productVariation.model';
 
 @Component({
   selector: 'app-product-form',
@@ -24,6 +25,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   _id: string | null = null;
   currentProductEditable: Product | null = null;
+
+  productVariations: ProductVariation[] = [];
 
   formDefinition: FormFieldDefinition[] = [];
 

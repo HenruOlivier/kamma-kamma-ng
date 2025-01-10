@@ -1,16 +1,29 @@
-<div class="form-container">
-    <ss-form-builder2
-    [formDefinition]="formDefinition"
-    [loading]="(productsService.currentProductLoading$ | async) || false"
-    [loadingObservable]="productsService.currentProductLoading$"
-    ></ss-form-builder2>
+<div class="flex-center">
+    <div class="form-container">
+        <ss-form-builder2
+        [formDefinition]="formDefinition"
+        [loading]="(productsService.currentProductLoading$ | async) || false"
+        [loadingObservable]="productsService.currentProductLoading$"
+        ></ss-form-builder2>
     
-    <button
-    *ngIf="!(productsService.singleUpdateLoading$ | async) && formController.isFormValid() || false" actionButton
-    [state]="(productsService.createUpdateErr$ | async) ? btnError : btnState " 
-    class="ss-btn-success w-100"
-    (click)="onSave()"
-    >
-    Save
-    </button>
+        <label>Variations:</label>
+    
+        <div class="variations-container">
+            <div class="variation-item" *ngFor="let variation of productVariations">
+    
+            </div>
+            <button class="add-variation-btn">
+    
+            </button>
+        </div>
+        
+        <button
+        *ngIf="!(productsService.singleUpdateLoading$ | async) && formController.isFormValid() || false" actionButton
+        [state]="(productsService.createUpdateErr$ | async) ? btnError : btnState " 
+        class="ss-btn-success w-100"
+        (click)="onSave()"
+        >
+        Save
+        </button>
+    </div>
 </div>
