@@ -11,11 +11,12 @@ import { ProductsService } from '../../../shared/services/products/products.serv
 import { SSFormController } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-controller.service';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { ProductVariation } from '../../../shared/models/productVariation.model';
+import { VariationFormComponent } from '../variation-form/variation-form.component';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, SSComponentsModule, SSDirectivesModule],
+  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, VariationFormComponent],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
@@ -26,6 +27,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   _id: string | null = null;
   currentProductEditable: Product | null = null;
 
+  variationFormOpen: boolean = false;
   productVariations: ProductVariation[] = [];
 
   formDefinition: FormFieldDefinition[] = [];
@@ -41,7 +43,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     public productsService: ProductsService,
-    public formController: SSFormController
+    public formController: SSFormController,
   ) {
     // Define form fields according to the Product interface
     this.formDefinition = [
@@ -61,6 +63,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         searchEnabled: true 
       },
     ];
+
   }
 
   ngOnInit() {
@@ -86,6 +89,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         )
         .subscribe();
     }
+  }
+
+  addVariation() {
+    this.variationFormOpen = true;
   }
 
   onSave() {

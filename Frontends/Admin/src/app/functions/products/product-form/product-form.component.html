@@ -9,12 +9,40 @@
         <label>Variations:</label>
     
         <div class="variations-container">
-            <div class="variation-item" *ngFor="let variation of productVariations">
+            <ng-container *ngIf="!variationFormOpen; else variationForm">
+                
+                <div class="variation-item" *ngFor="let variation of productVariations">
+        
+                </div>
+                <button class="add-variation-btn" (click)="addVariation()">
+        
+                </button>
+
+            </ng-container>
+            <ng-template #variationForm>
+                <div class="form-container">
+
+                    <app-variation-form></app-variation-form>
+                    
+                    <!-- <ss-form-builder2
+                    [formDefinition]="variationFormDefinition"
+                    [loading]="(productsService.currentProductLoading$ | async) || false"
+                    [loadingObservable]="productsService.currentProductLoading$"
+                    ></ss-form-builder2>
     
-            </div>
-            <button class="add-variation-btn">
-    
-            </button>
+                    <button
+                    type="button"
+                    *ngIf="formController.isFormValid() || false" actionButton
+                    [state]="btnState " 
+                    class="ss-btn-success w-100"
+                    (click)="onSaveVariation()"
+                    >
+                    Add Variation
+                    </button> -->
+
+                </div>
+
+            </ng-template>
         </div>
         
         <button

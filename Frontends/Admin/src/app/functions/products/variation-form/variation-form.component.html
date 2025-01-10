@@ -1,0 +1,18 @@
+<div class="form-container">
+
+    <ss-form-builder2
+    [formDefinition]="variationFormDefinition"
+    [loading]="false"
+    ></ss-form-builder2>
+
+    <button
+    type="button"
+    *ngIf="variationFormController.isFormValid() || false" actionButton
+    [state]="btnState " 
+    class="ss-btn-success w-100"
+    (click)="onSaveVariation()"
+    >
+    Add Variation
+    </button>
+
+</div>
