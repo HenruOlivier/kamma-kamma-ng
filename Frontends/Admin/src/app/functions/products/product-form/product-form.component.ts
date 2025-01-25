@@ -100,9 +100,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.variationFormOpen = true;
   }
 
-  onSaveVariation(variationData: ProductVariation) {
+  onSaveVariation(variationData: ProductVariation[]) {
     console.log('Variation data to save:', variationData);
-    this.productVariations.push(variationData);
+    this.productVariations = variationData;
     this.variationFormOpen = false;
   }
 
