@@ -17,7 +17,6 @@ import { ProductVariation } from '../../../shared/models/productVariation.model'
 })
 export class VariationFormComponent {
 
-
   @Output() addVariation = new EventEmitter<ProductVariation[]>();
 
   productVariations: ProductVariation[] = [];

@@ -77,6 +77,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           tap((response: Product | null) => {
             if (response) {
               this.currentProductEditable = response;
+              this.productVariations = response.variations;
+              console.log('variations: ', response.variations)
               this.formController.setFormValue(response);
             } else {
               console.error('No data received for the product.');
@@ -108,7 +110,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   onSave() {
     // Log form data
-    const formData: Product = this.formController.getFormValue();
+    const formData: Product = {...this.formController.getFormValue(), variations: this.productVariations};
     console.log('Form data to save:', formData);
 
     this.btnState = ActionButtonStates.Loading;
