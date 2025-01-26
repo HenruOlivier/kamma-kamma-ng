@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SSPipesModule } from '../../ss-pipes/ss-pipes.module';
 
-import { SSDataGridComponent } from './ss-data-grid/ss-data-grid.component';
+// import { SSDataGridComponent } from './ss-data-grid/ss-data-grid.component';
 //import { SSConfirmationDialogComponent } from './ss-confirm-dialog/ss-confirmation-dialog.component';
 import { SSLoaderSMComponent } from './ss-loader-sm/ss-loader-sm.component';
 import { SSChipListComponent } from './ss-chip-list/ss-chip-list.component';
@@ -46,7 +46,7 @@ import { SSListViewComponent } from './ss-list-view/list-view.component';
 
 @NgModule({
   declarations: [
-    SSDataGridComponent,
+    // SSDataGridComponent,
     //SSConfirmationDialogComponent,
     SSDialogComponent,
     SSLoaderSMComponent,
@@ -95,7 +95,7 @@ import { SSListViewComponent } from './ss-list-view/list-view.component';
     SSPipesModule,
   ],
   exports: [
-    SSDataGridComponent,
+    // SSDataGridComponent,
     //SSConfirmationDialogComponent,
     SSDialogComponent,
     SSLoaderSMComponent,

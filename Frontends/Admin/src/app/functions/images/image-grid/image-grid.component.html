@@ -1,4 +1,4 @@
-<data-grid
+<ss-data-grid
   [manager]="gridManager"
   [loading]="(imagesService.imagesLoading$ | async) || false"
   [error]="(imagesService.imagesError$ | async) || false"
@@ -8,4 +8,4 @@
   (deleteSingle)="onDeleteSingle($event)"
   (deleteMany)="onDeleteMany($event)"
 >
-</data-grid>
+</ss-data-grid>

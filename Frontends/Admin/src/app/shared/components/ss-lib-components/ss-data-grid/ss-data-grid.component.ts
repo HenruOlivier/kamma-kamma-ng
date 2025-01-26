@@ -6,6 +6,7 @@ import { GridControlEvent } from './grid-control-event.model';
 
 @Component({
   selector: 'ss-data-grid',
+  standalone: true,
   templateUrl: './ss-data-grid.component.html',
   styleUrls: ['./ss-data-grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

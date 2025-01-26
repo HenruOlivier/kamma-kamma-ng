@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { DataGridComponent } from '../../../shared/components/data-grid/data-grid.component';
-import { GridDefinitionField } from '../../../shared/components/data-grid/grid-definition-field.model';
-import { GridFieldTypes } from '../../../shared/components/data-grid/grid-field-types.model';
-import { GridManager } from '../../../shared/components/data-grid/gridManager';
+import { SSDataGridComponent } from '../../../shared/components/ss-lib-components/ss-data-grid/ss-data-grid.component';
+import { GridDefinitionField } from '../../../shared/components/ss-lib-components/ss-data-grid/grid-definition-field.model';
+import { GridFieldTypes } from '../../../shared/components/ss-lib-components/ss-data-grid/grid-field-types.model';
+import { GridManager } from '../../../shared/components/ss-lib-components/ss-data-grid/gridManager';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
@@ -12,7 +12,7 @@ import { Product } from '../../../shared/models/product.model';
 @Component({
   selector: 'app-product-grid',
   standalone: true,
-  imports: [DataGridComponent, AsyncPipe],
+  imports: [SSDataGridComponent, AsyncPipe],
   templateUrl: './product-grid.component.html',
   styleUrl: './product-grid.component.scss'
 })
