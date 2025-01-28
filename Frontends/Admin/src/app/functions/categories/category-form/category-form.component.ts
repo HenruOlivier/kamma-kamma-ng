@@ -10,11 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from '../../../shared/services/categories/categories.service';
 import { SSFormController } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-controller.service';
 import { catchError, finalize, tap } from 'rxjs/operators';
+import { SSFormBuilder2Component } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-builder2.component';
 
 @Component({
   selector: 'app-category-form',
   standalone: true,
-  imports: [CommonModule, SSComponentsModule, SSDirectivesModule],
+  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, SSFormBuilder2Component],
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss']
 })
