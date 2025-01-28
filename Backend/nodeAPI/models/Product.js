@@ -1,15 +1,21 @@
-// models/Product.js
 const mongoose = require('mongoose');
 
+// Define the Variation subdocument schema
+const VariationSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  stockQuantity: { type: Number, default: 0 },
+  images: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }],
+});
+
 const ProductSchema = new mongoose.Schema({
-  name: String,
-  description: String,
-  price: Number,
-  isHireable: Boolean,
-  isForSale: Boolean,
-  stockQuantity: Number,
+  name: { type: String, required: true },
+  description: { type: String },
+  price: { type: Number, required: true },
+  isHireable: { type: Boolean, default: false },
+  isForSale: { type: Boolean, default: true },
+  stockQuantity: { type: Number, default: 0 },
   categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
-  variations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ProductVariation' }],
+  variations: [VariationSchema],
   images: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }],
 });
 
