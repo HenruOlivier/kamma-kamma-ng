@@ -1,7 +1,7 @@
-<div class="flex-center">
-    <!-- <ng-container *ngIf="!variationFormOpen; else variationForm"> -->
+<div class="main-form-container my-3">
 
-        <div class="form-container">
+    <!-- <div class="forms-wrapper"> -->
+
             <ss-form-builder2
             [formDefinition]="formDefinition"
             [loading]="(productsService.currentProductLoading$ | async) || false"
@@ -11,18 +11,26 @@
             <label>Variations:</label>
         
             <div class="variations-container">
-                <!-- <ng-container *ngIf="!variationFormOpen; else variationForm"> -->
                     
-                    <div class="variation-item" *ngFor="let variation of productVariations">
-            
-                    </div>
-                    <button class="add-variation-btn" (click)="addVariation()">
-            
-                    </button>
+                <div class="variation-item" *ngFor="let variation of productVariations">
+        
+                </div>
+                <button class="add-variation-btn" (click)="addVariation()">
+        
+                </button>
     
-                <!-- </ng-container> -->
             </div>
             
+            <ng-container *ngIf="variationFormOpen">
+                <div class="form-container">
+        
+                    <app-variation-form (addVariation)="onSaveVariation($event)" [productVariations]="productVariations"></app-variation-form>
+        
+                </div>
+            </ng-container>
+            
+            <br><br>
+
             <button
             *ngIf="!(productsService.singleUpdateLoading$ | async) && formController.isFormValid() || false" actionButton
             [state]="(productsService.createUpdateErr$ | async) ? btnError : btnState " 
@@ -31,20 +39,8 @@
             >
             Save
             </button>
-        </div>
 
-    <!-- </ng-container> -->
-    
-    <!-- <ng-template #variationForm> -->
+    <!-- </div> -->
 
-    <ng-container *ngIf="variationFormOpen">
-        <div class="form-container">
-
-            <app-variation-form (addVariation)="onSaveVariation($event)" [productVariations]="productVariations"></app-variation-form>
-
-        </div>
-    </ng-container>
-
-    <!-- </ng-template> -->
 
 </div>

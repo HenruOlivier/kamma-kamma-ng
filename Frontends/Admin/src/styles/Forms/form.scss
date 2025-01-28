@@ -1,0 +1,35 @@
+.main-form-container {
+    width: 100%;
+    padding-right: 2px;
+    padding-left: 2px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+    margin-bottom: 42px;
+}
+
+@media (min-width: 576px) {
+    .main-form-container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .main-form-container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .main-form-container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .main-form-container {
+        max-width: 1140px;
+    }
+}
+
+
