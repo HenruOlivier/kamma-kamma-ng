@@ -1,5 +1,5 @@
 <div class="flex-center">
-    <ng-container *ngIf="!variationFormOpen; else variationForm">
+    <!-- <ng-container *ngIf="!variationFormOpen; else variationForm"> -->
 
         <div class="form-container">
             <ss-form-builder2
@@ -33,15 +33,18 @@
             </button>
         </div>
 
-    </ng-container>
+    <!-- </ng-container> -->
     
-    <ng-template #variationForm>
+    <!-- <ng-template #variationForm> -->
+
+    <ng-container *ngIf="variationFormOpen">
         <div class="form-container">
 
-            <app-variation-form (addVariation)="onSaveVariation($event)"></app-variation-form>
+            <app-variation-form (addVariation)="onSaveVariation($event)" [productVariations]="productVariations"></app-variation-form>
 
         </div>
+    </ng-container>
 
-    </ng-template>
+    <!-- </ng-template> -->
 
 </div>

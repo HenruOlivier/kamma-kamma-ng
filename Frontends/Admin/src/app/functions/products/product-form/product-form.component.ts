@@ -12,11 +12,12 @@ import { SSFormController } from '../../../shared/components/ss-lib-components/s
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { ProductVariation } from '../../../shared/models/productVariation.model';
 import { VariationFormComponent } from '../variation-form/variation-form.component';
+import { SSFormBuilder2Component } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-builder2.component';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, VariationFormComponent],
+  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, VariationFormComponent, SSFormBuilder2Component],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
@@ -92,10 +93,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         .subscribe();
     }
 
-    setInterval(() => {
-      const formData: any = this.formController.getFormValue();
-      console.log('form data: ', formData)
-    }, 3000)
+    // setInterval(() => {
+    //   const formData: any = this.formController.getFormValue();
+    //   console.log('form data: ', formData)
+    // }, 3000)
   }
 
   addVariation() {
