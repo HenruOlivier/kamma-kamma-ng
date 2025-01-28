@@ -2,9 +2,12 @@ import { Component, EventEmitter, Input, Optional, Output, Self } from '@angular
 import { NgControl } from '@angular/forms';
 import { FormRadioOption } from './form-radio-option.model';
 import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ss-input-radio',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './ss-input-radio.component.html',
   styleUrls: ['./ss-input-radio.component.scss']
 })

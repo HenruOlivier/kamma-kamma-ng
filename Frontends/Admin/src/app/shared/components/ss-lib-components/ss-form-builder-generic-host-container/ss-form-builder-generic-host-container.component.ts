@@ -2,10 +2,13 @@ import { Component, ComponentFactoryResolver, ComponentRef, EventEmitter, Input,
 import { NgControl } from '@angular/forms';
 import { CustomFormField } from '../ss-form-builder2/custom-form-field.model';
 import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 // import { CustomFormFieldManager } from '../ss-form-builder/custom-form-field-manager';
 
 @Component({
   selector: 'ss-form-builder-generic-host-container',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './ss-form-builder-generic-host-container.component.html',
   styleUrls: ['./ss-form-builder-generic-host-container.component.scss']
 })

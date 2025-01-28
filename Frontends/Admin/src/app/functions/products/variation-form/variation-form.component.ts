@@ -31,6 +31,9 @@ export class VariationFormComponent {
   configMode: boolean = false;
   configLoading: boolean = false;
 
+  currentName: string = '';
+  currentStock: number = 0;
+
   constructor(
     public productsService: ProductsService,
     public formController: SSFormController,

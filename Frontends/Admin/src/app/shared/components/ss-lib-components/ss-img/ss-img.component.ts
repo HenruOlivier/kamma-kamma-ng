@@ -1,7 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, SimpleChanges } from '@angular/core';
+import { SSSkeletonLoaderComponent } from '../ss-skeleton-loader/ss-skeleton-loader.component';
 
 @Component({
   selector: 'ss-img',
+  standalone: true,
+  imports: [CommonModule, SSSkeletonLoaderComponent],
   templateUrl: './ss-img.component.html',
   styleUrls: ['./ss-img.component.scss']
 })

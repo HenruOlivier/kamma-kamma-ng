@@ -1,10 +1,13 @@
 import { Component, EventEmitter, Input, Optional, Output, Self } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { FormsModule, NgControl } from '@angular/forms';
 import { roundToStepSizeDecimalPlaces } from '../../../helpers/helpers';
 import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ss-input-number',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './ss-input-number.component.html',
   styleUrls: ['./ss-input-number.component.scss']
 })

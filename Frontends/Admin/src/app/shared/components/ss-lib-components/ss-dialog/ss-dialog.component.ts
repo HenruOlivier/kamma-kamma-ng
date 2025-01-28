@@ -2,9 +2,12 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChange
 import { DialogExitType } from './dialogExitTypes.model';
 import { DialogType } from './dialogType.model';
 import { DialogExitValues } from './dialogExitValues.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ss-dialog',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './ss-dialog.component.html',
   styleUrls: ['./ss-dialog.component.scss']
 })

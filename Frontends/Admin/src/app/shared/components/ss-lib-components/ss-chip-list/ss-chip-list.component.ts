@@ -3,6 +3,7 @@ import { EnterExit } from '../../../animations/enter-exit';
 
 @Component({
   selector: 'ss-chip-list',
+  standalone: true,
   templateUrl: './ss-chip-list.component.html',
   styleUrls: ['./ss-chip-list.component.scss'],
   animations: [EnterExit]

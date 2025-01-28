@@ -1,7 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'ss-confirmation-dialog',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './ss-confirmation-dialog.component.html',
   styleUrls: ['./ss-confirmation-dialog.component.scss']
 })

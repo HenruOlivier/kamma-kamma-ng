@@ -1,11 +1,29 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectorRef } from '@angular/core';
 import { CustomField, FormFieldDefinition, FormFieldTypes, MultiSelectField, NumberField, RadioField, SelectField } from './form-fields2.model';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SSFormController } from './ss-form-controller.service';
 import { BehaviorSubject, combineLatest, map, Observable, of } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { SSInputTextComponent } from '../ss-input-text/ss-input-text.component';
+import { SSInputNumberComponent } from '../ss-input-number/ss-input-number.component';
+import { SSLoaderSMComponent } from '../ss-loader-sm/ss-loader-sm.component';
+import { SSInputPasswordComponent } from '../ss-input-password/ss-input-password.component';
+import { SSInputCalendarComponent } from '../ss-input-calendar/ss-input-calendar.component';
+import { SSInputTextareaComponent } from '../ss-input-textarea/ss-input-textarea.component';
+import { SSInputEmailComponent } from '../ss-input-email/ss-input-email.component';
+import { SSInputTimeComponent } from '../ss-input-time/ss-input-time.component';
+import { SSInputDropselectComponent } from '../ss-input-dropselect/ss-input-dropselect.component';
+import { SSInputRadioComponent } from '../ss-input-radio/ss-input-radio.component';
+import { SSInputMultiselectComponent } from '../ss-input-multiselect/ss-input-multiselect.component';
+import { SSInputRangeSliderComponent } from '../ss-input-range-slider/ss-input-range-slider.component';
+import { SSFormBuilderGenericHostContainerComponent } from '../ss-form-builder-generic-host-container/ss-form-builder-generic-host-container.component';
+import { SSErrorComponent } from '../ss-error/ss-error.component';
+import { SSInputCheckboxComponent } from '../ss-input-checkbox/ss-input-checkbox.component';
 
 @Component({
   selector: 'ss-form-builder2',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, SSInputTextComponent, SSInputNumberComponent, SSInputPasswordComponent, SSInputCalendarComponent, SSInputTextareaComponent, SSInputEmailComponent, SSInputTimeComponent, SSInputDropselectComponent, SSInputRadioComponent, SSInputMultiselectComponent, SSInputRangeSliderComponent, SSInputCheckboxComponent, SSFormBuilderGenericHostContainerComponent, SSLoaderSMComponent, SSErrorComponent  ],
   templateUrl: './ss-form-builder2.component.html',
   styleUrls: ['./ss-form-builder2.component.scss']
 })

@@ -4,6 +4,7 @@ import { MediaEventActions, MediaEventTypes } from '../media-events.model';
 
 @Component({
   selector: 'ss-pdf-viewer',
+  standalone: true,
   templateUrl: './ss-pdf-viewer.component.html',
   styleUrl: './ss-pdf-viewer.component.scss'
 })

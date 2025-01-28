@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Optional, Output, Self } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { FormsModule, NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ss-input-textarea',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './ss-input-textarea.component.html',
   styleUrls: ['./ss-input-textarea.component.scss']
 })

@@ -3,12 +3,21 @@ import { GridFieldTypes } from './grid-field-types.model';
 import { GridManager } from './gridManager';
 import * as UITools from '../../../helpers/ui-tools';
 import { GridControlEvent } from './grid-control-event.model';
+import { CommonModule } from '@angular/common';
+import { SSInputSearchComponent } from '../ss-input-search/ss-input-search.component';
+import { SSImgComponent } from '../ss-img/ss-img.component';
+import { DateAgoPipe } from '../../../ss-pipes/date-ago.pipe';
+import { FileSizePipe } from '../../../ss-pipes/file-size.pipe';
+import { FormsModule } from '@angular/forms';
+import { SSDialogComponent } from '../ss-dialog/ss-dialog.component';
+import { SSInputCheckboxComponent } from '../ss-input-checkbox/ss-input-checkbox.component';
 
 @Component({
   selector: 'ss-data-grid',
   standalone: true,
   templateUrl: './ss-data-grid.component.html',
   styleUrls: ['./ss-data-grid.component.scss'],
+  imports: [CommonModule, SSInputSearchComponent, SSImgComponent, DateAgoPipe, FileSizePipe, FormsModule, SSDialogComponent, SSInputCheckboxComponent],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SSDataGridComponent {

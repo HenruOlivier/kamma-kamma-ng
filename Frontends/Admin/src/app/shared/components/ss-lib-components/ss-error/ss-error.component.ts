@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core';
 import * as UITools from '../../../helpers/ui-tools';
+import { SSImgComponent } from '../ss-img/ss-img.component';
 
 @Component({
   selector: 'ss-error',
+  standalone: true,
+  imports: [SSImgComponent],
   templateUrl: './ss-error.component.html',
   styleUrls: ['./ss-error.component.scss']
 })

@@ -2,6 +2,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'ss-progress-bar',
+  standalone: true,
   templateUrl: './ss-progress-bar.component.html',
   styleUrl: './ss-progress-bar.component.scss'
 })

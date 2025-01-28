@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Optional, Output, Self } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { FormsModule, NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ss-input-password',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './ss-input-password.component.html',
   styleUrls: ['./ss-input-password.component.scss']
 })

@@ -1,10 +1,14 @@
 import { Component, EventEmitter, Input, Optional, Output, Self, SimpleChanges } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { FormsModule, NgControl } from '@angular/forms';
 import { Expand } from '../../../animations/expand';
 import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { SSInputSearchComponent } from '../ss-input-search/ss-input-search.component';
 
 @Component({
   selector: 'ss-input-dropselect',
+  standalone: true,
+  imports: [CommonModule, FormsModule, SSInputSearchComponent],
   templateUrl: './ss-input-dropselect.component.html',
   styleUrls: ['./ss-input-dropselect.component.scss'],
   animations: [Expand]

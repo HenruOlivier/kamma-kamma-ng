@@ -6,6 +6,7 @@ import Player from 'video.js/dist/types/player';
 
 @Component({
   selector: 'ss-audio-player',
+  standalone: true,
   templateUrl: './ss-audio-player.component.html',
   styleUrl: './ss-audio-player.component.scss'
 })

@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Optional, Output, Self } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { FormsModule, NgControl } from '@angular/forms';
 import { Expand } from '../../../animations/expand';
 import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { SSDialogComponent } from '../ss-dialog/ss-dialog.component';
 
 export interface CalenderValues {
   year: number;
@@ -17,6 +19,8 @@ export enum CalenderType {
 
 @Component({
   selector: 'ss-input-calendar',
+  standalone: true,
+  imports: [CommonModule, SSDialogComponent, FormsModule],
   templateUrl: './ss-input-calendar.component.html',
   styleUrls: ['./ss-input-calendar.component.scss'],
   animations: [Expand]

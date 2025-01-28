@@ -2,9 +2,12 @@ import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef } from
 import { Observable, Subscription } from 'rxjs';
 import { StepperStep } from './stepper.model';
 import { SSStepController } from './stepper-controller.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ss-stepper',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './ss-stepper.component.html',
   styleUrls: ['./ss-stepper.component.scss']
 })

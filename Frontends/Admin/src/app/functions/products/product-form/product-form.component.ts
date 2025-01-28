@@ -92,10 +92,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         .subscribe();
     }
 
-    // setInterval(() => {
-    //   const formData: any = this.formController.getFormValue();
-    //   console.log('form data: ', formData)
-    // }, 3000)
+    setInterval(() => {
+      const formData: any = this.formController.getFormValue();
+      console.log('form data: ', formData)
+    }, 3000)
   }
 
   addVariation() {

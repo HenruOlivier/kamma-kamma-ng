@@ -4,6 +4,7 @@ import { MediaEventActions, MediaEventTypes } from '../media-events.model';
 
 @Component({
   selector: 'ss-img-viewer',
+  standalone: true,
   templateUrl: './ss-img-viewer.component.html',
   styleUrl: './ss-img-viewer.component.scss'
 })
