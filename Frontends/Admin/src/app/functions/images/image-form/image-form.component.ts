@@ -11,11 +11,12 @@ import { ImagesService } from '../../../shared/services/images/images.service';
 import { SSFormController } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-controller.service';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { SSFormBuilder2Component } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-builder2.component';
+import { PerformanceImageComponent } from '../../../shared/components/performance-image/performance-image.component';
 
 @Component({
   selector: 'app-image-form',
   standalone: true,
-  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, SSFormBuilder2Component],
+  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, SSFormBuilder2Component, PerformanceImageComponent],
   templateUrl: './image-form.component.html',
   styleUrls: ['./image-form.component.scss']
 })
@@ -31,6 +32,12 @@ export class ImageFormComponent implements OnInit, OnDestroy {
   btnState = ActionButtonStates.Idle;
   btnError = ActionButtonStates.Error;
   btnText = 'Save Image';
+
+  myfile!: File | null;
+
+  imageFilePreview!: string | null;
+
+  imageHost: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -63,6 +70,19 @@ export class ImageFormComponent implements OnInit, OnDestroy {
         )
         .subscribe();
     }
+  }
+
+  onImagePicked(event: Event){
+    console.log('image picked')
+    this.myfile = (event.target as HTMLInputElement).files![0];
+    // this.galleryForm.patchValue({imgpath: this.myfile});
+    // this.galleryForm.get('imgpath')?.updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      console.log('image : ', reader.result)
+      this.imageFilePreview = reader.result as string;
+    }
+    reader.readAsDataURL(this.myfile);
   }
 
   onSave() {

@@ -1,4 +1,21 @@
 <div class="form-container">
+
+    <div>
+        <app-performance-image
+        class="image-box"
+        [src]="imageHost + imageFilePreview"
+        [useSkeleton]="true"
+        [fullImage]="true"
+        ></app-performance-image>
+    </div>
+
+    <div>
+        <button mat-raised-button class="dark-btn w-full" type="button" (click)="filepicker.click()">Select Image</button>
+        <input type="file" #filepicker style="visibility: hidden;" (change)="onImagePicked($event)">
+    </div>
+
+    <br><br>
+
     <ss-form-builder2
     [formDefinition]="formDefinition"
     [loading]="(imagesService.imageLoading$ | async) || false"
