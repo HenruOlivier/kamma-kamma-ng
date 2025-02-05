@@ -23,6 +23,17 @@
             <p class="func-name">Catagories</p>
         </div>
 
+        <div class="menu-card" (click)="onFunctionSelected('images')" @fadeScale>
+            <div class="image-box">
+                <app-performance-image
+                class="menu-card-img"
+                [src]="'assets/illustrations/images'"
+                [useSkeleton]="true"
+                ></app-performance-image>
+            </div>
+            <p class="func-name">Variations</p>
+        </div>
+
         <div class="menu-card" (click)="onFunctionSelected('orders')" @fadeScale>
             <div class="image-box">
                 <app-performance-image
