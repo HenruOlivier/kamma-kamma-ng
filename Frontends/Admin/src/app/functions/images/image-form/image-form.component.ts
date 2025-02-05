@@ -39,6 +39,8 @@ export class ImageFormComponent implements OnInit, OnDestroy {
 
   imageHost: string = '';
 
+  imagePreview!: string | null;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public imagesService: ImagesService,
@@ -73,13 +75,9 @@ export class ImageFormComponent implements OnInit, OnDestroy {
   }
 
   onImagePicked(event: Event){
-    console.log('image picked')
     this.myfile = (event.target as HTMLInputElement).files![0];
-    // this.galleryForm.patchValue({imgpath: this.myfile});
-    // this.galleryForm.get('imgpath')?.updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
-      console.log('image : ', reader.result)
       this.imageFilePreview = reader.result as string;
     }
     reader.readAsDataURL(this.myfile);

@@ -1,13 +1,25 @@
 <div class="form-container">
 
-    <div>
-        <app-performance-image
-        class="image-box"
-        [src]="imageHost + imageFilePreview"
-        [useSkeleton]="true"
-        [fullImage]="true"
-        ></app-performance-image>
-    </div>
+    <ng-container *ngIf="!imageFilePreview; else addImg">
+        <!-- <img style="max-height: 200px;" [src]="imageHost + imagePreview" alt=""> -->
+        <div>
+            <app-performance-image
+            class="image-box"
+            [src]="imageHost + imagePreview"
+            [useSkeleton]="true"
+            [fullImage]="true"
+            ></app-performance-image>
+        </div>
+    </ng-container>
+    <ng-template #addImg>
+        <ng-container *ngIf="!imageFilePreview; else filePreview">
+            no image selected yet
+        </ng-container>
+        <ng-template #filePreview>
+            <img style="max-height: 200px;" [src]="imageFilePreview" alt="">
+        </ng-template>
+    </ng-template>
+    
 
     <div>
         <button mat-raised-button class="dark-btn w-full" type="button" (click)="filepicker.click()">Select Image</button>
