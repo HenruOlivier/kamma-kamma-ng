@@ -23,7 +23,7 @@ export class ImageGridComponent {
 
   gridDefinition = [
     new GridDefinitionField('_id', 'id', GridFieldTypes.Text, true, true, false),
-    new GridDefinitionField('url', 'URL', GridFieldTypes.Text, true, true, false),
+    new GridDefinitionField('name', 'Name', GridFieldTypes.Text, true, true, false),
     new GridDefinitionField('description', 'Description', GridFieldTypes.Text, true, true, false),
   ];
 
@@ -59,7 +59,7 @@ export class ImageGridComponent {
   }
 
   onDeleteSingle(data: Image) {
-    this.imagesService.deleteImage(data._id)
+    this.imagesService.deleteImage(data._id!)
       .subscribe();
   }
 
