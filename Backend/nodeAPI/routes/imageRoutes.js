@@ -79,10 +79,10 @@ gallery.post(
     upload.fields([{ name: 'image', maxCount: 1 }, { name: 'imageName', maxCount: 1 }]),
     galleryController.addGalleryItem
 );
-gallery.get('/all', galleryController.getAllGalleryItems);
-gallery.get('/one/:id', galleryController.getGalleryItem);
+gallery.get('/', galleryController.getAllGalleryItems);
+gallery.get('/:_id', galleryController.getGalleryItem);
 gallery.delete('/:_id', galleryController.deleteGalleryItem);
-gallery.put('/updateImageFile/:_id', upload.fields([{ name: 'image', maxCount: 1 }]), galleryController.updateGalleryItemImage);
-gallery.put('/updateImageMetadata/:_id', galleryController.updateGalleryItemMetadata);
+// gallery.put('/updateImageFile/:_id', upload.fields([{ name: 'image', maxCount: 1 }]), galleryController.updateGalleryItemImage);
+gallery.put('/:_id', galleryController.updateGalleryItemMetadata);
 
 module.exports = gallery;
