@@ -48,7 +48,7 @@ export class ImageFormComponent implements OnInit, OnDestroy {
   ) {
     // Define form fields according to the Image interface
     this.formDefinition = [
-      { type: FormFieldTypes.Text, name: 'url', label: 'Image URL', required: true },
+      { type: FormFieldTypes.Text, name: 'name', label: 'Name', required: true },
       { type: FormFieldTypes.Text, name: 'description', label: 'Description', required: false }
     ];
   }
@@ -84,10 +84,20 @@ export class ImageFormComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    const formData: Image = this.formController.getFormValue();
+    const formData: Image = {
+      ...this.formController.getFormValue(),
+      image: this.currentImageEditable?.image ? this.currentImageEditable.image : this.myfile,
+      imagePath: this.currentImageEditable?.imagePath ? this.currentImageEditable.imagePath : '',
+    }
+    // const formData: Image = this.formController.getFormValue();
     this.btnState = ActionButtonStates.Loading;
 
     if (this._id) {
+
+      // this.backendCom.updateImageInfo(updatedGalItem, this.currentImgEditable._id!);
+
+
+
       this.imagesService.updateImage(this._id, formData)
         .pipe(
           tap(() => {
