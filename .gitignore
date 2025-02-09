@@ -54,7 +54,10 @@ Thumbs.db
 
 notes.txt
 
-#Ansible
+# Ansible
 Local/Ansible/Hosts
 Local/Ansible/variables
 **/templates/builds
+
+# Images
+images/
