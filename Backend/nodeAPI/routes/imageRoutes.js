@@ -40,36 +40,14 @@ const MIME_TYPE_MAP = {
 
 const IMAGE_STORAGE_PATH = path.join(__dirname, '../images'); // Use an absolute path
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         const isValid = MIME_TYPE_MAP[file.mimetype];
-//         let error = new Error('Invalid mime type');
-//         if (isValid) {
-//             error = null;
-//         }
-//         cb(error, IMAGE_STORAGE_PATH);  // Ensure this path exists
-//     },
-//     filename: (req, file, cb) => {
-//         let nameFromRequestBody = 'default-name';
-//         const ext = MIME_TYPE_MAP[file.mimetype];
-//         cb(null, `${nameFromRequestBody}-${Date.now()}.${ext}`);
-//     },
-// });
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'uploads/'); // Ensure this folder exists
+      cb(null, 'images/'); // Ensure this folder exists
     },
     filename: (req, file, cb) => {
       cb(null, Date.now() + '-' + file.originalname);
     }
 });
-
-// const upload = multer({
-//     storage: storage,
-//     // limits: { fileSize: 1024 * 1024 * 5 }, // 5MB
-//     limits: { fileSize: 1024 * 1024 * 50 }, // 50MB
-// });
 
 const upload = multer({ storage: storage });
 

@@ -63,7 +63,6 @@
 
 const Image = require('../models/Image');
 const path = require('path');
-// const fs = require('fs').promises;
 const { apiResponse } = require('../utils/response');
 
 const IMAGE_STORAGE_PATH = path.join(__dirname, '../images');
@@ -74,45 +73,50 @@ if (!fs.existsSync(IMAGE_STORAGE_PATH)) {
 }
 
 exports.addGalleryItem = async (req, res) => {
-    // Extract the original filename and its extension
-    console.log('file: ', req.files)
+    console.log('file: ', req.file);
+
+    // Ensure req.file exists
+    if (!req.file) {
+        return apiResponse(res, 400, 'No file uploaded');
+    }
+
     const oldImageName = req.file.filename;
-    // const oldImagePath = path.join(__dirname, '..', 'images', oldImageName);
-    const oldImagePath = path.join('/images', oldImageName);
-    
-    const mimeType = req.files['image'][0].mimetype;
+    const oldImagePath = path.join(IMAGE_STORAGE_PATH, oldImageName); // Correct path
+
+    const mimeType = req.file.mimetype;
     const extension = mimeType.split('/').pop();
-    
-    // Read imageName from req.body
+
+    // Read name from req.body
     let nameFromRequestBody = 'default-name';
     if (req.body && req.body.name) {
-      nameFromRequestBody = req.body.name.toLowerCase().split(' ').join('-');
+        nameFromRequestBody = req.body.name.toLowerCase().replace(/\s+/g, '-');
     }
-  
-    // Generate the new filename based on the user input and the original extension
+
     const newImageName = `${nameFromRequestBody}-${Date.now()}.${extension}`;
-    // const newImagePath = path.join(__dirname, '..', 'images', newImageName);
-    const newImagePath = path.join('/images', newImageName);
-    
-    try {
-      // Rename the uploaded file
-      await fs.rename(oldImagePath, newImagePath);
-    //   await fs.unlink(oldImagePath); // delete the old file
-  
-      // Proceed to save the record in the database
-      const galleryItem = new Image({
-        name: nameFromRequestBody,
-        description: req.body.description,
-        imagePath: newImageName,
-      });
-      
-      await galleryItem.save();
-      return apiResponse(res, 201, 'Gallery item added successfully', galleryItem);
-    } catch (error) {
-      // Compensating action here
-      console.error(error);
-      return apiResponse(res, 500, 'Error adding gallery item');
-    }
+    const newImagePath = path.join(IMAGE_STORAGE_PATH, newImageName); // Correct path
+
+    // Rename the file
+    fs.rename(oldImagePath, newImagePath, async (err) => {
+        if (err) {
+            console.error('Error renaming file:', err);
+            return apiResponse(res, 500, 'File renaming failed');
+        }
+
+        try {
+            // Save to MongoDB *only after* successful rename
+            const galleryItem = new Image({
+                name: nameFromRequestBody,
+                description: req.body.description || '',
+                imagePath: newImageName,
+            });
+
+            await galleryItem.save();
+            return apiResponse(res, 201, 'Gallery item added successfully', galleryItem);
+        } catch (error) {
+            console.error('Database save error:', error);
+            return apiResponse(res, 500, 'Error saving gallery item');
+        }
+    });
 };
 
 exports.getAllGalleryItems = async (req, res) => {
@@ -183,10 +187,7 @@ exports.updateGalleryItemImage = async (req, res) => {
         // Get the existing image filename
         const existingFilename = existingItem.imagePath;
         console.log('updateGalleryItem >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', req.files['image'][0].filename);
-        // Generate new filename based on the uploaded image
-        // const newFilename = req.file.image;
         const newFilename = req.files['image'][0].filename;
-        // const tempImagePath = path.join(__dirname, '..', 'images', newFilename);
         const tempImagePath = path.join('/images', newFilename);
         // const finalImagePath = path.join(__dirname, '..', 'images', existingFilename);
         const finalImagePath = path.join('/images', existingFilename);
