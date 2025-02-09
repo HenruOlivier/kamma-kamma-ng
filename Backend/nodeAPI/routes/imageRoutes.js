@@ -38,45 +38,45 @@ const MIME_TYPE_MAP = {
     'image/jpg': 'jpg',
 };
 
+const IMAGE_STORAGE_PATH = path.join(__dirname, '../images'); // Use an absolute path
 
-// const IMAGE_STORAGE_PATH = path.join(__dirname, '..', 'images');
-const IMAGE_STORAGE_PATH = '/images';
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         const isValid = MIME_TYPE_MAP[file.mimetype];
+//         let error = new Error('Invalid mime type');
+//         if (isValid) {
+//             error = null;
+//         }
+//         cb(error, IMAGE_STORAGE_PATH);  // Ensure this path exists
+//     },
+//     filename: (req, file, cb) => {
+//         let nameFromRequestBody = 'default-name';
+//         const ext = MIME_TYPE_MAP[file.mimetype];
+//         cb(null, `${nameFromRequestBody}-${Date.now()}.${ext}`);
+//     },
+// });
 
 const storage = multer.diskStorage({
-    // destination: (req, file, cb) => {
-    //     const isValid = MIME_TYPE_MAP[file.mimetype];
-    //     let error = new Error('Invalid mime type');
-    //     if (isValid) {
-    //         error = null;
-    //     }
-    //     cb(error, IMAGE_STORAGE_PATH);
-    // },
     destination: (req, file, cb) => {
-        const isValid = MIME_TYPE_MAP[file.mimetype];
-        let error = new Error('Invalid mime type');
-        if (isValid) {
-            error = null;
-        }
-        cb(error, IMAGE_STORAGE_PATH);  // And this one
+      cb(null, 'uploads/'); // Ensure this folder exists
     },
     filename: (req, file, cb) => {
-        // const nameFromRequestBody = req.body.imageName.toLowerCase().split(' ').join('-');
-        let nameFromRequestBody = 'default-name';
-        const ext = MIME_TYPE_MAP[file.mimetype];
-        cb(null, `${nameFromRequestBody}-${Date.now()}.${ext}`);
-    },
+      cb(null, Date.now() + '-' + file.originalname);
+    }
 });
 
-const upload = multer({
-    storage: storage,
-    // limits: { fileSize: 1024 * 1024 * 5 }, // 5MB
-    limits: { fileSize: 1024 * 1024 * 50 }, // 50MB
-});
+// const upload = multer({
+//     storage: storage,
+//     // limits: { fileSize: 1024 * 1024 * 5 }, // 5MB
+//     limits: { fileSize: 1024 * 1024 * 50 }, // 50MB
+// });
+
+const upload = multer({ storage: storage });
 
 gallery.post(
     '',
     uploadLimiter,
-    upload.fields([{ name: 'image', maxCount: 1 }, { name: 'imageName', maxCount: 1 }]),
+    upload.single('image'),  // Use .single() if there's only one file
     galleryController.addGalleryItem
 );
 gallery.get('/', galleryController.getAllGalleryItems);

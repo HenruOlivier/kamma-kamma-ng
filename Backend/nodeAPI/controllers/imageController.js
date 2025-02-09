@@ -61,14 +61,22 @@
 
 
 
-const GalleryItem = require('../models/gallery-item');
+const Image = require('../models/Image');
 const path = require('path');
-const fs = require('fs').promises;
+// const fs = require('fs').promises;
 const { apiResponse } = require('../utils/response');
+
+const IMAGE_STORAGE_PATH = path.join(__dirname, '../images');
+
+const fs = require('fs');
+if (!fs.existsSync(IMAGE_STORAGE_PATH)) {
+    fs.mkdirSync(IMAGE_STORAGE_PATH, { recursive: true });
+}
 
 exports.addGalleryItem = async (req, res) => {
     // Extract the original filename and its extension
-    const oldImageName = req.files['image'][0].filename;
+    console.log('file: ', req.files)
+    const oldImageName = req.file.filename;
     // const oldImagePath = path.join(__dirname, '..', 'images', oldImageName);
     const oldImagePath = path.join('/images', oldImageName);
     
@@ -92,7 +100,7 @@ exports.addGalleryItem = async (req, res) => {
     //   await fs.unlink(oldImagePath); // delete the old file
   
       // Proceed to save the record in the database
-      const galleryItem = new GalleryItem({
+      const galleryItem = new Image({
         name: nameFromRequestBody,
         description: req.body.description,
         imagePath: newImageName,
@@ -109,7 +117,9 @@ exports.addGalleryItem = async (req, res) => {
 
 exports.getAllGalleryItems = async (req, res) => {
     try {
-        const documents = await GalleryItem.find();
+        console.log('get all galery items called')
+        const documents = await Image.find();
+        console.log('gallery items: ', documents)
         return apiResponse(res, 200, 'Gallery items fetched successfully', documents);
     } catch (error) {
         return apiResponse(res, 500, 'Error fetching gallery items');
@@ -118,7 +128,7 @@ exports.getAllGalleryItems = async (req, res) => {
 
 exports.getGalleryItem = async (req, res) => {
     try {
-        const galleryItem = await GalleryItem.findById(req.params.id);
+        const galleryItem = await Image.findById(req.params.id);
         if (!galleryItem) {
             return apiResponse(res, 404, 'Gallery Item not found');
         }
@@ -130,7 +140,7 @@ exports.getGalleryItem = async (req, res) => {
 
 exports.deleteGalleryItem = async (req, res) => {
     try {
-        const result = await GalleryItem.findByIdAndDelete(req.params._id);
+        const result = await Image.findByIdAndDelete(req.params._id);
         if (result) {
             const imgPath = path.join('/images', result.imagePath);
             await fs.unlink(imgPath);
@@ -145,7 +155,7 @@ exports.deleteGalleryItem = async (req, res) => {
 exports.updateGalleryItemMetadata = async (req, res) => {
     try {
 
-        const galleryItem = await GalleryItem.findById(req.params._id);
+        const galleryItem = await Image.findById(req.params._id);
         if (!galleryItem) {
             return apiResponse(res, 404, 'Gallery item not found');
         }
@@ -165,7 +175,7 @@ exports.updateGalleryItemImage = async (req, res) => {
   
     try {
         // Find the existing item
-        const existingItem = await GalleryItem.findById(itemId);
+        const existingItem = await Image.findById(itemId);
         if (!existingItem) {
             return apiResponse(res, 404, 'Gallery item not found');
         }
