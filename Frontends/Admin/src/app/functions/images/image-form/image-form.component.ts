@@ -84,54 +84,48 @@ export class ImageFormComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    const formData: Image = {
-      ...this.formController.getFormValue(),
-      image: this.currentImageEditable?.image ? this.currentImageEditable.image : this.myfile,
-      imagePath: this.currentImageEditable?.imagePath ? this.currentImageEditable.imagePath : '',
+    const formValues = this.formController.getFormValue();
+    
+    if (!this.myfile) {
+      console.error("No file selected.");
+      return;
     }
-    // const formData: Image = this.formController.getFormValue();
+  
     this.btnState = ActionButtonStates.Loading;
-
+  
     if (this._id) {
-
-      // this.backendCom.updateImageInfo(updatedGalItem, this.currentImgEditable._id!);
-
-
-
-      this.imagesService.updateImage(this._id, formData)
-        .pipe(
-          tap(() => {
-            this.btnState = ActionButtonStates.Success;
-          }),
-          catchError((error: any) => {
-            this.btnState = ActionButtonStates.Error;
-            console.error('Error updating image:', error);
-            return error;
-          }),
-          finalize(() => {
-            this.btnState = ActionButtonStates.Idle;
-          })
-        )
-        .subscribe();
+      // If updating an existing image
+      this.imagesService.updateImage(this._id, {
+        ...formValues,
+        image: this.currentImageEditable?.image || this.myfile,
+        imagePath: this.currentImageEditable?.imagePath || '',
+      })
+      .pipe(
+        tap(() => { this.btnState = ActionButtonStates.Success; }),
+        catchError((error: any) => {
+          this.btnState = ActionButtonStates.Error;
+          console.error('Error updating image:', error);
+          return error;
+        }),
+        finalize(() => { this.btnState = ActionButtonStates.Idle; })
+      )
+      .subscribe();
     } else {
-      this.imagesService.addImage(formData)
-        .pipe(
-          tap(() => {
-            this.btnState = ActionButtonStates.Success;
-          }),
-          catchError((error: any) => {
-            this.btnState = ActionButtonStates.Error;
-            console.error('Error creating image:', error);
-            return error;
-          }),
-          finalize(() => {
-            this.btnState = ActionButtonStates.Idle;
-          })
-        )
-        .subscribe();
+      // If adding a new image
+      this.imagesService.addImage(this.myfile, formValues.name, formValues.description)
+      .pipe(
+        tap(() => { this.btnState = ActionButtonStates.Success; }),
+        catchError((error: any) => {
+          this.btnState = ActionButtonStates.Error;
+          console.error('Error creating image:', error);
+          return error;
+        }),
+        finalize(() => { this.btnState = ActionButtonStates.Idle; })
+      )
+      .subscribe();
     }
   }
-
+  
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

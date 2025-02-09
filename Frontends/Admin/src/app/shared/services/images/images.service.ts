@@ -106,12 +106,13 @@ export class ImagesService {
   }
 
   // Add a new image
-  addImage(image: Image): Observable<Image | null> {
-    this.imagesLoadingSubject.next(true);
-    this.singleUpdateLoadingSubject.next(true);
-    this.createUpdateErrSubject.next(null);
-
-    return this.http.post<Image>(this.baseUrl, image)
+  addImage(imageFile: File, name: string, description: string): Observable<Image | null> {
+    const formData = new FormData();
+    formData.append('image', imageFile);
+    formData.append('name', name);
+    formData.append('description', description);
+  
+    return this.http.post<Image>(this.baseUrl, formData)
       .pipe(
         tap((newImage: Image) => {
           this.allImagesSubject.next([...(this.allImagesSubject.value || []), newImage]);
@@ -127,6 +128,7 @@ export class ImagesService {
         })
       );
   }
+  
 
   // Update an existing image by ID
   updateImage(imageId: string, updatedImage: Image): Observable<Image | null> {
