@@ -132,7 +132,7 @@ exports.getAllGalleryItems = async (req, res) => {
 
 exports.getGalleryItem = async (req, res) => {
     try {
-        const galleryItem = await Image.findById(req.params.id);
+        const galleryItem = await Image.findById(req.params._id);
         if (!galleryItem) {
             return apiResponse(res, 404, 'Gallery Item not found');
         }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, finalize, Observable, of, tap } from 'rxjs';
 import { Image } from '../../models/image.model';
+import { SSHTTPResponse } from '../../models/ss-http.model';
 
 @Injectable({
   providedIn: 'root'
@@ -70,10 +71,11 @@ export class ImagesService {
   fetchAllImages(): Observable<Image[]> {
     this.imagesLoadingSubject.next(true);
 
-    return this.http.get<Image[]>(this.baseUrl)
+    return this.http.get<SSHTTPResponse<[Image]>>(this.baseUrl)
       .pipe(
-        tap((images: Image[]) => {
-          this.allImagesSubject.next(images);
+        tap((res: SSHTTPResponse<[Image]>) => {
+          console.log('images: ', res.data)
+          this.allImagesSubject.next(res.data);
         }),
         catchError((error: any) => {
           console.error('Error while fetching images:', error);
@@ -89,10 +91,10 @@ export class ImagesService {
   // Fetch an image by ID
   fetchImageById(imageId: string): Observable<Image | null> {
     this.imageLoadingSubject.next(true);
-    return this.http.get<Image>(`${this.baseUrl}${imageId}`)
+    return this.http.get<SSHTTPResponse<Image>>(`${this.baseUrl}${imageId}`)
       .pipe(
-        tap((image: Image) => {
-          this.currentImageSubject.next(image);
+        tap((res: SSHTTPResponse<Image>) => {
+          this.currentImageSubject.next(res.data);
         }),
         catchError((error: any) => {
           console.error('Error while fetching image:', error);

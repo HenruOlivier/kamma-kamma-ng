@@ -12,6 +12,7 @@ import { SSFormController } from '../../../shared/components/ss-lib-components/s
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { SSFormBuilder2Component } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-builder2.component';
 import { PerformanceImageComponent } from '../../../shared/components/performance-image/performance-image.component';
+import { SSHTTPResponse } from '../../../shared/models/ss-http.model';
 
 @Component({
   selector: 'app-image-form',
@@ -59,10 +60,10 @@ export class ImageFormComponent implements OnInit, OnDestroy {
     if (this._id) {
       this.imagesService.fetchImageById(this._id)
         .pipe(
-          tap((response: Image | null) => {
-            if (response) {
-              this.currentImageEditable = response;
-              this.formController.setFormValue(response);
+          tap((response: SSHTTPResponse<Image>) => {
+            if (response && response.data) {
+              this.currentImageEditable = response.data;
+              this.formController.setFormValue(response.data);
             }
           }),
           catchError((error: any) => {
