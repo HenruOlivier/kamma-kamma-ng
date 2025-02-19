@@ -116,8 +116,8 @@ export class ImagesService {
   
     return this.http.post<Image>(this.baseUrl, formData)
       .pipe(
-        tap((newImage: Image) => {
-          this.allImagesSubject.next([...(this.allImagesSubject.value || []), newImage]);
+        tap((newImage: SSHTTPResponse<Image>) => {
+          this.allImagesSubject.next([...(this.allImagesSubject.value || []), newImage.data]);
         }),
         catchError((error: any) => {
           console.error('Error while adding image:', error);
@@ -179,6 +179,7 @@ export class ImagesService {
           if (currentImages && currentImages.length > 0) {
             const updatedImages = currentImages.filter((img: Image) => img._id !== imageId);
             this.allImagesSubject.next(updatedImages || []);
+            console.log('updated images after deletion: ', updatedImages)
           }
         }),
         catchError((error: any) => {

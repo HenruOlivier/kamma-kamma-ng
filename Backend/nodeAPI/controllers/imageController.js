@@ -107,7 +107,7 @@ exports.addGalleryItem = async (req, res) => {
             const galleryItem = new Image({
                 name: nameFromRequestBody,
                 description: req.body.description || '',
-                imagePath: newImageName,
+                url: newImageName,
             });
 
             await galleryItem.save();
@@ -146,8 +146,9 @@ exports.deleteGalleryItem = async (req, res) => {
     try {
         const result = await Image.findByIdAndDelete(req.params._id);
         if (result) {
-            const imgPath = path.join('/images', result.imagePath);
-            await fs.unlink(imgPath);
+            const imgPath = path.join('/images', result.url);
+            console.log('image path to unlink: ', imgPath)
+            fs.unlink(imgPath);
         }
         return apiResponse(res, 200, 'Gallery item deleted successfully');
     } catch (error) {
@@ -172,40 +173,40 @@ exports.updateGalleryItemMetadata = async (req, res) => {
 };
 
 // New code for updating image
-exports.updateGalleryItemImage = async (req, res) => {
+// exports.updateGalleryItemImage = async (req, res) => {
 
-    // Retrieve the ID of the gallery item to edit
-    const itemId = req.params._id;
+//     // Retrieve the ID of the gallery item to edit
+//     const itemId = req.params._id;
   
-    try {
-        // Find the existing item
-        const existingItem = await Image.findById(itemId);
-        if (!existingItem) {
-            return apiResponse(res, 404, 'Gallery item not found');
-        }
+//     try {
+//         // Find the existing item
+//         const existingItem = await Image.findById(itemId);
+//         if (!existingItem) {
+//             return apiResponse(res, 404, 'Gallery item not found');
+//         }
 
-        // Get the existing image filename
-        const existingFilename = existingItem.imagePath;
-        console.log('updateGalleryItem >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', req.files['image'][0].filename);
-        const newFilename = req.files['image'][0].filename;
-        const tempImagePath = path.join('/images', newFilename);
-        // const finalImagePath = path.join(__dirname, '..', 'images', existingFilename);
-        const finalImagePath = path.join('/images', existingFilename);
+//         // Get the existing image filename
+//         const existingFilename = existingItem.imagePath;
+//         console.log('updateGalleryItem >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', req.files['image'][0].filename);
+//         const newFilename = req.files['image'][0].filename;
+//         const tempImagePath = path.join('/images', newFilename);
+//         // const finalImagePath = path.join(__dirname, '..', 'images', existingFilename);
+//         const finalImagePath = path.join('/images', existingFilename);
 
-        // Replace the existing image with the new one
-        await fs.rename(tempImagePath, finalImagePath);
+//         // Replace the existing image with the new one
+//         await fs.rename(tempImagePath, finalImagePath);
 
-        // Update other fields if necessary
-        if (req.body.name) existingItem.name = req.body.name;
-        if (req.body.description) existingItem.description = req.body.description;
+//         // Update other fields if necessary
+//         if (req.body.name) existingItem.name = req.body.name;
+//         if (req.body.description) existingItem.description = req.body.description;
 
-        // Save the updated item
-        await existingItem.save();
+//         // Save the updated item
+//         await existingItem.save();
 
-        return apiResponse(res, 200, 'Gallery item updated successfully', existingItem);
-    } catch (error) {
-        // Compensating action here
-        console.error(error);
-        return apiResponse(res, 500, 'Error updating gallery item');
-    }
-};
+//         return apiResponse(res, 200, 'Gallery item updated successfully', existingItem);
+//     } catch (error) {
+//         // Compensating action here
+//         console.error(error);
+//         return apiResponse(res, 500, 'Error updating gallery item');
+//     }
+// };
