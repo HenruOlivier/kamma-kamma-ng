@@ -67,7 +67,10 @@ const { apiResponse } = require('../utils/response');
 
 const IMAGE_STORAGE_PATH = path.join(__dirname, '../images');
 
+const fsPromises = require('fs').promises;
 const fs = require('fs');
+
+
 if (!fs.existsSync(IMAGE_STORAGE_PATH)) {
     fs.mkdirSync(IMAGE_STORAGE_PATH, { recursive: true });
 }
@@ -95,28 +98,23 @@ exports.addGalleryItem = async (req, res) => {
     const newImageName = `${nameFromRequestBody}-${Date.now()}.${extension}`;
     const newImagePath = path.join(IMAGE_STORAGE_PATH, newImageName); // Correct path
 
-    // Rename the file
-    fs.rename(oldImagePath, newImagePath, async (err) => {
-        if (err) {
-            console.error('Error renaming file:', err);
-            return apiResponse(res, 500, 'File renaming failed');
-        }
+    try {
+        // Rename the file (no callback needed, use await)
+        await fsPromises.rename(oldImagePath, newImagePath);
 
-        try {
-            // Save to MongoDB *only after* successful rename
-            const galleryItem = new Image({
-                name: nameFromRequestBody,
-                description: req.body.description || '',
-                url: newImageName,
-            });
+        // Save to MongoDB *only after* successful rename
+        const galleryItem = new Image({
+            name: nameFromRequestBody,
+            description: req.body.description || '',
+            url: newImageName,
+        });
 
-            await galleryItem.save();
-            return apiResponse(res, 201, 'Gallery item added successfully', galleryItem);
-        } catch (error) {
-            console.error('Database save error:', error);
-            return apiResponse(res, 500, 'Error saving gallery item');
-        }
-    });
+        await galleryItem.save();
+        return apiResponse(res, 201, 'Gallery item added successfully', galleryItem);
+    } catch (error) {
+        console.error('Error processing gallery item:', error);
+        return apiResponse(res, 500, 'Error processing gallery item');
+    }
 };
 
 exports.getAllGalleryItems = async (req, res) => {
@@ -146,9 +144,20 @@ exports.deleteGalleryItem = async (req, res) => {
     try {
         const result = await Image.findByIdAndDelete(req.params._id);
         if (result) {
-            const imgPath = path.join('/images', result.url);
-            console.log('image path to unlink: ', imgPath)
-            fs.unlink(imgPath);
+            const imgPath = path.join(IMAGE_STORAGE_PATH, result.url);
+            console.log('image path to unlink: ', imgPath);
+
+            try {
+                await fsPromises.access(imgPath); // Check if file exists
+                await fsPromises.unlink(imgPath);
+                console.log('File deleted successfully');
+            } catch (err) {
+                if (err.code === 'ENOENT') {
+                    console.warn('File not found, skipping deletion');
+                } else {
+                    throw err; // Rethrow other errors
+                }
+            }
         }
         return apiResponse(res, 200, 'Gallery item deleted successfully');
     } catch (error) {
@@ -156,6 +165,7 @@ exports.deleteGalleryItem = async (req, res) => {
         return apiResponse(res, 500, 'Error deleting gallery item');
     }
 };
+
 
 exports.updateGalleryItemMetadata = async (req, res) => {
     try {
