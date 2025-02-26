@@ -25,6 +25,7 @@ export class SSDataGridComponent {
   @Input() loading: boolean = false;
   @Input() error: boolean = false;
   @Input() errorText: string = '';
+  @Input() topBarActive: boolean = true;
 
   @Output() editSingle: EventEmitter<any> = new EventEmitter<any>();
   @Output() deleteSingle: EventEmitter<any> = new EventEmitter<any>();

@@ -1,35 +1,40 @@
 <!-- This is the grid view container -->
 <div class="grid-container disable-select">
-    <div class="grid-controls-container">
-        <div class="grid-controls">
-            <div class="grid-controls-left">
-                <button *ngIf="manager.createNewActive"
-                        class="ss-btn-success mx-1"
-                        (click)="onNew()"><i class="bi bi-plus-lg"></i><span>New</span></button>
-                <button *ngIf="manager.deleteManyActive"
-                        class="ss-btn-danger mx-1"
-                        (click)="onDeleteMany()"><i class="bi bi-trash3"></i><span>Delete</span></button>
-            </div>
-            <div class="grid-controls-center">
-                <button *ngIf="manager.settingsActive"
-                        (click)="onOpenGridSettings()"
-                        class="ss-btn-circle-transparent border-none"><i
-                       class="bi bi-gear-fill m-0 ss-fs-5"></i></button>
-            </div>
-            <div class="grid-controls-right">
-                <button *ngIf="manager.importActive"
-                        class="ss-btn-primary mx-1"
-                        (click)="importUlpoader.click()"><i class="bi bi-upload"></i><span>Import</span></button>
-                <input hidden
-                       type="file"
-                       #importUlpoader
-                       (change)="onImport($event)" />
-                <button *ngIf="manager.exportActive"
-                        class="ss-btn-accent-dark ss-fc-white mx-1"
-                        (click)="onExport()"><i class="bi bi-download"></i><span>Export</span></button>
+
+    <ng-container *ngIf="topBarActive">
+
+        <div class="grid-controls-container">
+            <div class="grid-controls">
+                <div class="grid-controls-left">
+                    <button *ngIf="manager.createNewActive"
+                            class="ss-btn-success mx-1"
+                            (click)="onNew()"><i class="bi bi-plus-lg"></i><span>New</span></button>
+                    <button *ngIf="manager.deleteManyActive"
+                            class="ss-btn-danger mx-1"
+                            (click)="onDeleteMany()"><i class="bi bi-trash3"></i><span>Delete</span></button>
+                </div>
+                <div class="grid-controls-center">
+                    <button *ngIf="manager.settingsActive"
+                            (click)="onOpenGridSettings()"
+                            class="ss-btn-circle-transparent border-none"><i
+                           class="bi bi-gear-fill m-0 ss-fs-5"></i></button>
+                </div>
+                <div class="grid-controls-right">
+                    <button *ngIf="manager.importActive"
+                            class="ss-btn-primary mx-1"
+                            (click)="importUlpoader.click()"><i class="bi bi-upload"></i><span>Import</span></button>
+                    <input hidden
+                           type="file"
+                           #importUlpoader
+                           (change)="onImport($event)" />
+                    <button *ngIf="manager.exportActive"
+                            class="ss-btn-accent-dark ss-fc-white mx-1"
+                            (click)="onExport()"><i class="bi bi-download"></i><span>Export</span></button>
+                </div>
             </div>
         </div>
-    </div>
+
+    </ng-container>
 
     <div class="grid-body-container">
         <div class="grid-body">
