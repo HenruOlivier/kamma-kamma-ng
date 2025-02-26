@@ -49,6 +49,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   gridManager = new GridManager;
   errorMessage: string = '';
 
+  currentImages: string[] = [];
+
   gridDefinition = [
     new GridDefinitionField('_id', 'id', GridFieldTypes.Text, true, true, false),
     new GridDefinitionField('name', 'Name', GridFieldTypes.Text, true, true, false),
@@ -81,6 +83,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     ];
 
     this.gridManager.definition = this.gridDefinition;
+    this.gridManager.addGridControl({name: 'add', classList: 'ss-btn-circle-success', iconClass: 'bi bi-plus'});
+    this.gridManager.removeGridControl('Delete');
+    this.gridManager.removeGridControl('Edit');
+    this.gridManager.selectActive = false;
+
     this.onRefresh();
 
   }
@@ -114,6 +121,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.imagesService.allImages$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((images: any) => {
+      // let filteredImages = images.filter()
       this.gridManager.dataset = images;
     });
 
@@ -131,6 +139,15 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     console.log('Variation data to save:', variationData);
     this.productVariations = variationData;
     this.variationFormOpen = false;
+  }
+
+  onControlTrigger(data: any) {
+    console.log('controle trigger: ', data.data);
+    this.currentImages.push(data.data.url);
+  }
+
+  onRefresh() {
+    this.imagesService.refreshAllImages();
   }
 
   onSave() {
@@ -177,9 +194,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  onRefresh() {
-    this.imagesService.refreshAllImages();
-  }
 
   ngOnDestroy() {
     this.destroy$.next();
