@@ -9,15 +9,20 @@ import { FormFieldDefinition, FormFieldTypes } from '../../../shared/components/
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import { SSFormController } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-controller.service';
-import { catchError, finalize, tap } from 'rxjs/operators';
+import { catchError, finalize, takeUntil, tap } from 'rxjs/operators';
 import { ProductVariation } from '../../../shared/models/productVariation.model';
 import { VariationFormComponent } from '../variation-form/variation-form.component';
 import { SSFormBuilder2Component } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-builder2.component';
+import { SSDataGridComponent } from '../../../shared/components/ss-lib-components/ss-data-grid/ss-data-grid.component';
+import { GridDefinitionField } from '../../../shared/components/ss-lib-components/ss-data-grid/grid-definition-field.model';
+import { GridManager } from '../../../shared/components/ss-lib-components/ss-data-grid/gridManager';
+import { GridFieldTypes } from '../../../shared/components/ss-lib-components/ss-data-grid/grid-field-types.model';
+import { ImagesService } from '../../../shared/services/images/images.service';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, VariationFormComponent, SSFormBuilder2Component],
+  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, VariationFormComponent, SSFormBuilder2Component, SSDataGridComponent],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
@@ -41,10 +46,20 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   configMode: boolean = false;
   configLoading: boolean = false;
 
+  gridManager = new GridManager;
+  errorMessage: string = '';
+
+  gridDefinition = [
+    new GridDefinitionField('_id', 'id', GridFieldTypes.Text, true, true, false),
+    new GridDefinitionField('name', 'Name', GridFieldTypes.Text, true, true, false),
+    new GridDefinitionField('description', 'Description', GridFieldTypes.Text, true, true, false),
+  ];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public productsService: ProductsService,
     public formController: SSFormController,
+    public imagesService: ImagesService
   ) {
     // Define form fields according to the Product interface
     this.formDefinition = [
@@ -64,6 +79,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         searchEnabled: true 
       },
     ];
+
+    this.gridManager.definition = this.gridDefinition;
+    this.onRefresh();
 
   }
 
@@ -92,6 +110,12 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         )
         .subscribe();
     }
+
+    this.imagesService.allImages$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((images: any) => {
+      this.gridManager.dataset = images;
+    });
 
     // setInterval(() => {
     //   const formData: any = this.formController.getFormValue();
@@ -151,6 +175,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         )
         .subscribe();
     }
+  }
+
+  onRefresh() {
+    this.imagesService.refreshAllImages();
   }
 
   ngOnDestroy() {

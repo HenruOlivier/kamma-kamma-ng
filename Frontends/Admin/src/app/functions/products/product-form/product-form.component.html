@@ -6,6 +6,20 @@
     [loadingObservable]="productsService.currentProductLoading$"
     ></ss-form-builder2>
 
+    <label>Images:</label>
+
+    <div>
+
+        <ss-data-grid
+        [manager]="gridManager"
+        [loading]="(imagesService.imagesLoading$ | async) || false"
+        [error]="(imagesService.imagesError$ | async) || false"
+        [errorText]="errorMessage"
+        >
+        </ss-data-grid>
+
+    </div>
+
     <label>Variations:</label>
 
     <div class="variations-container">
