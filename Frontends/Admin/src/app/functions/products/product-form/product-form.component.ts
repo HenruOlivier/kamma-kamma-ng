@@ -18,6 +18,7 @@ import { GridDefinitionField } from '../../../shared/components/ss-lib-component
 import { GridManager } from '../../../shared/components/ss-lib-components/ss-data-grid/gridManager';
 import { GridFieldTypes } from '../../../shared/components/ss-lib-components/ss-data-grid/grid-field-types.model';
 import { ImagesService } from '../../../shared/services/images/images.service';
+import { environment } from '../../../../environment/environment';
 
 @Component({
   selector: 'app-product-form',
@@ -27,6 +28,8 @@ import { ImagesService } from '../../../shared/services/images/images.service';
   styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
+
+  baseImgUrl = environment.baseImageUrl;
 
   destroy$ = new Subject<void>();
 

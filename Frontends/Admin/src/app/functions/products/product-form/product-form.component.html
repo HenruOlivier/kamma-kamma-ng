@@ -8,6 +8,18 @@
 
     <label>Images:</label>
 
+    <div class="img-list-container">
+
+        <div *ngFor="let img of currentImages">
+
+            <div class="img-cotainer">
+                <img src="{{baseImgUrl + '/' + img}}" alt="">
+            </div>
+
+        </div>
+
+    </div>
+
     <div>
 
         <ss-data-grid
