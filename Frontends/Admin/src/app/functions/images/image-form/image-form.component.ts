@@ -99,7 +99,7 @@ export class ImageFormComponent implements OnInit, OnDestroy {
       this.imagesService.updateImage(this._id, {
         ...formValues,
         image: this.currentImageEditable?.image || this.myfile,
-        imagePath: this.currentImageEditable?.imagePath || '',
+        imagePath: this.currentImageEditable?.url || '',
       })
       .pipe(
         tap(() => { this.btnState = ActionButtonStates.Success; }),

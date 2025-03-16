@@ -19,6 +19,7 @@ import { GridManager } from '../../../shared/components/ss-lib-components/ss-dat
 import { GridFieldTypes } from '../../../shared/components/ss-lib-components/ss-data-grid/grid-field-types.model';
 import { ImagesService } from '../../../shared/services/images/images.service';
 import { environment } from '../../../../environment/environment';
+import { Image } from '../../../shared/models/image.model';
 
 @Component({
   selector: 'app-product-form',
@@ -52,7 +53,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   gridManager = new GridManager;
   errorMessage: string = '';
 
-  currentImages: string[] = [];
+  currentImages: Image[] = [];
 
   gridDefinition = [
     new GridDefinitionField('_id', 'id', GridFieldTypes.Text, true, true, false),
@@ -107,6 +108,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
             if (response) {
               this.currentProductEditable = response;
               this.productVariations = response.variations;
+              this.currentImages = response.images;
               console.log('variations: ', response.variations)
               this.formController.setFormValue(response);
             } else {
@@ -146,7 +148,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   onControlTrigger(data: any) {
     console.log('controle trigger: ', data.data);
-    this.currentImages.push(data.data.url);
+    this.currentImages.push(data.data);
   }
 
   onRefresh() {
@@ -155,7 +157,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   onSave() {
     // Log form data
-    const formData: Product = {...this.formController.getFormValue(), variations: this.productVariations};
+    const formData: Product = {...this.formController.getFormValue(), variations: this.productVariations, images: this.currentImages};
     console.log('Form data to save:', formData);
 
     this.btnState = ActionButtonStates.Loading;

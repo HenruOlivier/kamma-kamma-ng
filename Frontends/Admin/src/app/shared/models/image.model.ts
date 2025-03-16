@@ -3,7 +3,7 @@ export interface Image {
     name: string,
     description: string,
     image: File,
-    imagePath: string,
+    url: string,
     _id?: string,
 }
   
