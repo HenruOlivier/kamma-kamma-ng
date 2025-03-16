@@ -18,8 +18,11 @@ app.use(cors());
 // Routes
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
-app.use('/api/variations', variationRoutes); // Added
-app.use('/api/images', imageRoutes);         // Added
+app.use('/api/variations', variationRoutes);
+app.use('/api/images', imageRoutes);
+
+// Serve images statically
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // MongoDB Connection
 mongoose.connect('mongodb://expeli-mongo:27017/ecommerce', {
