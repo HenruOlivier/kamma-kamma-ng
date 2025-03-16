@@ -13,6 +13,7 @@ import { catchError, finalize, tap } from 'rxjs/operators';
 import { SSFormBuilder2Component } from '../../../shared/components/ss-lib-components/ss-form-builder2/ss-form-builder2.component';
 import { PerformanceImageComponent } from '../../../shared/components/performance-image/performance-image.component';
 import { SSHTTPResponse } from '../../../shared/models/ss-http.model';
+import { environment } from '../../../../environment/environment';
 
 @Component({
   selector: 'app-image-form',
@@ -38,7 +39,7 @@ export class ImageFormComponent implements OnInit, OnDestroy {
 
   imageFilePreview!: string | null;
 
-  imageHost: string = '';
+  baseImageUrl = environment.baseImageUrl;
 
   imagePreview!: string | null;
 
@@ -63,6 +64,7 @@ export class ImageFormComponent implements OnInit, OnDestroy {
           tap((response: SSHTTPResponse<Image>) => {
             if (response && response.data) {
               this.currentImageEditable = response.data;
+              this.imagePreview = response.data.url
               this.formController.setFormValue(response.data);
             }
           }),

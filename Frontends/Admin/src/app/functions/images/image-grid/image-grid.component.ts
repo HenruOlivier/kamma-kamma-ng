@@ -25,6 +25,7 @@ export class ImageGridComponent {
     new GridDefinitionField('_id', 'id', GridFieldTypes.Text, true, true, false),
     new GridDefinitionField('name', 'Name', GridFieldTypes.Text, true, true, false),
     new GridDefinitionField('description', 'Description', GridFieldTypes.Text, true, true, false),
+    new GridDefinitionField('url', 'Url', GridFieldTypes.Image, true, true, false),
   ];
 
   private destroy$ = new Subject<void>();
