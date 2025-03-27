@@ -163,9 +163,18 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.variationFormOpen = false;
   }
 
-  onControlTrigger(data: any) {
+  addImg(data: any) {
     console.log('controle trigger: ', data.data);
     this.currentImages.push(data.data);
+    this.filterImages();
+  }
+
+  removeImg(img: Image) {
+    // Remove the image from currentImages
+    this.currentImages = this.currentImages.filter(currentImg => currentImg._id !== img._id);
+  
+    // Refresh the grid dataset by filtering available images again
+    this.filterImages();
   }
 
   onRefresh() {

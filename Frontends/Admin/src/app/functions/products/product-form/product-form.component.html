@@ -14,9 +14,9 @@
 
             <div class="img-cotainer">
                 <img src="{{baseImgUrl + '/' + img.url}}" alt="">
-                <div class="remove-img">
+                <button class="remove-img" (click)="removeImg(img)">
                     <i class="bi bi-trash"></i>
-                </div>
+                </button>
             </div>
 
         </div>
@@ -31,7 +31,7 @@
         [error]="(imagesService.imagesError$ | async) || false"
         [errorText]="errorMessage"
         [topBarActive]="false"
-        (controlTrigger)="onControlTrigger($event)"
+        (controlTrigger)="addImg($event)"
         >
         </ss-data-grid>
 
