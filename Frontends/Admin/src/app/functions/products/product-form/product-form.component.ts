@@ -55,6 +55,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   currentImages: Image[] = [];
 
+  allImages: Image[] = [];
+
   gridDefinition = [
     new GridDefinitionField('_id', 'id', GridFieldTypes.Text, true, true, false),
     new GridDefinitionField('name', 'Name', GridFieldTypes.Text, true, true, false),
@@ -111,6 +113,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
               this.currentImages = response.images;
               console.log('variations: ', response.variations)
               this.formController.setFormValue(response);
+              this.filterImages();
             } else {
               console.error('No data received for the product.');
             }
@@ -125,15 +128,29 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
     this.imagesService.allImages$.pipe(
       takeUntil(this.destroy$)
-    ).subscribe((images: any) => {
-      // let filteredImages = images.filter()
-      this.gridManager.dataset = images;
+    ).subscribe((images: Image[]) => {
+      // Filter images to exclude those already in currentImages
+      // let filteredImages = images.filter(img => 
+      //   !this.currentImages.some(currentImg => currentImg._id === img._id)
+      // );
+  
+      // this.gridManager.dataset = filteredImages;
+      this.allImages = images;
+      this.filterImages();
     });
 
     // setInterval(() => {
     //   const formData: any = this.formController.getFormValue();
     //   console.log('form data: ', formData)
     // }, 3000)
+  }
+
+  filterImages() {
+    let filteredImages = this.allImages.filter(img => 
+      !this.currentImages.some(currentImg => currentImg._id === img._id)
+    );
+
+    this.gridManager.dataset = filteredImages;
   }
 
   addVariation() {
