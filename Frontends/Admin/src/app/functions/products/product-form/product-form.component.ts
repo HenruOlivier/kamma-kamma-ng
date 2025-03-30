@@ -20,6 +20,7 @@ import { GridFieldTypes } from '../../../shared/components/ss-lib-components/ss-
 import { ImagesService } from '../../../shared/services/images/images.service';
 import { environment } from '../../../../environment/environment';
 import { Image } from '../../../shared/models/image.model';
+import { CategoriesService } from '../../../shared/services/categories/categories.service';
 
 @Component({
   selector: 'app-product-form',
@@ -66,6 +67,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     public productsService: ProductsService,
+    private categoriesService: CategoriesService,
     public formController: SSFormController,
     public imagesService: ImagesService
   ) {
@@ -78,11 +80,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       { type: FormFieldTypes.Checkbox, name: 'isForSale', label: 'Is For Sale', required: true },
       { type: FormFieldTypes.Number, name: 'stockQuantity', label: 'Stock Quantity', required: true },
       { 
-        type: FormFieldTypes.Select, 
+        type: FormFieldTypes.MultiSelect, 
         name: 'categories', 
         label: 'Categories', 
         required: false, 
-        dataset: this.productsService.fetchAllProducts(), 
+        dataset: this.categoriesService.fetchAllCategories(), 
         headerField: 'name', 
         searchEnabled: true 
       },
