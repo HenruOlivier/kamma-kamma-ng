@@ -1,40 +1,42 @@
 <div class="form-container">
 
-    <!-- <ss-form-builder2
-    [formDefinition]="formDefinition"
-    [loading]="(productsService.currentProductLoading$ | async) || false"
-    [loadingObservable]="productsService.currentProductLoading$"
-    ></ss-form-builder2> -->
-
-    <!-- <ss-input-text
-    [(value)]="currentName"
-    >
-    </ss-input-text>
-
-    <ss-input-number
-    [(value)]="currentStock"
-    >
-    </ss-input-number> -->
-
     <label>Name</label>
+    <ss-input-text [(value)]="currentName"></ss-input-text>
 
-    <ss-input-text
-    [(value)]="currentName"
-    ></ss-input-text>
-
+    <br><br>
     <label>Stock Quantity</label>
+    <ss-input-number [(value)]="currentStock"></ss-input-number>
 
-    <ss-input-number
-    [(value)]="currentStock"
-    ></ss-input-number>
+    <br><br>
+    <label>Images:</label>
+    <div class="img-list-container">
+        <div *ngFor="let img of variationImages">
+            <div class="img-cotainer">
+                <img src="{{baseImgUrl + '/' + img.url}}" alt="">
+                <button class="remove-img" (click)="removeVariationImg(img)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <ss-data-grid
+            [manager]="gridManager"
+            [loading]="(imagesService.imagesLoading$ | async) || false"
+            [error]="(imagesService.imagesError$ | async) || false"
+            [errorText]="errorMessage"
+            [topBarActive]="false"
+            (controlTrigger)="addVariationImg($event)">
+        </ss-data-grid>
+    </div>
 
     <button
-    *ngIf="true || false" actionButton
-    [state]="btnState " 
-    class="ss-btn-success w-100"
-    (click)="onSaveVariation()"
-    >
-    Add Variation
+        *ngIf="true || false" actionButton
+        [state]="btnState" 
+        class="ss-btn-success w-100"
+        (click)="onSaveVariation()">
+        Add Variation
     </button>
 
 </div>
