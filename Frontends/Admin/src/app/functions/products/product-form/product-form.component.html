@@ -50,13 +50,24 @@
 
     </div>
     
-    <ng-container *ngIf="variationFormOpen">
-        <div class="form-container">
+    <!-- <ng-container *ngIf="variationFormOpen"> -->
+        <ss-dialog [isOpen]="variationFormOpen" (exitCross)="onCancelVariation()" [hasExitCross]="true" width="90dvw" height="80dvh">
 
-            <app-variation-form (addVariation)="onSaveVariation($event)" [productVariations]="productVariations"></app-variation-form>
-
-        </div>
-    </ng-container>
+            <div class="variation-form-container">
+    
+                <app-variation-form (addVariation)="onSaveVariation($event)" [productVariations]="productVariations"></app-variation-form>
+    
+                <br>
+            
+                <div class="flex">
+                    <button (click)="onCancelVariation()"
+                            class="ss-btn-secondary flex-grow mx-1">
+                        <p>Cancel</p>
+                    </button>
+                </div>
+            </div>
+        </ss-dialog>
+    <!-- </ng-container> -->
     
     <br><br>
 

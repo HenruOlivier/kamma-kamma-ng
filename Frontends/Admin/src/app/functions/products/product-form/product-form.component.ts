@@ -21,11 +21,12 @@ import { ImagesService } from '../../../shared/services/images/images.service';
 import { environment } from '../../../../environment/environment';
 import { Image } from '../../../shared/models/image.model';
 import { CategoriesService } from '../../../shared/services/categories/categories.service';
+import { SSDialogComponent } from '../../../shared/components/ss-lib-components/ss-dialog/ss-dialog.component';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, VariationFormComponent, SSFormBuilder2Component, SSDataGridComponent],
+  imports: [CommonModule, SSComponentsModule, SSDirectivesModule, VariationFormComponent, SSFormBuilder2Component, SSDataGridComponent, SSDialogComponent],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
@@ -181,6 +182,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   onRefresh() {
     this.imagesService.refreshAllImages();
+  }
+
+  onCancelVariation() {
+    this.variationFormOpen = false;
   }
 
   onSave() {
