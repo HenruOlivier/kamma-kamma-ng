@@ -6,8 +6,11 @@ exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find()
       .populate('categories')
-      .populate('variations')
-      .populate('images');
+      .populate('images')
+      .populate({
+        path: 'variations.images', // Populate images inside variations
+        model: 'Image', // Specify the model for the images
+      });
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -19,8 +22,11 @@ exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
       .populate('categories')
-      .populate('variations')
-      .populate('images');
+      .populate('images')
+      .populate({
+        path: 'variations.images', // Populate images inside variations
+        model: 'Image', // Specify the model for the images
+      });
     if (!product) return res.status(404).json({ message: 'Product not found' });
     res.json(product);
   } catch (error) {

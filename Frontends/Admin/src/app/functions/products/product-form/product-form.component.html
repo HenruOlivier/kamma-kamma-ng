@@ -40,11 +40,19 @@
     <label>Variations:</label>
 
     <div class="variations-container">
-        <div class="variation-item variation-preview" *ngFor="let variation of productVariations; let i = index">
-            <p>{{ variation.name }}</p>
-            <button class="remove-item" (click)="removeVariation(i)">
-                <i class="bi bi-trash"></i>
-            </button>   
+        <div class="variation-item" *ngFor="let variation of productVariations; let i = index">
+            <div class="variation-preview">
+                <div class="variation-image">
+                    <img *ngIf="variation.images && variation.images.length > 0" [src]="baseImgUrl + '/' + variation.images[0].url" alt="Variation Image">
+                    <img *ngIf="!variation.images?.length" src="assets/placeholder.png" alt="No Image Available">
+                </div>
+                <div class="variation-name">
+                    <p>{{ variation.name }}</p>
+                </div>
+                <button class="remove-item" (click)="removeVariation(i)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
         </div>
         <button class="add-variation-btn variation-item" (click)="addVariation()">
             Add Variation
