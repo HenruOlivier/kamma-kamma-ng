@@ -14,7 +14,7 @@
 
             <div class="img-cotainer">
                 <img src="{{baseImgUrl + '/' + img.url}}" alt="">
-                <button class="remove-img" (click)="removeImg(img)">
+                <button class="remove-item" (click)="removeImg(img)">
                     <i class="bi bi-trash"></i>
                 </button>
             </div>
@@ -40,14 +40,15 @@
     <label>Variations:</label>
 
     <div class="variations-container">
-            
-        <div class="variation-item" *ngFor="let variation of productVariations">
-
+        <div class="variation-item variation-preview" *ngFor="let variation of productVariations; let i = index">
+            <p>{{ variation.name }}</p>
+            <button class="remove-item" (click)="removeVariation(i)">
+                <i class="bi bi-trash"></i>
+            </button>   
         </div>
-        <button class="add-variation-btn" (click)="addVariation()">
-
+        <button class="add-variation-btn variation-item" (click)="addVariation()">
+            Add Variation
         </button>
-
     </div>
     
     <!-- <ng-container *ngIf="variationFormOpen"> -->

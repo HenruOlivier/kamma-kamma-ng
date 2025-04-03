@@ -1,20 +1,3 @@
-.variations-container {
-    display: flex;
-}
-
-.variation-item {
-    height: 80px;
-    width: 60px;
-    border-radius: 7px;
-    border: 1px solid gray;
-}
-
-.add-variation-btn {
-    height: 80px;
-    width: 60px;
-    border-radius: 7px;
-    border: 1px solid gray;
-}
 
 .form-container {
     padding: 10px;
@@ -47,7 +30,7 @@
     border-radius: 10px;
 }
 
-.remove-img {
+.remove-item {
     position: absolute;
     top: -10px;
     right: -10px;
@@ -61,6 +44,31 @@
     z-index: 5;
     border: none;
     cursor: pointer;
+}
+
+.variations-container {
+    display: flex;
+}
+
+.variation-item {
+    height: 120px;
+    width: 90px;
+    border-radius: 7px;
+    border: 1px solid gray;
+    position: relative;
+    margin: 10px;
+}
+
+.add-variation-btn {
+}
+
+.variation-preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 7px;
+    background-color: #f9f9f9;
 }
 
 .variation-form-container {

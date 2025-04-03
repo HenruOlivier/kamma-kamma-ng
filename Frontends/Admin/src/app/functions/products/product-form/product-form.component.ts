@@ -166,6 +166,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.variationFormOpen = false;
   }
 
+  removeVariation(index: number): void {
+    this.productVariations.splice(index, 1);
+    console.log('Variation removed. Updated variations:', this.productVariations);
+  }
+
   addImg(data: any) {
     console.log('controle trigger: ', data.data);
     this.currentImages.push(data.data);
