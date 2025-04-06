@@ -7,4 +7,5 @@ export const routes: Routes = [
     { path: '', component: ContentOutletComponent },
     { path: 'search', component: SearchAllComponent },
     { path: 'product-page', component: ProductPageComponent },
+    { path: 'categories', loadChildren: () => import('./pages/categories/categories.routes').then(m => m.routes) },
 ];

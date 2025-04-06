@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, finalize, Observable, of, tap } from 'rxjs';
 import { Category } from '../../models/category.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,10 @@ export class CategoriesService {
     return this.allCategoriesSubject.asObservable();
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   // Fetch all categories
   refreshAllCategories(): void {
@@ -59,13 +63,13 @@ export class CategoriesService {
 
   // Fetch categories from the API
   fetchAllCategories(): Observable<Category[]> {
-    console.log('fetch all cat')
+    console.log('fetch all cat');
     this.categoriesLoadingSubject.next(true);
 
     return this.http.get<Category[]>(this.baseUrl)
       .pipe(
         tap((categories: Category[]) => {
-          console.log('awe')
+          console.log('awe');
           this.allCategoriesSubject.next(categories);
         }),
         catchError((error: any) => {
@@ -74,7 +78,7 @@ export class CategoriesService {
           return of([]);
         }),
         finalize(() => {
-          console.log('awe')
+          console.log('awe');
           this.categoriesLoadingSubject.next(false);
         })
       );
@@ -99,4 +103,13 @@ export class CategoriesService {
       );
   }
 
+  // Navigate to the categories list page
+  navigateToCategoriesList(): void {
+    this.router.navigate(['/categories']);
+  }
+
+  // Navigate to a specific category's products page
+  navigateToCategoryProducts(categoryId: string): void {
+    this.router.navigate([`/categories/${categoryId}/products`]);
+  }
 }
