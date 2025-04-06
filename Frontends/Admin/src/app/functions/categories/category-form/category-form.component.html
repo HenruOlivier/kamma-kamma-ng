@@ -5,9 +5,10 @@
   ></ss-form-builder2>
 
   <label>Cover Image:</label>
+  <br>
   <div class="img-preview" *ngIf="coverImage">
-    <img [src]="coverImage.url" alt="Cover Image">
-    <button class="remove-img" (click)="coverImage = null; filterImages()">Remove</button>
+    <img [src]="baseImgUrl + '/' + coverImage.url" alt="Cover Image">
+    <button class="remove-img" (click)="coverImage = null; filterImages()"><i class="bi bi-trash"></i></button>
   </div>
   <ss-data-grid
     [manager]="coverImageGridManager"
@@ -19,7 +20,7 @@
   <div class="assigned-products">
     <div *ngFor="let product of assignedProducts" class="product-item">
       <p>{{ product.name }}</p>
-      <button (click)="removeAssignedProduct(product)">Remove</button>
+      <button (click)="removeAssignedProduct(product)"><i class="bi bi-trash"></i></button>
     </div>
   </div>
   <ss-data-grid

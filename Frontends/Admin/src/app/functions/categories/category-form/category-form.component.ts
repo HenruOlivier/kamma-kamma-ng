@@ -19,6 +19,7 @@ import { ImagesService } from '../../../shared/services/images/images.service';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import { GridDefinitionField } from '../../../shared/components/ss-lib-components/ss-data-grid/grid-definition-field.model';
 import { GridFieldTypes } from '../../../shared/components/ss-lib-components/ss-data-grid/grid-field-types.model';
+import { environment } from '../../../../environment/environment';
 
 @Component({
   selector: 'app-category-form',
@@ -29,6 +30,8 @@ import { GridFieldTypes } from '../../../shared/components/ss-lib-components/ss-
 })
 export class CategoryFormComponent implements OnInit, OnDestroy {
   destroy$ = new Subject<void>();
+
+  baseImgUrl = environment.baseImageUrl;
 
   _id: string | null = null;
   currentCategoryEditable: Category | null = null;
