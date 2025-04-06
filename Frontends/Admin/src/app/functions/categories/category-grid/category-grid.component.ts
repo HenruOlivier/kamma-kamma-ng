@@ -34,9 +34,8 @@ export class CategoryGridComponent {
     public categoriesService: CategoriesService
   ) {
     this.gridManager.definition = this.gridDefinition;
-    this.onRefresh();
   }
-
+  
   ngOnInit(): void {
     this.categoriesService.allCategories$.pipe(
       takeUntil(this.destroy$)
@@ -44,6 +43,7 @@ export class CategoryGridComponent {
       console.log('categories: ', categories);
       this.gridManager.dataset = categories;
     });
+    this.onRefresh();
   }
 
   onRefresh() {

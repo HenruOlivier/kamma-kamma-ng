@@ -1,1 +1,27 @@
 <p>category-products works!</p>
+
+<ng-container *ngIf="!(categoriesService.categoryProductsError$ | async); else error">
+    <ng-container *ngIf="!(categoriesService.categoryProductsLoading$ | async); else loading">
+        <ng-container *ngFor="let product of (categoriesService.categoryProducts$ | async)">
+            <div class="product-card">
+                <div class="card-header">
+                    {{ product.name }}
+                </div>
+                <div class="card-img">
+                    <!-- <img
+                        [src]="baseImgUrl + '/' + product.coverImage?.url"
+                    > -->
+                </div>
+            </div>
+
+        </ng-container>
+    </ng-container>
+</ng-container>
+
+<ng-template #error>
+  error
+</ng-template>
+
+<ng-template #loading>
+  loading
+</ng-template>

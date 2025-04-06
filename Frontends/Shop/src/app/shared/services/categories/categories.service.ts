@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, finalize, Observable, of, tap } from 'rxjs';
 import { Category } from '../../models/category.model';
 import { Router } from '@angular/router';
+import { Product } from '../../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,22 @@ export class CategoriesService {
   private allCategoriesSubject = new BehaviorSubject<Category[] | null>(null);
   public get allCategories$(): Observable<Category[] | null> {
     return this.allCategoriesSubject.asObservable();
+  }
+
+  // Observables for category products functionality
+  private categoryProductsLoadingSubject = new BehaviorSubject<boolean>(false);
+  public get categoryProductsLoading$(): Observable<boolean> {
+    return this.categoryProductsLoadingSubject.asObservable();
+  }
+
+  private categoryProductsErrorSubject = new BehaviorSubject<string | null>(null);
+  public get categoryProductsError$(): Observable<string | null> {
+    return this.categoryProductsErrorSubject.asObservable();
+  }
+
+  private categoryProductsSubject = new BehaviorSubject<Product[] | null>(null);
+  public get categoryProducts$(): Observable<Product[] | null> {
+    return this.categoryProductsSubject.asObservable();
   }
 
   constructor(
@@ -101,6 +118,28 @@ export class CategoriesService {
           this.categoryLoadingSubject.next(false);
         })
       );
+  }
+
+  // Fetch products by category ID
+  fetchProductsByCategory(categoryId: string): void {
+    this.categoryProductsLoadingSubject.next(true);
+    this.http.get<Product[]>(`${this.baseUrl}${categoryId}/products`)
+      .pipe(
+        tap((products: Product[]) => {
+          console.log(`Fetched products for category ${categoryId}:`, products);
+          this.categoryProductsSubject.next(products);
+        }),
+        catchError((error: any) => {
+          console.error('Error while fetching products for category:', error);
+          this.categoryProductsErrorSubject.next('Error while fetching products for category');
+          this.categoryProductsSubject.next([]);
+          return of([]);
+        }),
+        finalize(() => {
+          this.categoryProductsLoadingSubject.next(false);
+        })
+      )
+      .subscribe();
   }
 
   // Navigate to the categories list page
