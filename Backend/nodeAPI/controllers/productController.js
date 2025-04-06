@@ -5,7 +5,6 @@ const Product = require('../models/Product');
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find()
-      .populate('categories')
       .populate('images')
       .populate({
         path: 'variations.images', // Populate images inside variations
@@ -21,7 +20,6 @@ exports.getAllProducts = async (req, res) => {
 exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
-      .populate('categories')
       .populate('images')
       .populate({
         path: 'variations.images', // Populate images inside variations

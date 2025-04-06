@@ -29,5 +29,13 @@
     (controlTrigger)="onProductSelected($event)"
   ></ss-data-grid>
 
-  <button (click)="onSave()">Save Category</button>
+  <button
+    *ngIf="formController.isFormValid()"
+    actionButton
+    [state]="btnState"
+    class="ss-btn-success w-100"
+    (click)="onSave()"
+  >
+    {{ btnText }}
+  </button>
 </div>

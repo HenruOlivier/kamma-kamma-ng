@@ -14,7 +14,6 @@ const ProductSchema = new mongoose.Schema({
   isHireable: { type: Boolean, default: false },
   isForSale: { type: Boolean, default: true },
   stockQuantity: { type: Number, default: 0 },
-  categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
   variations: [VariationSchema],
   images: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }],
 });
