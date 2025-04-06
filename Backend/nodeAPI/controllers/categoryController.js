@@ -4,8 +4,9 @@ const Category = require('../models/Category');
 // Get all categories
 exports.getAllCategories = async (req, res) => {
   try {
-    console.log('aweeeeeeeeeeee')
-    const categories = await Category.find().populate('products');
+    const categories = await Category.find()
+      .populate('coverImage') // Populate the coverImage field
+      .populate('products'); // Populate the products field
     res.json(categories);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -15,7 +16,9 @@ exports.getAllCategories = async (req, res) => {
 // Get category by ID
 exports.getCategoryById = async (req, res) => {
   try {
-    const category = await Category.findById(req.params.id).populate('products');
+    const category = await Category.findById(req.params.id)
+      .populate('coverImage') // Populate the coverImage field
+      .populate('products'); // Populate the products field
     if (!category)
       return res.status(404).json({ message: 'Category not found' });
     res.json(category);
@@ -42,7 +45,9 @@ exports.updateCategory = async (req, res) => {
       req.params.id,
       req.body,
       { new: true }
-    );
+    )
+      .populate('coverImage') // Populate the coverImage field
+      .populate('products'); // Populate the products field
     if (!updatedCategory)
       return res.status(404).json({ message: 'Category not found' });
     res.json(updatedCategory);
