@@ -1,16 +1,32 @@
-<div class="main-form-container my-3">
-    <ss-form-builder2
+<div class="form-container">
+  <ss-form-builder2
     [formDefinition]="formDefinition"
-    [loading]="(categoriesService.categoryLoading$ | async) || false"
-    [loadingObservable]="categoriesService.categoryLoading$"
-    ></ss-form-builder2>
-    
-    <button
-    *ngIf="!(categoriesService.singleUpdateLoading$ | async) && formController.isFormValid() || false" actionButton
-    [state]="(categoriesService.createUpdateErr$ | async) ? btnError : btnState " 
-    class="ss-btn-success w-100"
-    (click)="onSave()"
-    >
-    Save
-    </button>
+    [loading]="false"
+  ></ss-form-builder2>
+
+  <label>Cover Image:</label>
+  <div class="img-preview" *ngIf="coverImage">
+    <img [src]="coverImage.url" alt="Cover Image">
+    <button class="remove-img" (click)="coverImage = null; filterImages()">Remove</button>
+  </div>
+  <ss-data-grid
+    [manager]="coverImageGridManager"
+    [topBarActive]="false"
+    (controlTrigger)="onCoverImageSelected($event)"
+  ></ss-data-grid>
+
+  <label>Assigned Products:</label>
+  <div class="assigned-products">
+    <div *ngFor="let product of assignedProducts" class="product-item">
+      <p>{{ product.name }}</p>
+      <button (click)="removeAssignedProduct(product)">Remove</button>
+    </div>
+  </div>
+  <ss-data-grid
+    [manager]="productGridManager"
+    [topBarActive]="false"
+    (controlTrigger)="onProductSelected($event)"
+  ></ss-data-grid>
+
+  <button (click)="onSave()">Save Category</button>
 </div>
