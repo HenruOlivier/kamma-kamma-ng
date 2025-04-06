@@ -3,12 +3,12 @@ import { ToggleInViewDirective } from '../../../shared/directives/toggleInViewCl
 import { TypingEffectDirective } from '../../../shared/directives/typingEffect';
 
 @Component({
-  selector: 'app-catagories',
+  selector: 'app-categories',
   standalone: true,
   imports: [TypingEffectDirective, ToggleInViewDirective],
-  templateUrl: './catagories.component.html',
-  styleUrl: './catagories.component.scss'
+  templateUrl: './categories.component.html',
+  styleUrl: './categories.component.scss'
 })
-export class CatagoriesComponent {
+export class CategoriesComponent {
 
 }
