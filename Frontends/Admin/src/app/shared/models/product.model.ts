@@ -10,7 +10,6 @@ export interface Product {
     isHireable: boolean;
     isForSale: boolean;
     stockQuantity: number;
-    categories: Category[];
     variations: ProductVariation[];
     images: Image[];
 }

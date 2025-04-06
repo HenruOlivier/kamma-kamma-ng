@@ -8,70 +8,18 @@
                 <h1 typingEffect="Categories" [delayTime]="500">Categories</h1>
             </div>
             <div class="content-container">
-                <div class="top-list">
+                <ng-container *ngFor="let category of categoriesService.allCategories$ | async">
                     <div class="category-card">
                         <div class="card-header">
-                            Category 1
+                            {{category.name}}
                         </div>
                         <div class="card-img">
                             <img
-                            src="assets/icons/team.svg"
+                            [src]="baseImgUrl + '/' + category.coverImage?.url"
                             >
                         </div>
                     </div>
-                    <div class="category-card">
-                        <div class="card-header">
-                            Category 1
-                        </div>
-                        <div class="card-img">
-                            <img
-                            src="assets/icons/team.svg"
-                            >
-                        </div>
-                    </div>
-                    <div class="category-card">
-                        <div class="card-header">
-                            Category 1
-                        </div>
-                        <div class="card-img">
-                            <img
-                            src="assets/icons/team.svg"
-                            >
-                        </div>
-                    </div>
-                </div>
-                <div class="bottom-list">
-                    <div class="category-card">
-                        <div class="card-header">
-                            Category 1
-                        </div>
-                        <div class="card-img">
-                            <img
-                            src="assets/icons/team.svg"
-                            >
-                        </div>
-                    </div>
-                    <div class="category-card">
-                        <div class="card-header">
-                            Category 1
-                        </div>
-                        <div class="card-img">
-                            <img
-                            src="assets/icons/team.svg"
-                            >
-                        </div>
-                    </div>
-                    <div class="category-card">
-                        <div class="card-header">
-                            Category 1
-                        </div>
-                        <div class="card-img">
-                            <img
-                            src="assets/icons/team.svg"
-                            >
-                        </div>
-                    </div>
-                </div>
+                </ng-container>
             </div>
         </div>
     </div>
