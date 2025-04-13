@@ -123,11 +123,12 @@ export class CategoriesService {
   // Fetch products by category ID
   fetchProductsByCategory(categoryId: string): void {
     this.categoryProductsLoadingSubject.next(true);
-    this.http.get<Product[]>(`${this.baseUrl}${categoryId}/products`)
+    this.http.get<Category>(`${this.baseUrl}${categoryId}/products`)
       .pipe(
-        tap((products: Product[]) => {
-          console.log(`Fetched products for category ${categoryId}:`, products);
-          this.categoryProductsSubject.next(products);
+        tap((category: Category) => {
+          console.log(`Fetched products for category ${categoryId}:`, category.products);
+          this.categoryProductsSubject.next(category.products);
+          this.currentCategorySubject.next(category);
         }),
         catchError((error: any) => {
           console.error('Error while fetching products for category:', error);
@@ -148,7 +149,8 @@ export class CategoriesService {
   }
 
   // Navigate to a specific category's products page
-  navigateToCategoryProducts(categoryId: string): void {
-    this.router.navigate([`/categories/${categoryId}/products`]);
+  navigateToCategoryProducts(category: Category): void {
+    this.currentCategorySubject.next(category);
+    this.router.navigate([`/categories/${category._id}/products`]);
   }
 }

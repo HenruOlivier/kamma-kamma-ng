@@ -3,11 +3,12 @@ import { CategoriesService } from '../../../shared/services/categories/categorie
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../../../shared/components/product-card/product-card.component';
+import { TypingEffectDirective } from '../../../shared/directives/typingEffect';
 
 @Component({
   selector: 'app-category-products',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent, TypingEffectDirective],
   templateUrl: './category-products.component.html',
   styleUrl: './category-products.component.scss'
 })

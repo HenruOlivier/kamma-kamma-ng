@@ -1,19 +1,26 @@
-<p>category-products works!</p>
-
-<ng-container *ngIf="!(categoriesService.categoryProductsError$ | async); else error">
-    <ng-container *ngIf="!(categoriesService.categoryProductsLoading$ | async); else loading">
-        <ng-container *ngFor="let product of (categoriesService.categoryProducts$ | async)">
-
-            <app-product-card [product]="product"></app-product-card>
-
+<div class="category-page">
+    <div class="project-header services-section">
+        <ng-container *ngIf="!(categoriesService.categoryProductsLoading$ | async);">
+            <h1 typingEffect="{{ ((categoriesService.currentCategory$ | async)?.name)?.toUpperCase() }}" [delayTime]="500">{{ (categoriesService.currentCategory$ | async)?.name }}</h1>
+        </ng-container>
+        <!-- <h1 typingEffect="SERVICES" [delayTime]="500">{{ (categoriesService.currentCategory$ | async)?.name }}</h1> -->
+    </div>
+    
+    <ng-container *ngIf="!(categoriesService.categoryProductsError$ | async); else error">
+        <ng-container *ngIf="!(categoriesService.categoryProductsLoading$ | async); else loading">
+            <ng-container *ngFor="let product of (categoriesService.categoryProducts$ | async)">
+    
+                <app-product-card [product]="product"></app-product-card>
+    
+            </ng-container>
         </ng-container>
     </ng-container>
-</ng-container>
-
-<ng-template #error>
-  error
-</ng-template>
-
-<ng-template #loading>
-  loading
-</ng-template>
+    
+    <ng-template #error>
+      error
+    </ng-template>
+    
+    <ng-template #loading>
+      loading
+    </ng-template>
+</div>
