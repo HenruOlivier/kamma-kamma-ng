@@ -1,14 +1,16 @@
-<div class="wrapper">
-    <div class="container">
-      <div class="top"></div>
-      <div class="bottom">
-        <div class="left">
-          <div class="details">
-            <h1>Chair</h1>
-            <p>£250</p>
+<ng-container *ngIf="product">
+  <div class="wrapper">
+      <div class="container">
+        <div class="top" [style.background-image]="'url(' + product.images[0]?.url + ')'"></div>
+        <div class="bottom">
+          <div class="left">
+            <div class="details">
+              <h1>{{ product.name }}</h1>
+              <p>R{{ product.price }}</p>
+            </div>
+            <div class="buy"><i class="bi bi-cart"></i></div>
           </div>
-          <div class="buy"><i class="bi bi-cart"></i></div>
         </div>
       </div>
-    </div>
-</div>
+  </div>
+</ng-container>
