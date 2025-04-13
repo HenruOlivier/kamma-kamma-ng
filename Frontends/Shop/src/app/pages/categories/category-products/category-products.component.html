@@ -3,16 +3,15 @@
 <ng-container *ngIf="!(categoriesService.categoryProductsError$ | async); else error">
     <ng-container *ngIf="!(categoriesService.categoryProductsLoading$ | async); else loading">
         <ng-container *ngFor="let product of (categoriesService.categoryProducts$ | async)">
-            <div class="product-card">
+            <!-- <div class="product-card">
                 <div class="card-header">
                     {{ product.name }}
                 </div>
                 <div class="card-img">
-                    <!-- <img
-                        [src]="baseImgUrl + '/' + product.coverImage?.url"
-                    > -->
                 </div>
-            </div>
+            </div> -->
+
+            <app-product-card [product]="product"></app-product-card>
 
         </ng-container>
     </ng-container>

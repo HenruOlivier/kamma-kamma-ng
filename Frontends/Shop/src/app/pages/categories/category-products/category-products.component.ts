@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CategoriesService } from '../../../shared/services/categories/categories.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ProductCardComponent } from '../../../shared/components/product-card/product-card.component';
 
 @Component({
   selector: 'app-category-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProductCardComponent],
   templateUrl: './category-products.component.html',
   styleUrl: './category-products.component.scss'
 })
