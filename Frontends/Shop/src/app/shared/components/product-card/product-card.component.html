@@ -1,5 +1,5 @@
 <ng-container *ngIf="product">
-  <div class="wrapper">
+  <button class="wrapper" (click)="productClicked(product)">
       <div class="container">
         <div class="top" [style.background-image]="'url(' + baseImgUrl + '/' + product.images[0]?.url + ')'"></div>
         <div class="bottom">
@@ -8,9 +8,11 @@
               <h1>{{ product.name }}</h1>
               <p>R{{ product.price }}</p>
             </div>
-            <div class="buy"><i class="bi bi-cart"></i></div>
+            <div class="buy" (click)="$event.stopPropagation(); addToCart(product)">
+              <i class="bi bi-cart"></i>
+            </div>
           </div>
         </div>
       </div>
-  </div>
+    </button>
 </ng-container>
