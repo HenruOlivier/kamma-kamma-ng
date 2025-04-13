@@ -84,6 +84,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding-bottom: 5px;
   h4 {
     font-size: 18px;
     // margin: 5px 0 0;
@@ -124,15 +125,11 @@
 @media (max-width: 768px) {
 
   .wrapper {
-
     width: 48%;
-    height: 300px;
-  
-    
+    height: 300px;    
   }
-  .details {
 
-    // padding: 10px;
+  .details {
 
     h1 {
       font-size: 14px;
@@ -142,6 +139,12 @@
 
     h4 {
       font-size: 12px;
+    }
+  }
+
+  .buy {
+    i {
+      font-size: 20px;
     }
   }
 
