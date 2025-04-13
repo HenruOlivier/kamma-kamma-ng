@@ -72,12 +72,21 @@ exports.deleteCategory = async (req, res) => {
 // Get all products in a specific category
 exports.getProductsByCategory = async (req, res) => {
   try {
-    const category = await Category.findById(req.params.id).populate('products');
+    const category = await Category.findById(req.params.id)
+      .populate({
+        path: 'products',
+        populate: {
+          path: 'images', // Populate the images field in each product
+          model: 'Image', // Specify the model for the images
+        },
+      });
+
     if (!category) {
       return res.status(404).json({ message: 'Category not found' });
     }
     res.json(category.products);
   } catch (error) {
+    console.error('Error fetching products by category:', error);
     res.status(500).json({ message: error.message });
   }
 };

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environment/environment.prod';
 
 @Component({
   selector: 'app-product-card',
@@ -11,4 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductCardComponent {
   @Input() product: Product | null = null;
+
+  baseImgUrl = environment.baseImageUrl;
+
 }

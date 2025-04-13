@@ -1,7 +1,7 @@
 <ng-container *ngIf="product">
   <div class="wrapper">
       <div class="container">
-        <div class="top" [style.background-image]="'url(' + product.images[0]?.url + ')'"></div>
+        <div class="top" [style.background-image]="'url(' + baseImgUrl + '/' + product.images[0]?.url + ')'"></div>
         <div class="bottom">
           <div class="left">
             <div class="details">
