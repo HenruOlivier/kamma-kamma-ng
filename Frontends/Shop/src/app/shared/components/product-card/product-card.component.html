@@ -5,8 +5,12 @@
         <div class="bottom">
           <div class="left">
             <div class="details">
-              <h1>{{ product.name }}</h1>
-              <p>R{{ product.price }}</p>
+              <div class="name-box">
+                <h1>{{ product.name }}</h1>
+              </div>
+              <div class="price-box">
+                <h4>R{{ product.price }}</h4>
+              </div>
             </div>
             <div class="buy" (click)="$event.stopPropagation(); addToCart(product)">
               <i class="bi bi-cart"></i>
