@@ -8,8 +8,9 @@ const cors = require('cors');
 // Import routes
 const productRoutes = require('./routes/productRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
-const variationRoutes = require('./routes/variationRoutes'); // Added
-const imageRoutes = require('./routes/imageRoutes');         // Added
+const variationRoutes = require('./routes/variationRoutes');
+const imageRoutes = require('./routes/imageRoutes');
+const searchRoutes = require('./routes/searchRoutes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/variations', variationRoutes);
 app.use('/api/images', imageRoutes);
+app.use('/api/search', searchRoutes);
 
 // Serve images statically
 app.use('/images', express.static(path.join(__dirname, 'images')));
